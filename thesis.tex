@@ -4,6 +4,7 @@
 \input{metadata}
 
 \usepackage[a-2u]{pdfx}
+\usepackage{hyperref}
 
 \ifEN\else\usepackage[czech,shorthands=off]{babel}\fi
 \usepackage[utf8]{inputenc}
@@ -106,9 +107,8 @@
 
 \usepackage[noabbrev]{cleveref}
 
-% \input{todos} % remove this before compiling the final version
-
-\input{macros} % use this file for various custom definitions
+\input{macros}
+\input{src/macros}
 
 
 \begin{document}
@@ -117,15 +117,10 @@
 
 \tableofcontents
 
-\include{chapters/intro}
-\include{chapters/ch1}
-\include{chapters/ch2}
-\include{chapters/ch3}
-\include{chapters/conclusion}
-\include{chapters/bibliography}
+\input{src/main}
+\include{bibliography}
 
 \appendix
-\include{chapters/howto}
 
 % if your attachments are complicated, describe them in a separate appendix
 %\include{attachments}

@@ -1,0 +1,42 @@
+
+\chapwithtoc{Introduction}
+
+In order for physicists to understand the fundamental processes that govern the physical reality it is necessary to identify all the participants of these processes in experiments that probe them. 
+\emph{ATLAS}~\cite{ATLAS} detector, operating on the \lhc~\cite{lhc} at \cern~\cite{cern}, is the biggest experiment testing our knowledge of elementary interactions. 
+The \lhc accelerates two proton beams in different directions, so they can collide in the ATLAS detector and create variety of particles.
+
+Two fundamental particles that we are interested in are \emph{quarks} and \emph{gluons}~\cite{quarks}.
+They do not occur free in the nature, but rather combine to create \emph{hadrons} in a process called \emph{hadronization}~\cite{hadronisation}.
+If these particles are highly energetic, the hadronization process evolves and creates a shower of hadrons called \emph{jets}~\cite{jet}.
+These jets have a vague experimental definition because it depends on the algorithm clustering hadrons together.
+In our study we use the anti-$k_t$ algorithm~\cite{antikt} to define jets.
+These jets are then detected in the ATLAS detector.
+
+Our goal is to tell apart jets that are initiated by quarks and by gluons. 
+Traces left by these particles in the detector are very similar.
+This makes them hard to distinguish and non-trivial procedures are developed to make it possible.
+In the past, hand-crafted variables (such as number of hadron tracks detected in the jet) describing the jets were used~\cite{ntrk_tag}.
+Nowadays, modern \ml techniques are used to utilize more variables.
+The most adopted and successful is \bdt algorithm~\cite{bdt}, which is still being developed~\cite{bdt_tag}.
+It uses multiple \emph{jet variables} (variables that describe jet as a whole) as an input.
+
+In this thesis we approach the problem using modern \dl techniques.
+Firstly the \hgn architecture~\cite{highway} is developed, which still uses jet variables, but considerably more then \bdt. 
+Afterwards we turn to more granular description of jet, using \emph{jet constituents}. 
+These are particles measured by the detector and clustered into the jet. 
+We use the jet constituents as an input for \trans-like architectures~\cite{att_is_all}.
+
+Different architectures are explored.
+Most of the techniques utilized are adopted from image classification tasks~\cite{deit3} and \nlp~\cite{bert}.
+Recently this approach was also explored by the \cms~\cite{cms} Collaboration, where they solve a slightly different problem~\cite{part}.
+However, it can be directly applied to quark/gluon classification.
+We implement their original architecture and slightly improve it.
+
+These modern approaches vastly improve the older, established, \bdt and \hgn.   
+They are also more scalable and flexible.
+
+
+
+
+
+

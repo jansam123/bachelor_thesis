@@ -3,11 +3,17 @@ ABSTRACT=abstract
 LATEXMKOPTS=-pdf #enable for forcing pdflatex
 LATEXMK=latexmk $(LATEXMKOPTS)
 
-all:
-	$(LATEXMK) $(NAME)
-	$(LATEXMK) $(ABSTRACT)-cz
-	$(LATEXMK) $(ABSTRACT)-en
-	-mv $(NAME).pdf build/$(NAME).pdf
+all: thesis abstract
 
+thesis:
+	$(LATEXMK) $(NAME)
+	-cp $(NAME).pdf build/$(NAME)-$(shell date +%Y-%m-%d_%H-%M-%S).pdf
+
+abstract:
+	$(LATEXMK) $(ABSTRACT)-cz
+	-mv $(ABSTRACT)-cz.pdf build/$(ABSTRACT)-cz-$(shell date +%Y-%m-%d).pdf
+	$(LATEXMK) $(ABSTRACT)-en
+	-mv $(ABSTRACT)-en.pdf build/$(ABSTRACT)-en-$(shell date +%Y-%m-%d).pdf
 clean:
 	$(LATEXMK) -C
+	#rm **/*.aux
