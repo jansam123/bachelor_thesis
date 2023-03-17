@@ -7,7 +7,7 @@ all: thesis abstract
 
 thesis:
 	$(LATEXMK) $(NAME)
-	-cp $(NAME).pdf build/$(NAME)-$(shell date +%Y-%m-%d_%H-%M-%S).pdf
+	-cp $(NAME).pdf build/thesis.pdf
 
 abstract:
 	$(LATEXMK) $(ABSTRACT)-cz
