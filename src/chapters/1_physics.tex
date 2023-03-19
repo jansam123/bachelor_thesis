@@ -95,16 +95,16 @@ Gluons and photons are the only particles from \SM non-interacting with the Higg
 \section{Quantum Field Theory}
 \label{sec:qft}
 \QFT is a fundamental framework in modern theoretical physics that describes the behavior of particles and fields at the quantum level.
-Its first development was done by studying the electromagnetic interaction of particles and photons by Paul Dirac \cite{dirac}.
-Massive progress in \QED was made by Richard Feynman \cite{feynman}, who also introduced the \emph{Feynman diagrams}, a graphical representation of interactions.
+Paul Dirac did the first development by studying the electromagnetic interaction of particles and photons by \cite{dirac}.
+Massive progress in \QED did Richard Feynman \cite{feynman}, who also introduced the \emph{Feynman diagrams}, a graphical representation of interactions.
 We will discuss Feynman diagrams in more detail in \cref{sec:feyman}.
 
-The starting point of QFT is that particles are not fundamental objects but instead are excitations of underlying quantum fields that permeate all of space and time. 
+The starting point of QFT is that particles are not fundamental objects but excitations of underlying quantum fields that permeate all of space and time. 
 This field must satisfy the equations of motion of the corresponding field theory derived from the Lagrangian density of the theory.
 
 \subsection{Free Particles}
 \label{sec:free_particles}
-The Lagrangian of non-interacting \spinhalf particle also called the \emph{Dirac Lagrangian}, is given by
+The Lagrangian of non-interacting \spinhalf particle, also called the \emph{Dirac Lagrangian}, is given by
 \begin{equation}
     \label{eq:dirac_lag}
     \mathcal{L}_{\text{Dirac}} = \bar{\psi}(i\slashed{\partial} - m) \psi,
@@ -140,7 +140,7 @@ The equation of motion for the vector field, the Klein-Gordon equation, follows 
     \label{eq:klein_gordon}
     \left( \Box + m^2 \right) A_\mu(x) = 0.
 \end{equation}
-The solutions to this equation can be also found analytically.
+The solutions to this equation can also be found analytically.
 In the case of massless bosons, the equation reduces to 
 \begin{equation}
     \label{eq:wave_eq}
@@ -151,8 +151,7 @@ We can rewrite it using the field strength tensor as
 \begin{equation}
     \Box A_\mu(x) = \partial_\nu \partial^\nu A_\mu(x) = \partial_\nu \partial_\nu A_\mu(x) - \partial_\nu \partial_\mu A_\mu(x) =  \partial_\nu F_{\nu\mu}(x) =  0,
 \end{equation}
-which are Maxwell's equations. 
-This means that massless non-interacting bosons propagate the same way as electromagnetic waves.
+which are Maxwell's equations, meaning that massless non-interacting bosons propagate the same way as electromagnetic waves.
 We have utilized the Lorentz gauge $\partial_\mu A_\mu(x) = 0$.
 
 
@@ -160,7 +159,7 @@ We have utilized the Lorentz gauge $\partial_\mu A_\mu(x) = 0$.
 \label{sec:interacting_particles}
 We introduce the interaction between fields by invoking the \emph{local gauge invariance} of the Lagrangian. 
 
-Each type of interaction (strong, electromagnetic, weak,...) corresponds to a different $SU(N)$ \emph{Lie group} \cite{fecko}.
+Each type of interaction (strong, electromagnetic, weak) corresponds to a different $SU(N)$ \emph{Lie group} \cite{fecko}.
 Elements of $SU(N)$ are special unitary $N$x$N$ matrices \footnote{Matrix U is special if det$U=1$ and unitary if $UU^{\dagger} = 1$}. 
 When operating on $N$-dimensional space of fields, they are represented as unitary operators in the form 
 \begin{equation}
@@ -168,10 +167,10 @@ When operating on $N$-dimensional space of fields, they are represented as unita
     U = \eu^{i g \sum_{a} \alpha^a T^a},
 \end{equation}
 where $T^a$ are generators of the group, and $\alpha^a$ and $g$  are the parameters of the transformation.
-For example in the case of a rotating spinor in classical quantum mechanics, the group is the rotation group SU(2), and the generators are the Pauli matrices $T^a \equiv \frac12 \hat{\sigma}_a$ ($a = x,y,z$).
+For example, in the case of a rotating spinor in classical quantum mechanics, the group is the rotation group SU(2), and the generators are the Pauli matrices $T^a \equiv \frac12 \hat{\sigma}_a$ ($a = x,y,z$).
 $g$ would be the angle of rotation, and $\alpha^a \equiv \vec{n}$ is the axis of rotation.
-More generally $T^a$ can be represented as $N$x$N$ matrices, where $N$ is the field space dimension.
-Going further, we will suppress writing the summation over $a$ (or any other index) explicitly, unless it is necessary for clarity.
+More generally, $T^a$ can be represented as $N$x$N$ matrices, where $N$ is the field space dimension.
+Going further, we will suppress writing the summation over $a$ (or any other index) explicitly unless it is necessary for clarity.
 The generators satisfy the commutation relations
 \begin{equation}
     \label{eq:commutation}
@@ -189,11 +188,11 @@ of the spinor quantum fields $\psi(x)_i$, and under the infinitesimal transforma
     \label{eq:gauge_inv_bosons}
     A^a_\mu(x)' \rightarrow A^a_\mu(x) + \frac{1}{g} \partial_\mu \alpha^a(x) - f^{abc} \alpha^b(x) A^c_\mu(x) + \mathcal{O}((f^{abc})^2),
 \end{equation}
-where $U(x)$ is an element of the corresponding Lie group for every point in spacetime $x$.
+where $U(x)$ is an element of the corresponding Lie group for every spacetime point $x$.
 $g$ is the coupling constant of the interaction, and $\alpha^a(x)$ are the parameters of the transformation.
 
 
-For example, the electromagnetic interaction corresponds to $U(1)$ group (Lie group isomorphic to complex numbers), which means that the Lagrangian must be invariant under the transformations
+For example, the electromagnetic interaction corresponds to the $U(1)$ group (Lie group isomorphic to complex numbers), which means that the Lagrangian must be invariant under the transformations
 \begin{equation}
     \label{eq:gauge_inv_QED}
     \psi(x) = \eu^{-i e \alpha(x)}\psi(x) \quad, \quad A_\mu(x) = A_\mu(x) + \frac{1}{e} \partial_\mu \alpha(x).
@@ -216,22 +215,22 @@ where the field strength tensor is modified, as a result of the non-commutativit
     G^a_{\mu\nu} = F^a_{\mu\nu} + g f^{abc} A^b_\mu A^c_\nu = \partial_\mu A^a_\nu - \partial_\nu A^a_\mu + g f^{abc} A^b_\mu A^c_\nu,
 \end{equation}
 such that it preserves the local gauge invariance.
-This has a huge impact on the dynamics of the system because the last term corresponds to boson-boson interaction.
+This additional term significantly impacts the system's dynamics because the last term corresponds to boson-boson interaction.
 We shall see in \cref{sec:QCD} the consequences of this interaction.
 
-To go back to the example of $U(1)$, the corresponding Lagrangian has the form \footnote{$G^a_{\mu\nu} \equiv F^a_{\mu\nu}$, because $f^{abc} = 0$}
+To go back to the example of the $U(1)$, the corresponding Lagrangian has the form \footnote{$G^a_{\mu\nu} \equiv F^a_{\mu\nu}$, because $f^{abc} = 0$}
 \begin{equation}
     \label{eq:qed_lag}
     \mathcal{L} = - \frac{1}{4}  F_{\mu\nu} F_{\mu\nu} + \bar{\psi}(i\slashed{\partial} - m) \psi - e \bar{\psi} \gamma^\mu \partial_\mu \psi A_\mu.
 \end{equation}
-The equations of motion of the Lagrangian (\ref{eq:qed_lag}) completely determine the dynamics of the system.
+The equations of motion of the Lagrangian (\ref{eq:qed_lag}) ultimately determine the system's dynamics.
 
 \subsection{Cross Section}
 \label{sec:cross_section}
-In particle physics, we are not interested in calculating the precise state $psi(x)$ as a solution to the equations of motion of the Lagrangian (\ref{eq:qed_lag}), but rather in the probability of two particles interacting. 
+In particle physics, we are not interested in calculating the actual state $psi(x)$ as a solution to the equations of motion of the Lagrangian (\ref{eq:qed_lag}), but rather in the probability of two particles interacting. 
 The physical quantity describing this probability is the cross section $\sigma$.
-With the probabilistic nature of quantum mechanics, we need to define this quantity based on a larger number of interactions.
-Suppose we have a flux of incoming particles that are scattered off of target particles. 
+With the probabilistic nature of quantum mechanics, we need to define this quantity based on more interactions.
+Suppose we have a flux of incoming particles scattered off target particles. 
 Then the probability that a given particle will scatter off of a target particle is given as 
 \begin{equation}
     \label{eq:cross_sec}
@@ -239,18 +238,18 @@ Then the probability that a given particle will scatter off of a target particle
 \end{equation}
 where the flux has units m$^{-2}$ so the cross section has units m$^{2}$.
 
-If we want to specify the infinitesimal probability of particles being scattered to a space angle d$\Omega$, we can define it as
+If we want to specify the infinitesimal probability of particles scattering to a space angle d$\Omega$, we can define it as
 \begin{equation}
     \label{eq:diff_cross_sec}
     d\sigma = \frac{\text{number of scattered particles to an space angle } d\Omega}{\text{incoming flux of particles}}.
 \end{equation}
-Or if we want the cross section in terms of the momentum of the scattered particles d$p$, we can define it as 
+Or, if we want the cross section in terms of the momentum of the scattered particles d$p$, we can define it as 
 \begin{equation}
     \label{eq:diff_cross_sec_p}
     d\sigma = \frac{\text{number of scattered particles with outgoing momentum } dp}{\text{incoming flux of particles}}.
 \end{equation}
 
-Quantum mechanically we expect the cross section to be given by the probability of the system being in a final state $|f\rangle$ given that was in the initial state $|i\rangle$.
+Quantum mechanically, we expect the cross section to be given by the probability of the system being in a final state $|f\rangle$ given that it was in the initial state $|i\rangle$.
 We can express this as 
 \begin{equation}
     \label{eq:cross_sec_qm}
@@ -258,7 +257,7 @@ We can express this as
 \end{equation}
 where $\hat{H}$ is the Hamiltonian of the system, and $t_{in}$ and $t_{out}$ are the initial and final times of the system.
 
-To be more precise, for two interacting particles with energies $E_{1,{\text{in}}}$, $E_{2,{\text{in}}}$ and velocities $\vec{v}_{1,{\text{in}}}$, $\vec{v}_{2,{\text{in}}}$, and $N$ particles in the final state with energies $E_{j,{\text{out}}}$, $j=1,2,...,N$ , we can write \cite{schartz}
+To be more precise, for two interacting particles with energies $E_{1,{\text{in}}}$, $E_{2,{\text{in}}}$ and velocities $\vec{v}_{1,{\text{in}}}$, $\vec{v}_{2,{\text{in}}}$, and $N$ particles in the final state with energies $E_{j,{\text{out}}}$ ($j=1,2,..., N$), we can write \cite{schartz}
 \begin{equation}
     \label{eq:cross_sec_qft}
     d \sigma = \frac{|\mathcal{M}|^2}{4 E_{1,{\text{in}}} E_{2,{\text{in}}} |\vec{v}_{1,{\text{in}}} - \vec{v}_{2,{\text{in}}}|} (2\pi)^4 \delta^4(p^\mu_{\text{in}} - p^\mu_{\text{out}}) \prod_{j=1}^N \frac{d^3 p_j}{(2\pi)^3 2E_{j, {\text{out}}}}, 
@@ -276,22 +275,21 @@ We can calculate the $S$-matrix utilizing the Dyson series expansion \cite{schar
     \langle f | S | i \rangle =\left\langle f \left|\sum_{n=0}^{\infty} \frac{(-i)^n}{n !} \int d x_1^4 \cdots \int d x_n^4 T\left[\mathcal{H}\left(t_1\right) \cdots \mathcal{H}\left(t_n\right)\right]\right| i \right\rangle,
 \end{equation}
 where $T\left[\mathcal{H}\left(t_1\right) \cdots \mathcal{H}\left(t_n\right)\right]$ is the time-ordered product of the Hamiltonian of the system, and $\mathcal{H}$ is the Hamiltonian density of the system.
-Equation (\ref{eq:cross_sec_qm}) is a special case of equation (\ref{eq:s_dyson}) where the Hamiltonian is time-independent.
+Equation (\ref{eq:cross_sec_qm}) is a particular case of equation (\ref{eq:s_dyson}) where the Hamiltonian is time-independent.
 
 
 \subsection{Feynman Diagrams}
 \label{sec:feyman}
-Calculating the expansion (\ref{eq:s_dyson}) is practically impossible to do analytically, so Feynman came up with a graphical method to calculate individual terms.
-The diagrams consist of:
+Calculating the expansion (\ref{eq:s_dyson}) is practically impossible analytically, so Feynman developed a graphical method to calculate individual terms.
+The diagrams consist of the following:
 \begin{itemize}
     \item \textbf{External lines} represent the incoming and outgoing particles, which are \emph{real} particles,
     \item \textbf{Internal lines} represent the intermediate particles, which are \emph{virtual} particles,
     \item \textbf{Vertices} are the points of interaction.    
 \end{itemize}
-Virtual particles are not real particles but a mathematical construct that allows us to visualize the scattering process.
-Each of these parts contributes a multiplicative factor to the amplitude $-i\mathcal{M}$.
-The \emph{order of the diagram} is the number of interaction vertices.
-This is also the order of the term in the Dyson series expansion.
+Virtual particles are not real particles but mathematical construct that allows us to visualize the scattering process.
+Each part contributes a multiplicative factor to the amplitude $-i\mathcal{M}$.
+The \emph{order of the diagram} is the number of interaction vertices and the order of the term in the Dyson series expansion.
 
 \begin{figure}[htb]
 \begin{tikzpicture}
@@ -312,11 +310,11 @@ This is also the order of the term in the Dyson series expansion.
 \caption{Second-order Feynman diagram of electron-muon scattering.}
 \label{fig:electron_muon}
 \end{figure}
-To give an example we consider electron-muon scattering.
-The second-order Feynman diagram for this process is shown in \cref{fig:electron_muon}.
-This is the lowest-order diagram that can contribute to the cross section.
+To give an example, we consider electron-muon scattering.
+The second-order Feynman diagram for this process, shown in \cref{fig:electron_muon}, is the lowest-order diagram that can contribute to the cross section.
 
-The time flows from left to right, so we have an incoming electron and muon, they exchange a virtual photon, momentum, and scatter.
+The time flows from left to right, so we have an incoming electron and muon. 
+They exchange a virtual photon, momentum, and scatter.
 The incoming particles, with momenta $p_1$, $p_2$, contribute factors $u(p_1)$, $u(p_2)$, which are solutions to the free Dirac equation (\ref{eq:dirac}) in momentum space. 
 The outgoing particles, with momenta $p_3$, $p_4$, contribute factors $\bar{u}(p_3)$, $\bar{u}(p_4)$, which are complex conjugates of the free Dirac equation solutions.
 The vertex is where interaction happens, and corresponding term $ie\gamma^\mu$ is given by the interaction Lagrangian $\mathcal{L}_{\text{int}} = - e \bar{\psi} \gamma^\mu \partial_\mu \psi A_\mu$.
@@ -399,19 +397,19 @@ Integrating over the solid angle, we get the total cross section
 This calculation was an example of the lowest-order Feynman diagram.
 In general, many more diagrams contribute to the amplitude, \cref{fig:electron_muon} is a fourth-order diagram.
 
-In Apendix ???? we give the \emph{Feynman rules} for the general \QED Feynman diagram \cite{intro_to_part}.
+In Appendix???? we give the \emph{Feynman rules} for the general \QED Feynman diagram \cite{intro_to_part}.
 Other interactions have slightly different Feynman rules, but the general idea is the same.
 
 
 \section{Quantum Chromodynamics}
 \label{sec:QCD}
-So far we have introduced \QED interactions as examples. 
-In this section, we will introduce \QCD, which is the theory of strong interactions.
+So far, we have introduced \QED interactions as examples. 
+In this section, we will introduce \QCD, the theory of strong interactions.
 The underlying Lie group of \QCD is  $SU(3)$.
-Utilizing the general theory introduced in \cref{sec:interacting_particles}, we can derive the following. 
+We can derive the following from the general theory introduced in \cref{sec:interacting_particles}. 
 $N=3$, which means the underlying field space is three-dimensional.
-Physically meaning we have \textbf{3 quark fields} for each quark in the \SM.
-They correspond to 3 different color states $\psi_i(x)$, $i=1,2,3$.
+Physically, we have \textbf{3 quark fields} for each quark in the \SM.
+They correspond to 3 color states $\psi_i(x)$, $i=1,2,3$.
 $SU(3)$ has 8 generators $T^a$, which means we have \textbf{8 gluon fields} $A^a_\mu(x)$, $a=1,\dots, 8$.
 The full Lagrangian of \QCD is \cite{qcd} (we also suppress the summation over quark fields $i,j$)
 \begin{align}
@@ -432,17 +430,16 @@ The perturbation expansion (\ref{eq:s_dyson}) is done in the constant of interac
 However, the assumption of $g$ being a constant is not valid.
 It changes with the energy of the particles, hence the distance between them. 
 In \QED we have the \emph{asymptotic freedom}, which means the coupling constant $g$ goes to zero as the distance between the particles goes to infinity.
-When we force particles to be closer to each other, by smashing them together with high enough energy, the coupling constant grows.
-This is not the case for \QCD, where the coupling constant grows with the distance between the quarks.
-The reason for this is that in \QCD there are three quark color fields, whereas in \QED there is only one.
+The coupling constant grows when we force particles to be closer to each other by smashing them together with high enough energy.
+In \QCD, the coupling constant grows with the distance between the quarks.
+The difference arises because, in \QCD, there are three quark color fields, whereas, in \QED, there is only one.
 The structure given by the Lie group $SU(3)$ dramatically changes the behavior of the coupling constant.
 Another way to formulate this is that the probability of a quark emitting a gluon as it losses energy goes to infinity.
-This is called \textbf{infrared divergence}.
 
 
 \subsection{Feynamn Diagrams of QCD}
-In Appendix ????, we will give the full list of Feynman rules for \QCD.
-However, we will introduce some of the most important Feynman diagrams here.
+In Appendix ????, we will give the complete list of Feynman rules for \QCD.
+However, we will introduce some of the essential Feynman diagrams here.
 
 % Lowest order diagrams for quark-quark scattering are shown in \cref{fig:qcd_qq}.
 % \begin{figure}[htb]
