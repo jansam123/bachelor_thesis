@@ -5,7 +5,7 @@
 The best widely adopted and tested description of the fundamental particles and their interactions is the \SM \cite{pdg}. 
 \begin{figure}[htb]
     \centering
-    \includegraphics[width=0.6\linewidth]{/Users/samueljankovych/Documents/MFF/bakalarka/thesis/src/img/sm.jpg}
+    \includegraphics[width=0.6\linewidth]{src/img/sm.jpg}
     \caption[The Standard Model of particle physics.]{The Standard Model of particle physics. \footnotemark}
     \label{fig:sm}
 \end{figure}
@@ -49,7 +49,7 @@ All quarks can interact weakly and electromagnetically via the \emph{Strong Forc
 In nature, practically only the u-quark and d-quark occur. 
 Concretely, they are the building blocks of protons and neutrons.
 
-Fermions can be also split another way, into three families. 
+Fermions can be also split another way, into three families (\emph{generations}). 
 The mass of corresponding particles gives the order of families.
 The lightest is built up by a u-quark, a d-quark, an electron, and an electron neutrino.
 Practically all matter around us is made up of particles from this family.
@@ -390,14 +390,14 @@ Integrating over the solid angle, we get the total cross section
         \label{fig:e_mu_higher_b}
     \end{subfigure}
     \caption{Fourth order Feynman diagram for electron-muon scattering.}
-    \label{fige_mu_higher}
+    \label{fig:e_mu_higher}
 \end{figure}
 
 
 This calculation was an example of the lowest-order Feynman diagram.
 In general, many more diagrams contribute to the amplitude, \cref{fig:electron_muon} is a fourth-order diagram.
 
-In Appendix???? we give the \emph{Feynman rules} for the general \QED Feynman diagram \cite{intro_to_part}.
+The \emph{Feynman rules} for the general \QED Feynman diagram can be found in \cite{intro_to_part}.
 Other interactions have slightly different Feynman rules, but the general idea is the same.
 
 
@@ -424,7 +424,251 @@ The full Lagrangian of \QCD is \cite{qcd} (we also suppress the summation over q
 where we have expanded $G^a_{\mu\nu}$ as in (\ref{eq:field_strength}). 
 We can now see that the two last terms correspond to three and four-gluon coupling.
 
-\subsection{Infrared Divergence}
+
+\subsection{Feynamn Diagrams of QCD}
+The complete list of Feynman rules for \QCD can be found in \cite{qcd}.
+However, we will introduce some of the essential Feynman diagrams here.
+
+\subsubsection*{Quark-quark scattering}
+Lowest order diagrams for quark-quark scattering are shown in \cref{fig:qq}.
+Quarks have the same type of 'fermionic' line as leptons discussed in \cref{sec:qft}.
+Gluons are represented with 'curly' lines, to distinguish the strong interaction from the electromagnetic.
+The possibility of the initial quarks having different color charges adds magnitude to the overall amplitude because we need to sum over all possibilities. 
+To illustrate this, we take a look at the fraction of cross section of $e^+ e^- \rightarrow$ hadrons and $e^+ e^- \rightarrow \mu^+ \mu^-$
+\begin{equation}
+    R = \frac{\sigma(e^+ e^- \rightarrow \text{hadrons})}{\sigma(e^+ e^- \rightarrow \mu^+ \mu^-)},
+\end{equation}
+if we do not sum over the color charges, the fraction is $2/3$, but if we do sum over the color charges, the fraction is $2$
+\begin{equation}
+    R_{\text{no color}} = \frac{2}{3}, \quad R_{\text{color}} = 2.
+\end{equation}
+
+
+\begin{figure}[htb]
+    \centering
+    \begin{subfigure}[t]{0.49\textwidth}
+        \centering
+        \begin{tikzpicture}
+            \begin{feynman}
+                \vertex (a);
+                \vertex [below =of a](c);
+                \vertex [above left=of a] (i1) {\(q_1\)};
+                \vertex [above right=of a] (f1) {\(q_1\)};
+                \vertex [below left=of c] (i2) {\(q_2\)};
+                \vertex [below right=of c] (f2) {\(q_2\)};
+                \diagram* {
+                    (i1) -- [fermion] (a)  -- [fermion] (f1),
+                    (a) -- [gluon] (c),
+                    (i2) -- [fermion] (c)  -- [fermion] (f2),
+                };
+            \end{feynman}
+        \end{tikzpicture}
+        \caption{}
+        \label{fig:qq_a}
+    \end{subfigure}
+    \begin{subfigure}[t]{0.49\textwidth}
+        \centering
+        \begin{tikzpicture}
+            \begin{feynman}
+                \vertex (a);
+                \vertex [below =of a](c);
+                \vertex [above left=of a] (i1) {\(q_1\)};
+                \vertex [above right=of a] (f1) {\(q_2\)};
+                \vertex [below left=of c] (i2) {\(q_2\)};
+                \vertex [below right=of c] (f2) {\(q_1\)};
+                \diagram* {
+                    (i1) -- [fermion] (a)  -- [fermion] (f2),
+                    (a) -- [gluon] (c),
+                    (i2) -- [fermion] (c)  -- [fermion] (f1),
+                };
+            \end{feynman}
+        \end{tikzpicture}
+        \caption{}
+        \label{fig:qq_b}
+    \end{subfigure}
+    \caption{Lowest-order Feynman diagrams of quark-quark scattering.}
+    \label{fig:qq}
+\end{figure}
+
+
+\subsubsection*{Quark-gluon scattering}
+The lowest order diagrams for quark-gluon scattering are shown in \cref{fig:qg}.
+Due to the gluon self-interaction, there are more diagrams than in \QED.
+\begin{figure}[htb]
+    \centering
+    \begin{subfigure}{0.4\textwidth}
+        \centering
+        \begin{tikzpicture}
+            \begin{feynman}
+                \vertex (a);
+                \vertex [right =of a](c);
+                \vertex [below left=of a] (i1) {\(g\)};
+                \vertex [above left=of a] (i2) {\(q\)};
+                \vertex [below right=of c] (f2) {\(g\)};
+                \vertex [above right=of c] (f1) {\(q\)};
+                \diagram* {
+                    (i1) -- [gluon] (a),
+                    (i2) -- [fermion] (a),
+                    (a) -- [fermion] (c),
+                    (c)   -- [fermion](f1), 
+                    (c) -- [gluon] (f2),
+                };
+            \end{feynman}
+        \end{tikzpicture}
+        \caption{}
+        \label{fig:qg_a}
+    \end{subfigure}
+    \begin{subfigure}[t]{0.29\textwidth}
+        \centering
+        \begin{tikzpicture}
+            \begin{feynman}
+                \vertex (a);
+                \vertex [below =of a](c);
+                \vertex [above left=of a] (i1) {\(q\)};
+                \vertex [above right=of a] (f1) {\(g\)};
+                \vertex [below left=of c] (i2) {\(g\)};
+                \vertex [below right=of c] (f2) {\(q\)};
+                \diagram* {
+                    (i1) -- [fermion] (a)  -- [gluon] (f1),
+                    (a) -- [fermion] (c),
+                    (i2) -- [gluon] (c)  -- [fermion] (f2),
+                };
+            \end{feynman}
+        \end{tikzpicture}
+        \caption{}
+        \label{fig:qg_b}
+    \end{subfigure}
+    \begin{subfigure}[t]{0.29\textwidth}
+        \centering
+        \begin{tikzpicture}
+            \begin{feynman}
+                \vertex (a);
+                \vertex [below =of a](c);
+                \vertex [above left=of a] (i1) {\(q\)};
+                \vertex [above right=of a] (f1) {\(q\)};
+                \vertex [below left=of c] (i2) {\(g\)};
+                \vertex [below right=of c] (f2) {\(q\)};
+                \diagram* {
+                    (i1) -- [fermion] (a)  -- [fermion] (f1),
+                    (a) -- [gluon] (c),
+                    (i2) -- [gluon] (c)  -- [gluon] (f2),
+                };
+            \end{feynman}
+        \end{tikzpicture}
+        \caption{}
+        \label{fig:qg_c}
+    \end{subfigure}
+    \caption{Lowest-order Feynman diagrams of quark-gluon scattering.}
+    \label{fig:qg}
+\end{figure}
+
+\subsubsection*{Gluon-gluon scattering}
+The lowest order diagrams for gluon-gluon scattering are shown in \cref{fig:gg}.
+In \QCD gluons can interact directly with each other.
+These interactions are non-trivial, a theory called \emph{gluodynamics} is developed to describe just gluon-gluon interactions.
+In \cref{fig:gg_a} and \cref{fig:gg_b} we can see the 3-gluon vertex, and in \cref{fig:gg_c} we can see the 4-gluon vertex.
+
+\begin{figure}[htb]
+    \centering
+    \begin{subfigure}{0.4\textwidth}
+        \centering
+        \begin{tikzpicture}
+            \begin{feynman}
+                \vertex (a);
+                \vertex [right =of a](c);
+                \vertex [below left=of a] (i1) {\(g\)};
+                \vertex [above left=of a] (i2) {\(g\)};
+                \vertex [below right=of c] (f2) {\(g\)};
+                \vertex [above right=of c] (f1) {\(g\)};
+                \diagram* {
+                    (i1) -- [gluon] (a),
+                    (i2) -- [gluon] (a),
+                    (a) -- [gluon] (c),
+                    (c)   -- [gluon](f1), 
+                    (c) -- [gluon] (f2),
+                };
+            \end{feynman}
+        \end{tikzpicture}
+        \caption{}
+        \label{fig:gg_a}
+    \end{subfigure}
+    \begin{subfigure}[t]{0.29\textwidth}
+        \centering
+        \begin{tikzpicture}
+            \begin{feynman}
+                \vertex (a);
+                \vertex [below =of a](c);
+                \vertex [above left=of a] (i1) {\(g\)};
+                \vertex [above right=of a] (f1) {\(g\)};
+                \vertex [below left=of c] (i2) {\(g\)};
+                \vertex [below right=of c] (f2) {\(g\)};
+                \diagram* {
+                    (i1) -- [gluon] (a)  -- [gluon] (f1),
+                    (a) -- [gluon] (c),
+                    (i2) -- [gluon] (c)  -- [gluon] (f2),
+                };
+            \end{feynman}
+        \end{tikzpicture}
+        \caption{}
+        \label{fig:gg_b}
+    \end{subfigure}
+    \begin{subfigure}[t]{0.29\textwidth}
+        \centering
+        \begin{tikzpicture}
+            \begin{feynman}
+                \vertex (a);
+                \vertex [above left=of a] (i1) {\(g\)};
+                \vertex [above right=of a] (f1) {\(g\)};
+                \vertex [below left=of a] (i2) {\(g\)};
+                \vertex [below right=of a] (f2) {\(g\)};
+                \diagram* {
+                    (i1) -- [gluon] (a)  -- [gluon] (f1),
+                    (i2) -- [gluon] (a)  -- [gluon] (f2),
+                };
+            \end{feynman}
+        \end{tikzpicture}
+        \caption{}
+        \label{fig:gg_c}
+    \end{subfigure}
+    \caption{Lowest-order Feynman diagrams of gluon-gluon scattering.}
+    \label{fig:gg}
+\end{figure}
+
+\subsubsection*{Gluon Emission}
+Let's consider a $e^+e^-$ annihilation process producing two quarks and one of the quarks emits a real gluon.
+\begin{figure}[htb]
+        \centering
+        \begin{tikzpicture}
+            \begin{feynman}
+                \vertex (a);
+                \vertex [right =of a](c);
+                \vertex [above right =of c](d);
+                \vertex [above right=of d] (f2) {\(q_1\)};
+                \vertex [right=of d] (f3) {\(g\)};
+                \vertex [below right=of c] (f1) {\(q_2\)};
+                \diagram* {
+                    (a) -- [photon] (c),
+                    (c) -- [fermion](d),
+                    (d) -- [fermion](f2),
+                    (d) -- [gluon](f3), 
+                    (c) -- [fermion] (f1),
+                };
+            \end{feynman}
+        \end{tikzpicture}
+    \caption{Lowest-order Feynman diagram of quark emitting a gluon.}
+    \label{fig:qg_emission}
+\end{figure}
+We will only look at the right part of the diagram, after the annihilation, as seen in \cref{fig:qg_emission}.
+The scattering amplitude is given by \cite{qcd}
+\begin{equation}
+    \label{eq:g_emission}
+    \mathcal{M}_{q \bar{q} g}^\mu=\bar{u}\left(p_1\right)\left(-i g T^a \slashed{\epsilon} \right) \frac{i\left(\slashed{p_1} +\slashed{k}\right)}{\left(p_1+k\right)^2}\left(-i e \gamma^\mu\right) v\left(p_2\right) ,
+\end{equation}
+where $p_1$, $p_2$ are the momenta of the quarks $q_1$, $q_2$, $k$ is the momentum of the gluon, and $\epsilon$ is the solution of a free gluon.
+
+
+
+\section{Infrared and Collinear Divergences}
 \label{sec:IR_div}
 The perturbation expansion (\ref{eq:s_dyson}) is done in the constant of interaction $g$. 
 However, the assumption of $g$ being a constant is not valid.
@@ -436,57 +680,106 @@ The difference arises because, in \QCD, there are three quark color fields, wher
 The structure given by the Lie group $SU(3)$ dramatically changes the behavior of the coupling constant.
 Another way to formulate this is that the probability of a quark emitting a gluon as it losses energy goes to infinity.
 
+We can see this directly from the scattering amplitude (\ref{eq:IR_sing}), where in the dominator we have
+\begin{equation}
+    \label{eq:IR_sing}
+    (p_1+k)^2 = 2E\omega(1- \cos{\theta}),
+\end{equation}
+where we consider $p_1 = (E, 0,0,E)$, a hard quark (energtic quark, whose mass can be neglected), and $k = \omega (1, 0, \sin{\theta}, \cos{\theta})$, $\theta$ being the angle between the quark and the gluon.
+If this term goes to zero, the scattering amplitude goes to infinity.
+There are two ways this can happen: 
+\begin{itemize}
+    \item \textbf{Infrared singularity}: gluon becomes low-energetic $\omega \rightarrow 0$
+    \item \textbf{Collinear singularity}: gluon is emitted in the direction of the quark $\theta \rightarrow 0$
+\end{itemize}
+These infinities are \textbf{not physical}, but a consequence of not considering all the possible interactions.
+The KLN theorem \cite{IR_sing_K,IR_sing_LN} states: \emph{When all the possible interactions are considered, the scattering amplitude is finite}, ie. is \textbf{infrared (IR) and collinear safe}. 
 
-\subsection{Feynamn Diagrams of QCD}
-In Appendix ????, we will give the complete list of Feynman rules for \QCD.
-However, we will introduce some of the essential Feynman diagrams here.
+The same process happens for gluons, they can emit another gluon and the scattering amplitude goes to infinity.
+Moreover, since gluons have two color charges, the coupling is approximately 2.25 times stronger than for quarks \cite{qcd_salam}.
+This is called \emph{gluon radiation} and is the reason why the coupling constant grows with the distance between the quarks.
 
-% Lowest order diagrams for quark-quark scattering are shown in \cref{fig:qcd_qq}.
-% \begin{figure}[htb]
-%     \begin{subfigure}[t]{0.4\textwidth}
-%         \begin{tikzpicture}
-%             \begin{feynman}
-%                 \vertex (a);
-%                 \vertex [below =of a](c);
-%                 \vertex [right =of a](b);
-%                 \vertex [right =of c](d);
-%                 \vertex [above left=of a] (i1) {\(\mu^{-}\)};
-%                 \vertex [above right=of b] (f1) {\(\mu^{-}\)};
-%                 \vertex [below left=of c] (i2) {\(e^{-}\)};
-%                 \vertex [below right=of d] (f2) {\(e^{-}\)};
-%                 \diagram* {
-%                     (i1) -- [fermion] (a) -- [fermion] (b) -- [fermion] (f1),
-%                     (a) -- [photon] (c),
-%                     (b) -- [photon] (d),
-%                     (i2) -- [fermion] (c) -- [fermion] (d) -- [fermion] (f2),
-%                 };
-%             \end{feynman}
-%         \end{tikzpicture}
-%         \caption{}
-%         \label{fig:e_mu_higher_a}
-%     \end{subfigure}
-%     \begin{subfigure}[t]{0.4\textwidth}
-%         \begin{tikzpicture}
-%             \begin{feynman}
-%                 \vertex (a);
-%                 \vertex [below =of a](c);
-%                 \vertex [right =of a](b);
-%                 \vertex [right =of c](d);
-%                 \vertex [above left=of a] (i1) {\(\mu^{-}\)};
-%                 \vertex [above right=of b] (f1) {\(\mu^{-}\)};
-%                 \vertex [below left=of c] (i2) {\(e^{-}\)};
-%                 \vertex [below right=of d] (f2) {\(e^{-}\)};
-%                 \diagram* {
-%                     (i1) -- [fermion] (a) -- [fermion] (b) -- [fermion] (f1),
-%                     (a) -- [photon] (d),
-%                     (b) -- [photon] (c),
-%                     (i2) -- [fermion] (c) -- [fermion] (d) -- [fermion] (f2),
-%                 };
-%             \end{feynman}
-%         \end{tikzpicture}
-%         \caption{}
-%         \label{fig:e_mu_higher_b}
-%     \end{subfigure}
-%     \caption{Fourth order Feynman diagram for electron-muon scattering.}
-%     \label{fige_mu_higher}
-% \end{figure}
+The physical variable that describes the multiplication of quarks and gluon is \emph{multiplicity} $N_g$ for gluons and $N_q$ for quarks.
+From the discussion above we conclude, that the \emph{multiplicity of gluons is higher than the multiplicity of quarks}.
+
+\section{Hadronization}
+\label{sec:hadronisation}
+\emph{Hadronization} is a process where free quarks and gluons become bound.
+The bound states of quarks are called \emph{hadrons}.
+In this context, it is good to introduce the word \emph{parton}, which is a generic term for a quark or a gluon.
+As we have seen in \cref{sec:IR_div}, the less energetic the parton is, the more likely it will emit gluons.
+Meaning that when partons reach some energy scale, they become bound, effectively making the partons almost immediately bound after hard scattering processes.
+This inevitable binding is called \emph{confinement}.
+
+A phenomenological description of this process is given by the \emph{Lund model} \cite{lund}.
+The soft gluonic interaction is modeled as a \emph{string} connecting the hard partons, with a \textbf{linear binding potential}.
+We are going to illustrate this on a hard scattered quark-antiquark pair:
+\begin{itemize}
+    \item Quark and antiquark are emitted from a \textbf{hard scattering} process, each going in a different direction.
+    \item A \textbf{string is created} between the quark and the antiquark.
+    \item As they are moving away from each other, the string is \textbf{stretched}.
+    \item Once the tension has enough energy, the string splits and creates a \textbf{new quark-antiquark pair}.
+    \item This process is repeated until the initial \textbf{energy} of the quark-antiquark pair \textbf{is exhausted}.
+    \item As a result the created quarks and antiquarks rearrange to \textbf{color-neutral mesons or baryons}.
+\end{itemize}
+\emph{Mesons} are hadrons made up of one quark and one antiquark, whereas \emph{baryons} are made up of three quarks.
+The lightest mesons are the \emph{pions}, which are made up of a quark and an antiquark from the first generation (see \cref{sec:sm}) of quarks.
+The lightest baryons are the \emph{protons} and \emph{neutrons}, which are made up of three quarks from the first generation (see \cref{sec:sm}).
+
+Another phenomenological model is called \emph{cluster fragmentation} \cite{cluster_frag}.
+Here the gluons are split into quarks and antiquarks, which are then rearranged to \emph{clusters} with zero net color charge.
+Both approaches are illustrated in \cref{fig:hadronisation}.
+\begin{figure}[htb]
+    \centering
+    \includegraphics[width=0.5\linewidth]{src/img/hadronization.png}
+    \caption[Illustration of the hadronization models. The left one is the Lund model, and the right one is the cluster fragmentation.]{Illustration of the hadronization models. The left one is the Lund model, and the right one is the cluster fragmentation. \footnotemark}
+    \label{fig:hadronisation}
+\end{figure}
+\footnotetext{\url{https://arxiv.org/abs/1011.5131}}
+
+\section{Jets}
+\label{sec:jet}
+As we have seen in \cref{sec:IR_div} partons emit soft and collinear gluons.
+The initial momentum of the parton is split into more partons, creating a shower of partons called \emph{jet}.
+The main processes in proton-proton collisions that produce a jet are shown in \cref{fig:qq,fig:qg,fig:gg}.
+
+Experimentally it is not straightforward to define a jet from the measured decays.
+Take as an example a quark that initially radiates one collinear gluon, having approximately the same momentum as the quark.
+How do you decide whether the gluon is part of the initial jet or creates a new one?
+Or, if two jets exchange a soft gluon that emits another one, how do you decide where the new gluon belongs?
+The reason why is this important is that if the jets are not defined correctly, the infinities in the scattering amplitude will not be canceled out, as is stated in the KLN theorem \cite{IR_sing_K,IR_sing_LN}.
+This makes analyzing the data very difficult. 
+
+There are complex algorithms that use special physical variables to enable the reconstruction of the jets \cite{antikt}.
+In the first approximation, we can say that the jet is a \emph{cone}, where the apex corresponds to the initial parton and all other partons created are inside the cone. 
+We will discuss this in more detail in ????.
+The illustration of a jet is shown in \cref{fig:jet}.
+
+Another aspect of jets is the definition of their energy.
+The most common approach to defining the jet 4-momentum is by summing the 4-momenta of all the partons inside the jet \cite{antikt}.
+The problem is that it introduces a mass to the jet, but the initial parton is massless.
+
+\begin{figure}[htb]
+    \centering
+    \includegraphics[width=0.7\linewidth]{src/img/jet.png}
+    \caption[Jet definitions on various levels.]{Jet definitions on various levels. LO refers to the leading-order in perturbation and NLO to the next-to-leading-order.\footnotemark}
+    \label{fig:jet}
+\end{figure}
+\footnotetext{\url{https://arxiv.org/abs/1011.5131}}
+
+\subsection{Infrared and Collinear Safety}
+\label{sec:IR_coll_safe}
+One way of making sure that the jet algorithm is reflecting the physics of partons is to make sure that the jet algorithm is \emph{infrared and collinear safe}:
+\begin{itemize}
+    \item \textbf{Collinear safety} means that if the initial parton (or any other in the shower) radiates a \emph{collinear} gluon, it is always part of the same jet.
+    \item \textbf{Infrared safety} means that the jet is unchanged if the initial parton (or any other in the shower) radiates a \emph{soft} gluon.
+\end{itemize}
+
+In \cref{fig:collinear_safety} we can see that the jet algorithm initially finds two jets, but when one jet radiates a soft gluon, they are put together.
+
+\begin{figure}[htb]
+    \centering
+    \includegraphics[width=0.7\linewidth]{src/img/collinear_safety.png}
+    \caption{Collinear unsafe jet algorithm. Initially, there are two jets, but if one jet radiates a soft gluon, they are put together.}
+    \label{fig:collinear_safety}
+\end{figure}
