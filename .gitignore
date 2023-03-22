@@ -28,3 +28,4 @@ thesis.run.xml
 build
 .DS_Store
 .vscode
+*.drawio
