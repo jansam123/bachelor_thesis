@@ -1,1 +1,65 @@
 \chapter{Deep Learning Architectures}
+
+\section{Basic Concepts}
+\label{sec:basic_concepts}
+\emph{\ml} is a field of computer science that uses statistical techniques to give computers the ability to learn without being explicitly programmed.
+\emph{\dl} is a subfield of \ml focusing on the use of neural networks \footnote{In some papers they emphasize the difference between neural networks and \emph{artificial neural networks}. Since we are not interested in studying \emph{human neural networks}, we will only be using the term neural networks.}.
+The conceptual difference between \ml and \dl is:
+\begin{center}
+    \emph{\textbf{Machine Learning} is about learning general features. \\ \textbf{Deep Learning} is about learning abstract concepts.}
+\end{center}
+
+To emphasize the difference even more, consider \bdt (see \cref{sec:bdt}) and \trans (see \cref{sec:transformer}). 
+In the context of particle physics, \bdt is trained to provide learned cuts on the input data to separate signal from background.
+However, \trans is learned to form a different representation of the input data, from which one can extract information about the signal/background (this is even more apparent in \ParT and \depart, see \cref{sec:part,sec:depart}).
+They can not only learn the physical differences between signal and background but also general physical concepts \cite{qcd_as_nlp}. 
+
+\dl builds from the \mlp \cite{mlp}, which is a multi-layered neural network able to learn a non-linear function from input data.
+We will discuss a little bit more enhanced \mlp in more detail in \cref{sec:fc}.
+
+The general idea of \dl is to have some model, which is a set of parameters and functions, taking a set of inputs and producing a set of outputs.
+The model is trained by adjusting the parameters to fit the desired outputs.
+In this context, we are interested in the \emph{supervised} learning \cite{deeplearningbook}, where the desired outputs are known (\MC simulations for example).
+There are some unexplored use cases for \emph{self-supervised} learning \cite{masked_autoencoders}, where the desired outputs are not known, but we will only briefly touch on them as a prospect.
+\subsection{Forward and Backward Passes}
+\label{sec:forward_backward}
+Let $\pmb{x}$ be the input (generally a multi-dimensional tensor\footnote{This is NOT the same tensor as a physical tensor, which has a prescribed way of transforming, but rather a multi-dimensional array of numbers.}) of a model  $f(\pmb{x};\pmb{\theta})$ with trainable parameters $\pmb{\theta}$.
+We will call the \emph{forward pass} of the model an application of the model on the input data $\pmb{o} = f(\pmb{x};\pmb{\theta})$, where $\pmb{o}$ is the output of the model (inference on input data $\pmb{x}$).
+The \emph{backward pass} or \emph{backpropagation} is the process of adjusting the parameters $\pmb{\theta}$ to fit the desired output $\pmb{y}$.
+This is done by calculating the \emph{loss} $L(\pmb{o},\pmb{y})$ between the output $\pmb{o} = f(\pmb{x};\pmb{\theta})$ and the desired output $\pmb{y}$ (\emph{target}), and then adjusting the parameters $\pmb{\theta}$ to minimize the loss.
+Loss is a measure of how far the model is from the target.
+
+There are several ways of adjusting the parameters, but the widely used approaches are based on computing the gradient of the loss wrt. the parameters $\pmb{\theta}$ and then updating the parameters in the direction of the gradient \cite{deeplearningbook}. 
+This can be sketched as follows
+\begin{equation}
+    \pmb{\theta} \leftarrow \pmb{\theta} - \alpha \cdot \mathcal{O}\left[\nabla_{\pmb{\theta}} L(f(\pmb{x};\pmb{\theta}),\pmb{y})\right],
+\end{equation}
+where $\alpha$ is the \emph{learning rate} and $\mathcal{O}$ is the optimization algorithm (function), shortly \emph{optimizer}.
+To make the process more efficient and parallelizable, the loss is usually calculated on a \emph{batch} of data, which is then averaged to get the final loss
+\begin{equation}
+    \pmb{\theta} \leftarrow \pmb{\theta} - \alpha \cdot \mathcal{O}\left[\frac1B \nabla_{\pmb{\theta}} \sum_{i=1}^B L(f(\pmb{x}^{(i)};\pmb{\theta}),\pmb{y}^{(i)})\right],
+\end{equation}
+where $B$ is the batch size and $\pmb{x}^{(i)}$ and $\pmb{y}^{(i)}$ are the $i$-th elements of the batch.
+
+\section{Boosted Decision Trees}
+\label{sec:bdt}
+
+\section{Fully Connected Network}
+\label{sec:fc}
+
+\section{Highway}
+\label{sec:highway}
+
+\section{Particle Flow and Energy Flow Network}
+\label{sec:pfn_efn}
+
+\section{Transformer}
+\label{sec:transformer}
+
+\section{Particle Transformer}
+\label{sec:part}
+
+\section{Dynamicaly Enhanced Particle Transformer}
+\label{sec:depart}
+
+

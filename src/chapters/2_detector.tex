@@ -14,10 +14,10 @@ On the accelerating ring are four beam colliding points, where the particles col
 ATLAS and \CMS are multi-purpose detectors, while ALICE is designed to study heavy-ion collisions, and LHCb is designed to study the physics of b-quarks.
 
 
-The ATLAS detector \cite{ATLAS} is a general-purpose particle located in a cavern 100m underground.
+The ATLAS detector \cite{ATLAS} is a general-purpose particle detector located in a cavern 100m underground.
 The detector is a multi-layered cylindrical structure with a diameter of 46m and a height of 25m.
-The main detecting components are the silicon pixel and strip trackers, the \emph{electromagnetic \LAr calorimeter}, the\emph{ hadronic calorimeter}, and the\emph{ muon spectrometer}.
-In \cref{fig:atlas}, we show a schematic of the ATLAS detector, in \cref{fig:tracker,fig:calorimeter,fig:muon,fig:magnet} the individual components, and in \cref{fig:det_inter} the cross section of the detector and its interactions with the particles with individual components.
+The main detecting components are the \emph{silicon pixel and strip trackers}, the \emph{electromagnetic \LAr calorimeter}, the \emph{hadronic calorimeter}, and the \emph{muon spectrometer}.
+In \cref{fig:atlas}, we show a schematic of the ATLAS detector, in \cref{fig:tracker,fig:calorimeter,fig:muon,fig:magnet} the individual components, and in \cref{fig:det_inter} the cross section of the detector and its interactions with the particles in individual components.
 
 \begin{figure}[htb]
     \centering
@@ -38,7 +38,7 @@ The ATLAS coordinate system is defined as follows:
     \item The positive \emph{$x$ axis} is pointing towards the centre of \LHC.
     \item The positive \emph{$y$ axis} is pointing upwards.
     \item The \emph{azimuthal angle $\phi$} is measured around the $z$ axis, being zero on the positive $x$ axis.
-    \item The \emph{polar angle $\theta$} is measured from the $z$ axis, being zero on the $z$ axis.
+    \item The \emph{polar angle $\theta$} is measured from the $z$ axis, where is zero.
 \end{enumerate}
 We also define the \textbf{pseudorapidity} $\eta$ as 
 \begin{equation}
@@ -51,7 +51,16 @@ For massive objects, we also define the \textbf{rapidity} as
     \label{eq:rapidity}
     y = \frac{1}{2} \ln\left(\frac{E + p_z}{E - p_z}\right),
 \end{equation}
-where $E$ is the energy and $p_z$ is the momentum along the $z$ axis.
+where $E$ is the energy and $p_z$ is the momentum along the $z$ axis of the particle.
+The forward region is defined as $|\eta| > 2.5$, and the central region as $|\eta| < 2.5$.
+
+Simple sketches of the ATLAS coordinate system are shown in \cref{fig:atlas_coord}.
+\begin{figure}[htb]
+    \centering
+    \includegraphics[width=0.7\linewidth]{src/img/ATLAS_coords.jpeg}
+    \caption{The ATLAS coordinate system.}
+    \label{fig:atlas_coord}
+\end{figure}
 
 
 \section{Large Hadron Collider}
@@ -59,7 +68,7 @@ where $E$ is the energy and $p_z$ is the momentum along the $z$ axis.
 \LHC is the biggest particle accelerator in the world, operated by CERN, the European Organization for Nuclear Research.
 It is built underground, up to 175m below the surface. \footnote{Due to the high prices of land in Geneva.}
 To keep the particles in a circular motion, it uses superconducting NbTi magnets, reaching up to 8.33 T, submerged in a liquid He of temperature 1.9 K.
-Particles are pre-accelerated in a sequence of accelerators, both linear and circular.
+Particles are pre-accelerated in a sequence of linear and circular accelerators.
 The system of all accelerators is shown in the \cref{fig:lhc}.
 \begin{figure}[htb]
     \centering
@@ -88,7 +97,7 @@ If we assume the Gaussian distribution of the beams in the transverse plane, the
 where $\sigma_x$ and $\sigma_y$ are the standard deviations of the Gaussian distribution.
 \LHC has a luminosity of $L = 10^{34}$ cm$^{-2}$s$^{-1}$, which is the highest luminosity of any accelerator in the world, translating to billion collisions per second.
 
-Another related variable is the \emph{integrated luminosity} $ \mathcal{L}$, expressing the amount the data collected in a given period $T$
+Another related variable is the \emph{integrated luminosity} $ \mathcal{L}$, expressing the amount the data collected in a given time period $T$
 \begin{equation}
     \mathcal{L} = \int_{T} L dt,
 \end{equation}
@@ -106,13 +115,13 @@ For example, the ATLAS detector collected 140 fb$^{-1}$ of data.
     \caption{Tracker system of the ATLAS detector.}
     \label{fig:tracker}
 \end{figure}
-The inner detector part of ATLAS consists of three parts: Pixel Detector, Semiconductor Tracker, and Transition Radiation Tracker \cref{fig:tracker}. 
+The \emph{inner detector} consists of three parts: \emph{Pixel Detector}, \emph{Semiconductor Tracker}, and \emph{Transition Radiation Tracker}, \cref{fig:tracker}. 
 They are the first detection points that are hit after the collision.
 The primary purpose of the inner detector is to reconstruct the tracks of the charged particles.
 As we can see in \cref{fig:det_inter}, only charged particles are visible by the inner tracking system.
 
-Most interesting collisions are central, meaning that the produced particles scatter within $|\eta| < 2.5$.
-The inner detector is much denser and has a higher granularity in the central region, as seen in \cref{fig:tracker}.
+Most interesting collisions are produced particles within $|\eta| < 2.5$, so the tracker is only in this region.
+Even more, the inner detector is much denser and has a higher granularity in the central region, as seen in \cref{fig:tracker}.
 
 \subsection{Pixel Detector}
 The pixel detector, the first detection point, has the highest resolution and must withstand the highest radiation dose.
@@ -132,13 +141,13 @@ The physical process behind detection is the same as in the pixel detector.
 
 \subsection{Transition Radiation Tracker}
 \TRT is the last part of the inner detector, being the least precise.
-Instead of silicon, it uses a gas mixture of Xe, CO$_2$, and 0$_2$ to provide the ionizable material.
+Instead of silicon, it uses a gas mixture of Xe, CO$_2$, and O$_2$ to provide the ionizable material.
 The gas is put into \emph{straws} with a diameter of 4 mm and a length of up to 144 cm.
 Along the straw, in the middle, is a gold-plated tungsten wire acting as an anode, while the cathode is the tube wall.
 
-When a charged particle passes through the gas, it produces electron-ion pairs.
-The anode is at ground potential attracting electrons, while the cathode wall is at -1530V attracting the positive ions.
-The straws are interleaved with polypropylene fibers or foils to provide a material with different indices of refraction.
+When a charged particle passes through the gas, it produces ion pairs.
+The anode is at ground potential attracting negative ions, while the cathode wall is at -1530V attracting positive ions.
+The straws are interleaved with polypropylene fibers or foils to provide a material with different index of refraction.
 Relativistic particles, with speeds above the speed of light in polypropylene (mainly electrons), generate transition radiation when moving from and into the polypropylene. 
 Additional information about the particle is inferred from transition radiation, which is used to reconstruct the track and identify the particle. 
 
@@ -171,7 +180,7 @@ The hadronic calorimeter is the most important for our study because it provides
 Another name for the electromagnetic calorimeter is \LAr calorimeter because it uses liquid argon as a detecting material.
 The \LAr is kept at -186$^\circ$C to maintain the liquid state.
 As an absorber, the electromagnetic calorimeter uses lead.
-Particles ionize the \LAr when passing the layers to create a measurable current, which is then detected by accordion-shaped electrodes.
+Particles ionize the \LAr when passing the layers, creating a measurable current, which is then detected by accordion-shaped electrodes.
 
 \subsection{Hadronic Calorimeter}
 The hadronic calorimeter uses mainly \TCal, an envelope of the electromagnetic calorimeter, and \LAr at the endcaps and forwards part.
@@ -179,7 +188,7 @@ The \LAr part is similar to the electromagnetic calorimeter described above, but
 
 The \TCal uses steel as an absorber and scintillating tiles as a detector.
 As particles pass through the plastic scintillators, they excite the atoms inside, which emit light as they return to their ground state.
-This light is then collected by fibers and converted with photomultiplier tubes into an electrical signal.
+This visible light is then collected by fibers and converted with photomultiplier tubes into an electrical signal.
 The intensity of the light is proportional to the energy deposited in the scintillator.
 
 
@@ -195,7 +204,7 @@ The intensity of the light is proportional to the energy deposited in the scinti
 \end{figure}
 
 The Muon Spectrometer is the furthest measuring system of the ATLAS detector, as seen in \cref{fig:muon}.
-Muons have bigger mass than electrons and do not interact with the strong interaction as hadrons, so they are invisible to the calorimeters (see \cref{fig:det_inter})
+Muons have bigger mass than electrons and do not interact with the strong interaction as hadrons, so they are not stopped in the calorimeters (see \cref{fig:det_inter})
 
 Since stopping the muons is not feasible, we measure their momentum and flight direction, utilizing the muon track's bending in a magnetic field, which we will explain in the next \cref{sec:magnet}.
 Muon spectrometers surround the entire ATLAS detector to ensure that all muons are measured.
@@ -221,13 +230,13 @@ The main purpose of magnets is to bend the trajectories of charged particles to 
 where $q$ is the particle's charge (expressed in units of the elementary charge), $B$ is the magnetic field strength, and $R$ is the radius of the trajectory.
 
 The inner NbTi magnets are solenoidal and provide coverage for the tracking system.
-They operate at 2 T producing a magnetic field in the axial direction.
+They produce a 2T magnetic field in the axial direction.
 To give a perspective, if we assume an electron with a momentum of 10 GeV, the bending radius is 17 m.
-This number is enormous compared to the diameter of the solenoid magnet, which is just 2.4m. 
+This number is enormous compared to the radius of the solenoid magnet, which is just 1.2m. 
 From this example, we can see how precise the tracking system is.
 
 On the other hand, particles with momentum less than circa 360 MeV wind inside the solenoid magnet and do not reach the colorimeters.
-One such example is low energetic pions, particularly important in our study because they are trapped inside the solenoid magnet and do not reach the calorimeters, not participating in jet reconstruction.
+One such example is low energetic pions, particularly important in our study because they are trapped inside the solenoid magnet, not reaching the calorimeters, and are not used in the jet reconstruction.
 
 The toroidal magnets are composed of two parts: barrel and endcap.
 The barrel magnets consist of eight 25.3m long, rectangular-shaped coils, the biggest toroidal magnets in the world.
@@ -247,7 +256,7 @@ It has to decide within 2.5$\mu$s, reducing the collision rate to 75 kHz.
 Each kept event defines a coordinate region, called \RoI, by which L1 was activated. 
 
 The L2 trigger uses the \RoI defined by L1 but with more precise data from the detector in that region.
-Using a CPU farm of 40k CPU cors, L2 reduces the rate to 3.5 kHz, with a decision time of 200$\mu$s.
+Using a CPU farm of 40k CPU cores, L2 reduces the rate to 3.5 kHz, with a decision time of 200$\mu$s.
 
 After L2, the data is stored for offline analysis.
 \emph{Event filter} reduces the rate to 200 Hz with an event processing time of 4s.

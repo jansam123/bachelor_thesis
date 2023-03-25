@@ -733,11 +733,26 @@ Here the gluons are split into quarks and antiquarks, then rearranged to \emph{c
 Both approaches are illustrated in \cref{fig:hadronization}.
 \begin{figure}[htb]
     \centering
-    \includegraphics[width=0.5\linewidth]{src/img/hadronization.png}
+    \includegraphics[width=1.\linewidth]{src/img/hadronization.png}
     \caption[Illustration of the hadronization models. The left is the Lund model, and the right is the cluster fragmentation.]{Illustration of the hadronization models. The left is the Lund model, and the right is the cluster fragmentation. \footnotemark}
     \label{fig:hadronization}
 \end{figure}
 \footnotetext{\url{https://arxiv.org/abs/1011.5131}}
+
+
+The scattering of partons bound in a hadron cannot be described as hard interaction like it was for an electron bound in an atom.
+As we described earlier the parton has a much higher probability to emit gluons at low energies.
+In a hadron, they create the so-called \emph{sea of partons} on top of the three or two valence quarks.
+This parton mess is described by the \emph{parton distribution function} (PDF) \cite{pdf_feynman} $f_i(x)$, which is a probability distribution of the parton $i$ carrying momentum fraction $x$ of the hadron.
+An example is shown in \cref{fig:pdf}, where the PDF $f(x, Q^2)$ of proton is also a function of the squared energy scale $Q^2$.
+We can see that the dominant partons contributing to the proton are u-quarks and d-quarks, the valence quarks, but the contribution from other partons is not negligible. 
+\begin{figure}[htb]
+    \centering
+    \includegraphics[width=0.7\linewidth]{src/img/pdf.png}
+    \caption[Example of the parton distribution function of a proton. The PDF $f(x, Q^2)$ is a function of the momentum fraction $x$ and the squared energy scale $Q^2$. Different colors represent a different parton type. On the $y$-axis is the PDF $f(x,Q^2)$ multiplied by the fraction $x$.]{Example of the parton distribution function of a proton. The PDF $f(x, Q^2)$ is a function of the momentum fraction $x$ and the squared energy scale $Q^2$. Different colors represent a different parton type. On the $y$-axis is the PDF $f(x,Q^2)$ multiplied by the fraction $x$. \footnotemark}
+    \label{fig:pdf}
+\end{figure}
+\footnotetext{\url{https://arxiv.org/pdf/0901.0002.pdf}}
 
 \section{Jets}
 \label{sec:jet}
@@ -754,20 +769,19 @@ This makes analyzing the data very difficult.
 
 There are complex algorithms that use unique physical variables to enable the reconstruction of the jets \cite{antikt}.
 In the first approximation, we can say that the jet is a \emph{cone}, where the apex corresponds to the initial parton and all other partons created are inside the cone. 
-We will discuss this in more detail in ????.
+We will discuss this in more detail in \cref{sec:jet_reco}.
 The illustration of a jet is shown in \cref{fig:jet}.
+\begin{figure}[htb]
+    \centering
+    \includegraphics[width=1.\linewidth]{src/img/jet_reco.jpeg}
+    \caption[Jet definitions on various levels.]{Jet definitions on various levels. Good reconstructed jet should be the same at all levels.}
+    \label{fig:jet}
+\end{figure}
 
 Another aspect of jets is the definition of their energy.
 The most common approach to defining the jet 4-momentum is by summing the 4-momenta of all the partons inside the jet \cite{antikt}.
 The problem is that it introduces a mass to the jet, but the initial parton is massless.
 
-\begin{figure}[htb]
-    \centering
-    \includegraphics[width=0.7\linewidth]{src/img/jet.png}
-    \caption[Jet definitions on various levels.]{Jet definitions on various levels. LO refers to the leading order in perturbation, and NLO to the next-to-leading order.\footnotemark}
-    \label{fig:jet}
-\end{figure}
-\footnotetext{\url{https://arxiv.org/abs/1011.5131}}
 
 \subsection{Infrared and Collinear Safety}
 \label{sec:IR_coll_safe}
@@ -776,12 +790,27 @@ One way of making sure that the jet algorithm is reflecting the physics of parto
     \item \textbf{Collinear safety} means that if the initial parton (or any other in the shower) radiates a \emph{collinear} gluon, it is always part of the same jet.
     \item \textbf{Infrared safety} means that the jet is unchanged if the initial parton (or any other in the shower) radiates a \emph{soft} gluon.
 \end{itemize}
+We can now define \IRC observable $\mathcal{O}$ as:
+\begin{defn}[Infrared and Collinear Safe Observable]
+    \label{def:IRC}
 
-In \cref{fig:collinear_safety}, we can see that the jet algorithm initially finds two jets, but when one jet radiates a soft gluon, they are put together.
+    Let $\mathcal{O} = \mathcal{O}(p_1^\mu, p_2^\mu, \dots, p_N^\mu)$ be observable on the momentum space of $N$ partons with 4-momentum $p_i^\mu$ matched to a jet by a jet algorithm.
+    Then $\mathcal{O}$ is :
+    \begin{itemize}
+        \item \textbf{Infrared safe} wrt. the jet algorithm if 
+        $$ \mathcal{O}(p_1^\mu, p_2^\mu, \dots, p_N^\mu) = \mathcal{O}(p_1^\mu, p_2^\mu, \dots, p_N^\mu, p_{N+1}^\mu) $$
+        where $p_{N+1}^\mu \approx 0$ is 4-momentum of a soft parton.
+        \item \textbf{Collinear safe} wrt. the jet algorithm if 
+        $$ \mathcal{O}(p_1^\mu, p_2^\mu, \dots, p_N^\mu) = \mathcal{O}(p_1^\mu, p_2^\mu, \dots,p_{N-1}^\mu, p_{N_1}^\mu, p_{N_2}^\mu) $$
+        where $p_{N_1}^\mu \parallel p_{N_2}^\mu$ are 4-momenta of collinear partons and $p_{N_1}^\mu + p_{N_2}^\mu = p_{N}^\mu$.
+    \end{itemize}
+\end{defn}
+
+In \cref{fig:collinear_safety}, we can see that the jet algorithm initially finds two jets, but when one jet radiates a soft gluon, they are put together or when a jet radiates a collinear gluon, the jet is split.
 
 \begin{figure}[htb]
     \centering
-    \includegraphics[width=0.7\linewidth]{src/img/collinear_safety.png}
-    \caption{Collinear unsafe jet algorithm. Initially, there are two jets, but they are put together if one jet radiates a soft gluon.}
+    \includegraphics[width=0.7\linewidth]{src/img/IRC_unsafe.jpeg}
+    \caption{IRC unsafe jet algorithm. Initially, there are two jets (\emph{top}), but they are put together if one jet radiates a soft gluon (\emph{bottom left}), or one jet is split if it radiates a collinear gluon (\emph{bottom right}).}
     \label{fig:collinear_safety}
 \end{figure}
