@@ -11,7 +11,7 @@ gs -dPDFA=1 \
    -sColorConversionStrategy=UseDeviceIndependentColor \
    -sDEVICE=pdfwrite \
    -dPDFACompatibilityPolicy=3 \
-   -sOutputFile="pdfa-$1" \
+   -sOutputFile="$1.pdfa" \
    "$1"
 
 # Notes:

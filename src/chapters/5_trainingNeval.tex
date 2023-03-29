@@ -1,1 +1,16 @@
 \chapter{Training and Evaluation}
+
+
+
+
+
+\section{Introduction}
+% In our study, we learn for each jet, the parton that it came from.
+% The dataset containing the jet information and the targets is the \MC simulations.
+% We then try to learn the same mapping for the measured data where we do not have targets.
+% However, we will not discuss data performance in this study, but rather the performance of the models on the \MC simulations.
+
+% In our study, we learn to predict the parton that a jet came from.
+% The target is a variable constructed from \texttt{jets_PartonTruthLabelID}, discussed in \cref{sec:event_production}. 
+% We have 6 possible values: u-quark, d-quark, s-quark, c-quark, b-quark, and gluon.
+% Out goal is the distinguish only quarks from gluons, so we put the gluon in one class and the quarks into other class.
