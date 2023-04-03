@@ -1,10 +1,28 @@
 
 \chapwithtoc{Conclusion}
 
-In the conclusion, you should summarize what was achieved by the thesis. In a few paragraphs, try to answer the following:
-\begin{itemize}
-\item Was the problem stated in the introduction solved? (Ideally include a list of successfully achieved goals.)
-\item What is the quality of the result? Is the problem solved for good and the mankind does not need to ever think about it again, or just partially improved upon? (Is the incompleteness caused by overwhelming problem complexity that would be out of thesis scope)%\todo{This is quite common.}, or any theoretical reasons, such as computational hardness?)
-\item Does the result have any practical applications that improve upon something realistic?
-\item Is there any good future development or research direction that could further improve the results of this thesis? (This is often summarized in a separate subsection called `Future work'.)
-\end{itemize}
+We have successfully developed a modern Transformer-like model that uses constituents of the jet to determine the original parton initiating the jet.
+To achieve this, we have reviewed the crucial physical aspects of \QCD describing the behavior of partons and jets, and the detector response to jets.
+The training data was a Monte Carlo simulation passed through the detector simulation with the object reconstruction the same as in the real data.  
+
+Modern architectures and techniques of Deep Learning were reviewed and applied to the problem of jet tagging.
+We touched on multiple problems that may arise in particle physics applications of Deep Learning, such as the truthfulness of labels, reconstruction of data, and the underlying physics.
+
+Different models using various levels of jet information were trained and compared.
+Our proposed \depart model outperformed all of them, including the previously used quark/gluon tagger and the state-of-the-art \ParT tagger.
+We have demonstrated the advantage of Transfomer architecture as a means to extract information from the jet constituents.
+They provide a more complete and flexible description of the jet than the previous models.
+on top of that, the \trans architectures have far bigger potential, where it could be used to tag individual flavors of quarks separately on top of the quark/gluon tagging. 
+The only downside of the model is the large number of parameters, which makes it computationally expensive.
+
+The proposed model showed only little angular and pileup dependence on the performance, which is a desirable property for a jet tagger. 
+There is room for improvement of the model in the energy dependence, which is a more challenging problem since the physics changes drastically.
+
+\section{Future work}
+A possible improvement is to make the model Infrared and Collinear Safe, which could be done quite easily by adding data augmentation steps. 
+This would make the model more robust to the effects of the jet reconstruction and would allow for a more physical description of the jet.
+
+To draw a broader conclusion, the dependence of the model on the simulation framework should be investigated.
+If the model performs similarly on different simulators (without being explicitly trained on them), we could be certain that the model learned the physics of the problem and not the specifics of the simulation. 
+From this point, we would test the performance on real data and do a calibration of the real data.
+Finally, the \depart could be used in real data analysis.
