@@ -1,0 +1,22 @@
+\begin{table}[h]
+    \centering
+    \caption{Configuration of Transformer, ParT, and DeParT models.} 
+    \label{tab:trans_config}
+    \begin{tabular}{@{}lccc@{}}
+    \toprule
+    \textbf{Parameter} & \textbf{Transformer} & \textbf{ParT} & \textbf{DeParT} \\ \midrule
+    Embedding Dimension & 128 & 128 & 128 \\
+    Self-Attention Block Layers & 13 & 11 & 11 \\
+    Class Attention Block Layers & - & 2 & 2 \\
+    Heads & 8 & 8 & 8 \\
+    Expansion & 4 & 4 & 4 \\
+    Dropout & - & 0.1 & - \\
+    Stochastic Depth Drop Rate & - & - & 0.1 \\
+    Layer Scale Initialization & - & - & $10^{-5}$ \\
+    Number of Embedding Layers & 3 & 3 & 3 \\
+    Number of Interaction Embedding Layers & - & 3 & 3 \\
+    Size of Interaction Embedding Layers & - & 64 & 64 \\
+    Activation & GELU & GELU & GELU \\
+    \bottomrule
+    \end{tabular}
+    \end{table}

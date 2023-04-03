@@ -30,3 +30,4 @@ build
 .vscode
 *.drawio
 notebooks
+graph_gen

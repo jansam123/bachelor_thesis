@@ -1,0 +1,17 @@
+\begin{table}[htb]
+    \centering
+    \caption{Configuration of BDT model.}
+    \label{tab:bdt_config}
+    \begin{tabular}{@{}lc@{}}
+    \toprule
+    \textbf{Parameter} & \textbf{BDT} \\ \midrule
+    Number of Trees & 600 \\
+    Growing Strategy & \texttt{BEST\_FIRST\_GLOBAL} \\
+    Maximum Depth & 5 \\
+    Split Axis & \texttt{SPARSE\_OBLIQUE} \\
+    Shrinkage & 0.5 \\
+    Minimum Examples per Leaf & 5k \\
+    L2 Regularization & 0.1 \\
+    \bottomrule
+    \end{tabular}
+\end{table}

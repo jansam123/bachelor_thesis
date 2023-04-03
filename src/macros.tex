@@ -5,8 +5,15 @@
 \usepackage[compat=1.0.0]{tikz-feynman}
 \usepackage{subcaption}
 \usepackage{xurl}
+\usepackage{xcolor}
+\usepackage{multirow}
+\usepackage{placeins}
+% \usepackage{pifont}
+% \usepackage{amssymb}
+% \usepackage{tabularx}
+%     \newcolumntype{L}{>{\raggedright\arraybackslash}X}
 
-\include{src/macros/abbrevs}
+\input{src/macros/abbrevs}
 \newcommand{\spinhalf}{spin-$\frac{1}{2}$ }
 \newcommand\eu{\mathrm{e}}
 \newcommand\pT{p_\text{T}}
@@ -16,39 +23,5 @@
 \renewcommand{\algorithmicrequire}{\textbf{Input:}}
 \renewcommand{\algorithmicensure}{\textbf{Output:}}
 
-\usepackage{xcolor}
 
-\definecolor{comment}{HTML}{ACB6BF}
-\definecolor{string}{HTML}{AAD94C}
-\definecolor{number}{HTML}{D2A6FF}
-\definecolor{string}{HTML}{AAD94C}
-\definecolor{constant}{HTML}{D2A6FF}
-\definecolor{function}{HTML}{FFB454}
-\definecolor{operator}{HTML}{F29668}
-\definecolor{separators}{HTML}{BFBDB6}
-\definecolor{backcolour}{rgb}{0.98,0.98,0.98}
-\definecolor{keyword}{HTML}{FF8F40}
 
-\lstdefinestyle{ayu-dark}{
-    backgroundcolor=\color{backcolour},   
-    rulecolor=\color{backcolour},
-    commentstyle=\textit\color{comment},
-    keywordstyle=\color{keyword},
-    numberstyle=\tiny\color{number},
-    stringstyle=\color{string},
-    basicstyle=\ttfamily\footnotesize,
-    emph={dropout},          % Custom highlighting
-    emphstyle=\color{function}, 
-    breakatwhitespace=false,         
-    breaklines=true,                 
-    captionpos=b,                    
-    keepspaces=true,                 
-    numbers=left,                    
-    numbersep=5pt,                  
-    showspaces=false,                
-    showstringspaces=false,
-    showtabs=false,                  
-    tabsize=4
-}
-
-\lstset{style=ayu-dark}

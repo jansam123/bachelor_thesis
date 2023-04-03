@@ -1,15 +1,15 @@
 \begin{table}[!htb]
     \centering
-    \caption{}
+    \caption{Interaction PFO variables used as an input to interacting constituent-based models. $E^a$ and $E^b$ are the energies of the two PFOs, $\textbf{p}^a$ and $\textbf{p}^b$ are the 3-momenta of the two PFOs, $\eta^a$ and $\eta^b$ are the pseudorapidities of the two PFOs, $\phi^a$ and $\phi^b$ are the azimuthal angles of the two PFOs, and $p_\mathrm{T}^a$ and $p_\mathrm{T}^b$ are the transverse momenta of the two PFOs. \cite{part}}
     \label{tab:pfo_interaction_variables}
     \begin{tabular}{l}
     \toprule
         PFO Interaction Variables \\
     \midrule
-        $\Delta = \sqrt{(\eta_a - \eta_b)^2 + (\phi_a - \phi_b)^2}$ \\
-        $k_\mathrm{T} = \min{(p_\mathrm{T, a}, p_\mathrm{T, b})} \Delta$ \\
-        $z = \min{(p_\mathrm{T, a}, p_\mathrm{T, b})} / (p_\mathrm{T, a} + p_\mathrm{T, b})$ \\
-        $m^2 = (E_a + E_b)^2 -  \lVert \textbf{p}_a + \textbf{p}_b \rVert^2$ \\
+        $\log \Delta = \log{\sqrt{(\eta^a - \eta^b)^2 + (\phi^a - \phi^b)^2}}$ \\
+        $\log k_\mathrm{T} = \log{(\min{(p_\mathrm{T}^a, p_\mathrm{T}^b)} \Delta)}$ \\
+        $z = \min{(p_\mathrm{T}^a, p_\mathrm{T}^b)}/(p_\mathrm{T}^a + p_\mathrm{T}^b)$ \\
+        $\log m^2 = \log{\left((E^a + E^b)^2 -  \lVert \textbf{p}^a + \textbf{p}^b \rVert^2\right)}$ \\
     \bottomrule
     \end{tabular}
 \end{table}

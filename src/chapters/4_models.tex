@@ -1,4 +1,5 @@
 \chapter{Deep Learning Architectures}
+\label{ch:models}
 
 \section{Basic Concepts}
 \label{sec:basic_concepts}
@@ -333,31 +334,34 @@ We can now define the following metrics with a \emph{fixed threshold}:
         \text{Accuracy} = \frac{T_0 + T_1}{T_0 + T_1 + F_0 + F_1}.
     \end{equation}
     Or generally a probability of correct classification.
-    \item[Efficiency] $\epsilon_i$ of class $i$ is the fraction of correctly identifying the class $i$
+    \item[Efficiency] $\epsilon_i$ of class $i$ is the fraction of correctly identifying the class $i$ ($j$ is the other class)
     \begin{equation}
         \label{eq:efficiency}
-        \epsilon_i = \frac{T_i}{T_i + F_i}.
+        \epsilon_i = \frac{T_i}{T_i + F_j}.
     \end{equation}
     This metric has more terms if $i = 1$: \emph{true positive rate} (TPR) sensitivity, recall, hit rate, probability of detection...
-    \item[Rejection] $\epsilon^{-1}_i$ of class $i$ is the inverse of fraction of correctly identifying the class $i$
+    \item[Rejection] $\epsilon^{-1}_i$ of class $i$ is the inverse of fraction of correctly identifying the class $i$ ($j$ is the other class)
     \begin{equation}
         \label{eq:rejection}
-        \epsilon^{-1}_i = \frac{1}{\epsilon_i} = \frac{T_i + F_i}{T_i}.
+        \epsilon^{-1}_i = \frac{1}{\epsilon_i} = \frac{T_i + F_j}{T_i}.
     \end{equation}
-    \item[False Rate] $1 - \epsilon_i$ of class $i$ is the fraction of incorrectly identifying the class $i$
+    \item[False Rate] $\varphi_i$ of class $i$ is the fraction of incorrectly identifying the class $i$ ($j$ is the other class)
     \begin{equation}
         \label{eq:false_rate}
-        1 - \epsilon_i = \frac{F_i}{T_i + F_i}
+        \varphi_i = \frac{F_i}{T_j + F_i}
     \end{equation}
     This metric has more terms if $i = 1$: \emph{false positive rate} (FPR), fall-out, probability of false alarm...
+    \item[Confusion Matrix] (CM) is a plot where on the x-axis are the predicted classes, and on the y-axis are the true classes. 
+    The CM is a good way to visualize the performance of the model. 
+    The diagonal represents the efficiencies of a given class and the off-diagonal represents the false rates of the given class.
 \end{description}
 
 Following metrics are defined with a \emph{variable threshold}:
 \begin{description}
-    \item [ROC] (Receiver Operating Characteristic) curve is the plot of the efficiency of the second class $\epsilon_1$ against the false rate $1 - \epsilon_0$ of the first class for different thresholds. 
+    \item [ROC] (Receiver Operating Characteristic) curve is the plot of the efficiency $\epsilon_1$ against the false rate $\varphi_1$ for different thresholds. 
     It is good to note that there is no point in switching the classes since the ROC curve would reflect wrt—the diagonal. 
     \item[AUC] is the Area Under the ROC Curve, a simple integration of the ROC curve.
-    \item[Rejection at Efficiency] is the rejection of the one class at a given efficiency of the second class with an adjusted threshold.
+    \item[Rejection at Efficiency] $\epsilon^{-1}_i @_x \epsilon_j$ is the rejection of the one class $i$ at a given efficiency $x$ of the second class $j$ with an adjusted threshold.
 \end{description}
 
 
@@ -620,6 +624,8 @@ At the end of \SA Blocks, the output is sliced (taking only the first vector, th
 It is based on the CaiT \cite{cait} architecture (see \cref{fig:part}) with one crucial extension: \emph{the interaction variables}.
 Interaction variables are given for each pair of input vectors, producing an overall second input of shape $B \times N \times N \times C_{int}$, where $C_{int}$ is the number of interaction variables.
 These variables are manually engineered\footnote{The explicit form depends on the input type. In the case of PFOs, the variables are shown in \red{[????]}} and embedded using the \emph{CNN embedding}, consisting of multiple blocks of \pointCNN, batch normalization and Activation, as shown in \cref{fig:embed} (b).
+Since the variables are symmetric, we only need to embed the upper triangle of the matrix, and the lower triangle is filled with the transposed upper triangle.
+The diagonal is filled with zeros.
 
 Afterward, they are used as the second input \emph{to every} \SA Block, which is shown in \cref{fig:part,fig:part_SA}, to modify the Attention as
 \begin{equation}

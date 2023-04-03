@@ -1,0 +1,15 @@
+\begin{table}[h]
+    \centering
+    \caption{Configuration of PFN and EFN models.}
+    \label{tab:pfn_config}
+    \begin{tabular}{@{}lcc@{}}
+    \toprule
+    \textbf{Parameter} & \textbf{PFN} & \textbf{EFN} \\ \midrule
+    $\Phi$ layers & 5 x 512 & 4 x 512 + 1 x 136 \\
+    $F$ layers & 6 x 512 & 6 x 512 \\
+    $\Phi$ & CNN & CNN \\
+    Activation & ReLU & ReLU \\
+    Dropout & - & - \\
+    \bottomrule
+    \end{tabular}
+\end{table}

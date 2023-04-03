@@ -1,0 +1,22 @@
+\begin{table}[!htb]
+    \centering
+    \caption{Technical information about the models. The total number of parameters is given in millions. The time and memory are measured on a single NVIDIA Tesla V100 GPU 32GB. The time corresponds to the inference time of one batch of size 512. Memory is the maximum GPU memory usage during inference of batch with size 512.}
+    \label{tab:tech}
+    \begin{tabular}{lccc}
+    \toprule
+        Model & Params [$10^{6}$] & Batch Time [ms] & GPU Memory [MB] \\
+    \midrule
+        Interacting DeParT &  2.62 & 190.3 & 2578 \\
+        Interacting ParT & 2.62 & 169.7 & 1411 \\
+        DeParT &  2.61 & 118.0 & 574 \\
+        ParT & 2.61 & 95.8 & 536 \\
+        Transformer & 2.61 & 110.0 & 570 \\
+        PFN & 2.64 & 15.6 & 359 \\
+        EFN & 2.60 & 15.0 & 551 \\
+        Highway & 2.62 & 2.8 & 44 \\
+        Fully Connected & 2.64 & 1.6 & 34 \\
+        BDT &  - & 20.4 & - \\
+    \bottomrule
+    \end{tabular}
+\end{table}
+    

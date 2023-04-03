@@ -1,6 +1,7 @@
 \chapter{Data}
 
 \section{Monte Carlo Simulations}
+\label{sec:mc_simluation}
 As training data for various neural network models, we do not use measured data by the ATLAS detector, but rather \emph{simulated events}. 
 Simulations are based on physical models, detector models, and stochastic processes involved in both the physics and the detector.
 Hence the name, \MC simulations.
@@ -10,6 +11,7 @@ The physical part uses the \texttt{Pythia 8.2} package \cite{pythia}, a state-of
 The detector response is made using the \texttt{Geant4} package \cite{geant4} tailored to the ATLAS detector \cite{atlas_sym}.
 
 After the simulations, the \MC data comes in the same format as the actual data from the detector.
+For the simulation to make physical sense, they assign \emph{weight} to each event based on the cross section of the simulated process.
 The only difference is that the \MC data contains \emph{truth information} from the physical simulation, which is used to train the neural networks.
 However, object reconstruction is still done the same way as for the actual data.
 Jet reconstruction is done in two steps: first, the jet constituents are identified, and then the jet is reconstructed from the constituents. 
@@ -25,7 +27,9 @@ Cross sections of events depend highly on the $\pT$ of scattered partons.
 To be able to describe well the high $\pT$ (low probability, i.e., cross section) events, the \MC \texttt{Pythia} production is split into \texttt{JZ} slices. 
 Each slice has a different $\pT$ range of leading (with the highest $\pT$) jet.
 In the original dataset are 13 slices, \texttt{JZ0}-\texttt{JZ12}, but we will only utilize \texttt{JZ1}-\texttt{JZ5}, which are the most interesting for physical analyses.
-A summary of the used \texttt{JZ} samples is shown in \cref{tab:jz}. \red{[???? FACT CHECK THE PT RANGES AND CROSS SECTIONS]}
+A summary of the used \texttt{JZ} samples is shown in \cref{tab:jz}. 
+To make the physical sense of the \texttt{JZ} slices, each slice is assigned a cross section on top of the event weight, also summarized in \cref{tab:jz}.
+\red{[???? FACT CHECK THE PT RANGES AND CROSS SECTIONS]}
 \input{src/tables/jz.tex}
 
 

@@ -1,19 +1,19 @@
 \begin{table}[!htb]
     \centering
-    \caption{}
+    \caption{BDT variables used as an input to the Boosted Decision Tree. $p_\mathrm{T}$ is the transverse momentum of the PFO, $\eta$ is the pseudorapidity of the PFO, $\phi$ is the azimuthal angle of the PFO,  $\eta^{\text{jet}}$ is the pseudorapidity of the jet, and $\phi^{\text{jet}}$ is the azimuthal angle of the jet, $\pT^\mathrm{jet}$ is the transverse momentum of the jet. Summations are over PFOs in the jet. \cite{bdt_tag}}
     \label{tab:bdt_variables}
     \begin{tabular}{l}
     \toprule
         BDT Variables \\
     \midrule
-        $p_\mathrm{T, jet}$ \\
-        $\eta_\mathrm{jet}$ \\
+        $p_\mathrm{T}^\mathrm{jet}$ \\
+        $\eta^\mathrm{jet}$ \\
         \vspace{1em}
-        $N_{\text {PFO }}=\sum_{\text {PFO } \in \text { jet }}$ \\
+        $N_{\text {PFO}}=\sum_{\text {PFO } \in \text { jet }}$ \\
         \vspace{1em}
-        $W_{\mathrm{PFO}}=\frac{\sum_{\mathrm{PFO} \in \mathrm{jet}} p_{\mathrm{T}, \mathrm{PFO}} \Delta R_{\mathrm{PFO}, \mathrm{jet}}}{\sum_{\mathrm{PFO} \in \mathrm{jet}} p_{\mathrm{T}, \mathrm{PFO}}}$ \\
+        $W_{\text {PFO}}=\frac{\sum_{a \in \mathrm{jet}} p_{\mathrm{T}}^{a} \sqrt{(\eta^a - \eta^{\text{jet}})^2 + (\phi^a - \phi^{\text{jet}})^2}}{\sum_{a \in \mathrm{jet}} p_{\mathrm{T}}^{a}}$ \\
         \vspace{1em}
-        $C_1^{\beta=0.2}=\frac{\sum_{i, j \in \mathrm{jet}}^{i \neq j} p_{\mathrm{T}, i} p_{\mathrm{T}, j}\left(\Delta R_{i, j}\right)^{\beta=0.2}}{\left(\sum_{\mathrm{PFO} \in \mathrm{jet}} p_{\mathrm{T}, \mathrm{PFO}}\right)^2}$ \\
+        $C_1^{\beta=0.2}=\frac{\sum_{a, b \in \mathrm{jet}}^{a \neq b} p_{\mathrm{T}}^a p_{\mathrm{T}}^b \left(\sqrt{(\eta^a - \eta^b)^2 + (\phi^a - \phi^b)^2}\right)^{\beta=0.2}}{\left(\sum_{a \in \mathrm{jet}} p_{\mathrm{T}}^{a}\right)^2}$ \\
     \bottomrule
     \end{tabular}
 \end{table}

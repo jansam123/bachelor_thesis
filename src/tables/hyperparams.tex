@@ -1,0 +1,39 @@
+\begin{table}[h]
+    \centering
+    \caption{Summary of common training configuration for all models.}
+    \label{tab:training_config}
+    \begin{tabular}{@{}lc@{}}
+        \toprule
+        \multicolumn{2}{c}{\textbf{Data}} \\
+        \midrule
+        Training Dataset & 5M jets \\
+        Validation Dataset & 0.5M jets \\
+        Test Dataset & 0.5M jets \\
+        Number of Epochs & 12 \\
+        Batch Size & 512 \\
+        Total Steps & 118k \\
+        Normalization Layer & adaptation on 500 batches \\
+        \midrule
+        \multicolumn{2}{c}{\textbf{Optimizer}} \\
+        \midrule
+        Optimizer & LAMB \\
+        Learning Rate & 0.001  \\
+        $\beta_1$ & 0.9 \\
+        $\beta_2$ & 0.999 \\
+        $\epsilon$ & $10^{-6}$ \\
+        Learning Rate Scheduling & Cosine Decay \\
+        Warmup & Linear (100 steps) \\
+        Clip Norm & None \\
+        \midrule
+        \multicolumn{2}{c}{\textbf{Loss}} \\
+        \midrule
+        Loss & Binary Cross Entropy \\
+        Label Smoothing & None \\
+        Weight Decay & None \\
+        \bottomrule
+        \end{tabular}
+        \end{table}
+        
+        
+        
+    
