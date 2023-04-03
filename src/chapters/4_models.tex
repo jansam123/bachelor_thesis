@@ -623,7 +623,7 @@ At the end of \SA Blocks, the output is sliced (taking only the first vector, th
 \emph{Particle Transformer} \cite{part} is a \trans variant with particle physics in mind.
 It is based on the CaiT \cite{cait} architecture (see \cref{fig:part}) with one crucial extension: \emph{the interaction variables}.
 Interaction variables are given for each pair of input vectors, producing an overall second input of shape $B \times N \times N \times C_{int}$, where $C_{int}$ is the number of interaction variables.
-These variables are manually engineered\footnote{The explicit form depends on the input type. In the case of PFOs, the variables are shown in \red{[????]}} and embedded using the \emph{CNN embedding}, consisting of multiple blocks of \pointCNN, batch normalization and Activation, as shown in \cref{fig:embed} (b).
+These variables are manually engineered\footnote{The explicit form depends on the input type. In the case of PFOs, the variables are shown in \cref{sec:pfo_interaction_variables}} and embedded using the \emph{CNN embedding}, consisting of multiple blocks of \pointCNN, batch normalization and Activation, as shown in \cref{fig:embed} (b).
 Since the variables are symmetric, we only need to embed the upper triangle of the matrix, and the lower triangle is filled with the transposed upper triangle.
 The diagonal is filled with zeros.
 
@@ -642,7 +642,7 @@ The output class is calculated from the Class Token as in \trans.
 
 Utilizing the interaction variables helps the model focus on the input data's essential parts.
 Each head of the \MHSA focuses on a different part of the input data.
-The improvement of the \ParT with the interaction variables compared to one without them is significant \cite{part} (see \red{[????]}).
+The improvement of the \ParT with the interaction variables compared to one without them is significant \cite{part} (see \cref{sec:results}).
 On top of that, the \CA blocks allow a more complex representation of \PFOs and the jet information by separating the attention mechanisms.
 
 \subsection{Class Attention Block}
