@@ -500,14 +500,14 @@ However, the biggest downside of \PFN and \EFN is that they \textbf{do not allow
 \begin{figure}[htb]
     \centering
     \includegraphics[width=1.\linewidth]{src/diagrams/transformer.png}
-    \caption{Diagram of the Transformer. The \emph{Class Token} is represented as a blue row of boxes. Operations concerning the \emph{Class Token} are traced with a blue arrow.}
+    \caption{Diagram of the Transformer. The Class Token is represented as a blue row of boxes. Operations concerning the Class Token are traced with a blue arrow.}
     \label{fig:trans}
 \end{figure}
 
 \begin{figure}[htb]
     \centering
     \includegraphics[width=0.9\linewidth]{src/diagrams/transformer_layers.png}
-    \caption{Diagram of the Transformer layers. (b) is the \emph{Self-Attention Block}, with the main components being the \emph{Multihead Self-Attention} (a) and the \emph{Feed Forward Network} (c). The \emph{Class Token} is represented as a blue row of boxes.}
+    \caption{Diagram of the Transformer layers. (b) is the \emph{Self-Attention Block}, with the main components being the \emph{Multihead Self-Attention} (a) and the \emph{Feed Forward Network} (c). The Class Token is represented as a blue row of boxes.}
     \label{fig:trans_layers}
 \end{figure}
 
@@ -559,6 +559,7 @@ Each head is a separate Attention mechanism with the head dimension $d = C / H$,
 Each head's input and output shape is $B \times N \times C/H$, constructed by reshaping the input data to $B \times H \times N \times C/H$ (the calculations across the heads are done in parallel, hence the extra dimension).
 The heads are concatenated, resulting in an output of shape $B \times N \times C$.
 As a result, the argument of Attention must be scaled by $\sqrt{d}$, as stated in \cref{eq:attn}.
+At the end, a linear projection across the embedding dimension $C$ is done, to allow the heads to exchange some information. 
 
 \subsection{Feedforward Network}
 \label{sec:ffn}
