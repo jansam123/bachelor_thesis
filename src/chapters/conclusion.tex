@@ -3,7 +3,7 @@
 
 We have successfully developed a modern Transformer-like model that uses jet constituents to determine the original parton initiating the jet.
 To achieve this, we have reviewed the crucial physical aspects of \QCD describing the behavior of partons and jets and the detector response to jets.
-The training data was a Monte Carlo simulation passed through the detector simulation with the object reconstruction the same as in the real data.  
+The training data was a Monte Carlo simulation passed through the detector simulation with the object reconstruction the same as in the real data, \green{provided by the ATLAS Run 2 simulations}.
 
 We reviewed modern architectures and techniques of Deep Learning and applied them to the problem of jet tagging.
 We touched on multiple problems that may arise in particle physics applications of Deep Learning, such as the truthfulness of labels, reconstruction of data, and the underlying physics.
@@ -19,10 +19,10 @@ The proposed model showed only little angular and pileup dependence on the perfo
 There is room for improvement of the model in the energy dependence, which is a more challenging problem since the physics changes drastically.
 
 \section{Future work}
-A possible improvement is to make the model Infrared and Collinear Safe, which could be done relatively quickly by adding data augmentation steps. 
+A possible improvement is to make the model Infrared and Collinear Safe, \green{which might be achieved by adding data augmentation steps}.
 This would make the model more robust to the effects of the jet reconstruction and allow for a more physical description.
 
 The dependence of the model on the simulation framework should be investigated to make the model applicable. 
 If the model performs similarly on different simulators (without being explicitly trained on them), we could be confident that the model learned the problem's physics and not the simulation's specifics. 
-From this point, we would test the performance on real data and calibrate the real data.
+From this point, we would test the performance on real data and calibrate \MC.
 Finally, the \depart could be used in real data analysis.

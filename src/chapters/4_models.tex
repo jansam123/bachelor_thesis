@@ -157,7 +157,7 @@ We introduce three common optimizers:
         \label{alg:sgd}
     \end{algorithm}
     \item[Adam] (\emph{Adaptive Moment Estimation}) \cite{adam} is a popular \dl algorithm used in almost every \dl framework.
-    As hyperparameters, apart from the learning rate $\alpha$, it has the decay rate of the first moment $\beta_1$, the decay rate of the second moment $\beta_2$, a small constant $\epsilon$ to avoid division by zero, and weight decay $\lambda$ (which we will explain in \cref{sec:regularization}).
+    As hyperparameters, apart from the learning rate $\alpha$, it has the decay rate of the first moment $\beta_1$, the decay rate of the second moment $\beta_2$, a small constant $\epsilon$ to avoid division by zero, and weight decay $\lambda$ (which we will explain in \cref{sec:regularization} \green{as a regularization technique that forces the weights to be smaller}).
     \begin{algorithm}
         \begin{algorithmic}[1]
         \Require model with weights $f(\bullet;\pmb{w})$, outputs of a model $f(\pmb{x}^{(i)};\pmb{w})$ in batches, target values $\pmb{y}^{(i)}$ in batches
@@ -168,8 +168,7 @@ We introduce three common optimizers:
             \State $\pmb{r} \gets \beta_2 \pmb{r} + (1 - \beta_2) \pmb{g}^2$
             \State $\pmb{s} \gets \frac{\pmb{s}}{1 - \beta_1^n}$
             \State $\pmb{r} \gets \frac{\pmb{r}}{1 - \beta_2^n}$
-            \State $\pmb{m} \gets \frac{\pmb{s}}{\sqrt{\pmb{r}} + \epsilon} + \lambda \pmb{w}$
-            \State $\pmb{w} \gets \pmb{w} - \alpha \pmb{m}$
+            \State $\pmb{w} \gets \pmb{w} - \alpha \left( \frac{\pmb{s}}{\sqrt{\pmb{r}} + \epsilon} + \lambda \pmb{w} \right)$
         \EndFor
         \Ensure model $f(\bullet;\pmb{w})$ with optimized weights $\pmb{w}$
         \end{algorithmic}
@@ -177,10 +176,21 @@ We introduce three common optimizers:
         \label{alg:adam}
     \end{algorithm}
     There are several notable differences between Adam and SGD.
-    First, Adam uses the \emph{momentum} (remembering the size of the previous step) to accelerate the convergence, which is represented by the addition of $\beta_1\pmb{s}$ in line 3 of \cref{alg:adam}.
-    Second, Adam uses the \emph{adaptive learning rate} to avoid the problem of the learning rate being too low or too large, which is represented by the division of $\sqrt{\pmb{r}}$ in line 7 of \cref{alg:adam}.
-    Adam uses the second moment $\pmb{g}^2$, line 4 of \cref{alg:adam} to calculate the adaptive learning rate.
-    The operations in lines 5 and 6 of \cref{alg:adam} are called \emph{bias correction}.
+
+    \green{First, Adam uses the \emph{momentum} (remembering the size of the previous step) to accelerate the convergence.
+    Intermediate variable $\pmb{s}$ is introduced as the sum of the previous $\pmb{s}$ and the current gradient $\pmb{g}$ in line 3 of \cref{alg:adam}.
+    The momentum is the $\pmb{s}$ from the previous step.
+    $\beta_1$ is the fraction of the previous momentum that is kept, usually set close to 1.}
+    
+    \green{Second, Adam uses the \emph{adaptive learning rate} to avoid the problem of the learning rate being too low or too large.
+    Intermediate variable $\pmb{r}$ is introduced as the sum of the previous $\pmb{r}$ and the square of the current gradient $\pmb{g}$ in line 4 of \cref{alg:adam}.
+    The learning rate is scaled by the inverse of the square root of $\pmb{r}$, adapting the learning rate to the size of the gradient $\pmb{g}^2$ in line 7 of \cref{alg:adam} (the square of the gradient is used to assert positive values).
+    On top of that $\pmb{r}$ also has momentum as seen in line 4 of \cref{alg:adam}, where $\beta_2$ (usually set close to 1) is the fraction of the previous $\pmb{r}$ that is kept.}
+
+    \green{The operations in lines 5 and 6 of \cref{alg:adam}, called \emph{bias correction}, are used to avoid the initial bias of $\pmb{s}$ and $\pmb{r}$.
+    At the beginning of the training, the values of $\pmb{s}$ and $\pmb{r}$ are zero, so the first step would be close to zero since $1 - \beta_1$ and $1 - \beta_2$ are close to zero.
+    To correct this, $\pmb{s}$ and $\pmb{r}$ are divided by $1 - \beta_i^n$ which makes the first steps larger.}
+
     \item[LAMB] (\emph{Layer-wise Adaptive Moments optimizer for Batch training}) \cite{lamb} is a state-of-the-art \dl algorithm built upon Adam, which helps train large models.
     It has the same hyperparameters as Adam.
     \begin{algorithm}

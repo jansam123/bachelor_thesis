@@ -30,9 +30,7 @@ Each slice has a different $\pT$ range of leading (with the highest $\pT$) jet.
 In the original dataset are 13 slices, \texttt{JZ0}-\texttt{JZ12}, but we will only utilize \texttt{JZ1}-\texttt{JZ5}, which are the most interesting for physical analyses.
 A summary of the used \texttt{JZ} samples is shown in \cref{tab:jz}. 
 To make the physical sense of the \texttt{JZ} slices, each slice is assigned a cross section on top of the event weight, also summarized in \cref{tab:jz}.
-\red{[???? FACT CHECK THE PT RANGES AND CROSS SECTIONS]}
 \input{src/tables/jz.tex}
-
 
 \red{[???? ADD INFO ABOUT \emph{PartonTruthLabelID}, SEE \url{https://acode-browser.usatlas.bnl.gov/lxr/source/athena/PhysicsAnalysis/AnalysisCommon/ParticleJetTools/Root/JetPartonTruthLabel.cxx} AND \url{https://twiki.cern.ch/twiki/bin/view/AtlasProtected/Run2JetMoments\#Jet_attributes_for_Run_2}]}
 
@@ -41,7 +39,7 @@ To make the physical sense of the \texttt{JZ} slices, each slice is assigned a c
 Our study identifies jet constituents using the \PFa \cite{PFO}.
 
 The \PFa is based on the Topocluster algorithm \cite{topocluster}, which uses only calorimeter (electromagnetic and hadron) information to identify energy clusters.
-The seed of the cluster is a signal of strength at least $5\sigma$, where $\sigma$ is the noise of the calorimeter.
+The seed of the cluster is a signal of strength at least $4\sigma$, where $\sigma$ is the noise of the calorimeter.
 When such a seed is found, the algorithm searches for neighboring cells with signal strength above $2\sigma$.
 The neighboring cells are added to the cluster, and the algorithm repeats the search for other neighboring cells.
 When no more neighboring cells with signal $>2\sigma$ are found, all cells that form a boundary are added to the cluster.
@@ -78,7 +76,7 @@ The object construction procedure is as follows:
 \end{enumerate}
 
 Energy showers used for jet reconstruction are an ensemble of matched topo-clusters and tracks assigned to hard-scattered objects from the primary vertex. 
-Note that tracks are assigned only to charged with $|\eta| < 2.5$ (tracker position), and only topo-clusters are assigned to neutral particles.
+Note that tracks are assigned only to charged particles with $|\eta| < 2.5$ (tracker position), and only topo-clusters are assigned to neutral particles.
 We will refer to elements of topo-cluster and track ensemble as \PFOs. 
 
 \section{Pile-up}
@@ -90,10 +88,10 @@ The Topocluster algorithm searches for clusters on top of the pile-up, meaning t
 
 In this context, it is good to introduce variables modeling the pile-up \cite{jvt}.
 Specifically, jet-vertex-fraction JVF, corrected JVT corrJVT, momentum fraction originated from primary vertex $R_{\pT}$, jet-vertex-tagger JVT, and forward jet-vertex-tagger fJVT.
-The primary vertex is assigned an event selected by the trigger.  
+\green{The primary vertex has the largest sum of squares of transverse momenta of associated tracks.} 
 \begin{description}
      
-    \item[The jet-vertex-fraction JVF] is a fraction of the jet momentum originating from the primary vertex (1st vertex is a shortcut for primary vertex, and 2nd vertex is a shortcut for secondary vertex)
+    \item[The jet-vertex-fraction JVF] is a fraction of the jet \green{transverse} momentum originating from the primary vertex (1st vertex is a shortcut for primary vertex, and 2nd vertex is a shortcut for secondary vertex)
     \begin{equation}
         \label{eq:jvf}
     \text{JVF} = \frac{\sum_{\text{track} \in \text{1st vertex}} \pT^{\text{track}}}{\sum_{\text{track} \in \text{1st vertex}} \pT^{\text{track}} + \sum_{\text{track} \in \text{2nd verticies}} \pT^{\text{track}}},
@@ -108,7 +106,7 @@ The primary vertex is assigned an event selected by the trigger.
     where $k$ is a constant (usually $k=0.01$), and $N^{\text{track}}_{\text{pile-up}}$ is the total number of pile-up tracks in the event.
     
     
-    \item[The variable $R_{\pT}$] is a fraction of the jet momentum originating from the primary vertex
+    \item[The variable $R_{\pT}$] is a fraction of the \green{transverse} jet momentum originating from the primary vertex
     \begin{equation}
         \label{eq:rpt}
         R_{\pT} = \frac{\sum_{\text{track} \in \text{1st vertex}} \pT^{\text{track}}}{\pT^{\text{jet}}},
@@ -133,9 +131,9 @@ The primary vertex is assigned an event selected by the trigger.
 
 It is necessary to emphasize that the momenta $\pT^{\text{track}}$ are calculated from the tracks, not the \PFOs because the Topocluster algorithm cannot assign a vertex.
 If a jet has no track assigned, JVF, corrJVF, and JVT are all set to -1.
-Jets with JVT$<$\red{[???? ADD ACTUAL USED VALUE]} are considered as pile-up (passJVT=0), and similarly for fJVT$<$\red{[???? ADD ACTUAL USED VALUE]} (passfJVT=0).
+Jets with JVT$< 0$ are considered as pile-up (passJVT=0), and similarly for fJVT$<0$ (passfJVT=0).\footnote{\green{Jets are also required to have \texttt{Timing}$<10$ ns to pass the fJVT (passfJVT=1). See \cref{ch:app_high_level_variables} for the description of \texttt{Timing}.}}
 
-Another vital variable describing pile-up is the \textbf{average number of interactions per bunch crossing} denoted by $\mu$.
+Another vital variable describing pile-up is the \textbf{average expected number of interactions per bunch crossing} denoted by $\mu$.
 
 \section{Jet Reconstruction}
 \label{sec:jet_reco}
@@ -150,7 +148,7 @@ The simple principle goes as follows:
     \item Add all objects inside the cone to the jet and exclude them from further consideration.
     \item Repeat the procedure for the remaining objects.
 \end{enumerate}
-In case of cones overlapping, they are split if the overlapping energy is more than a given threshold (usually 0.5 of total energy).
+In case of cones overlapping, they are \green{merged} if the overlapping energy is more than a given threshold (usually 0.5 of total energy).
 Jet is split into two if the energy of the overlapping cone is less than a given threshold (usually 0.5 of total energy).
 
 \textbf{Sequential recombination algorithms} are based on clustering jets by some metric, 'distance'.
@@ -163,7 +161,7 @@ where $p_{\text{T}, i}$ and $p_{\text{T}, j}$ are the transverse momenta of the 
 \begin{itemize}
     \item $p=-1$ is the anti-$k_t$ \footnotemark algorithm \cite{antikt},
     \item $p=1$ is the $k_t$ \footnotemark algorithm \cite{kt},
-    \item $p=0$ is the Cam/Aachen algorithm \cite{Cam_Aachen_alg}.
+    \item $p=0$ is the Cambridge/Aachen algorithm \cite{Cam_Aachen_alg}.
 \end{itemize}
 \footnotetext{In the original paper, authors refer to the transverse momentum $\pT$ as $k_t$. Anti-$k_t$ is the reciprocal transverse momentum.}
 The algorithm is as follows \cite{antikt}:
@@ -178,7 +176,7 @@ An example of clustered jets with various algorithms is shown in \cref{fig:jet_r
 \begin{figure}[ht]
     \centering
     \includegraphics[width=1.\textwidth]{src/img/anitkt.png}
-    \caption{Example of clustered jets with various algorithms. The \emph{top left} is the $k_t$ algorithm, the \emph{top right} is the Cam/Aachen algorithm, the \emph{bottom left} is the SISCone algorithm, and the \emph{bottom right} is the anti-$k_t$ algorithm.}
+    \caption{Example of clustered jets with various algorithms. The \emph{top left} is the $k_t$ algorithm, the \emph{top right} is the Cambridge/Aachen algorithm, the \emph{bottom left} is the SISCone algorithm, and the \emph{bottom right} is the anti-$k_t$ algorithm.}
     \label{fig:jet_reco}
 \end{figure}
 
@@ -186,5 +184,3 @@ In our study, the object referred to in the algorithm descriptions are \PFOs.
 The anti-$k_t$ algorithm ($p=-1$) is widely used in the ATLAS community due to its IRC safety (as defined in \cref{def:IRC}) and symmetrical jet shapes. 
 We shall use the anti-$k_t$ algorithm with $R=0.4$ for all jet reconstructions.
 
-
-\red{[???? ADD JET TRIMMING DESCRIPTION IF USED]}

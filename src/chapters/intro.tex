@@ -11,15 +11,15 @@ The physical theory that describes them is \QCD, which is inherently extremely c
 The less energetic partons are, the stronger the interactions between them are. 
 This creates a problem in describing them as they tend to radiate and split into more partons, which makes it hard to trace them back to their origin.
 They create a spray of particles called \emph{jets}.
-We discuss the physics of partons in more detail in chapter \cref{ch:physics}.
+We discuss the physics of partons in more detail in \cref{ch:physics}.
 
-To detect these jets (and many others), the \CERN~\cite{cern} built the \LHC~\cite{LHC}, which is the biggest particle accelerator in the world.
+\green{To produce} these jets (and many others), the \CERN~\cite{cern} built the \LHC~\cite{LHC}, which is the biggest particle accelerator in the world.
 On the \LHC is the \emph{ATLAS}~\cite{ATLAS} detector, a giant experiment testing our knowledge of elementary interactions. 
 The \LHC accelerates two proton beams in different directions, so they can collide in the ATLAS detector and create a variety of particles.
 The ATLAS detector, a massive machine with many subsystems, then detects these particles.
 The two main components crucial to our study are the \emph{tracker} and the \emph{calorimeters}.
 They provide enough data to reconstruct the jets and their constituents.
-A more detailed description of the ATLAS detector is in chapter \cref{ch:atlas}.
+A more detailed description of the ATLAS detector is in \cref{ch:atlas}.
 
 The definition of a jet is very complicated, not trivial.
 It depends on many aspects of the detector, collisions, algorithm used, and background, secondary collisions called pileup.
@@ -29,7 +29,7 @@ The algorithm that clusters energy deposits into constituents we use is the \PFa
 It provides the essential data for the jet tagging algorithms and training input of our taggers.
 The data we will utilize for the training and testing our tagger is the \MC simulations.
 They include the physical simulation of the collision and the detector response.
-In chapter \cref{ch:data}, we provide more details about the data we use.
+In \cref{ch:data}, we provide more details about the data we use.
 
 Our goal, telling apart quark/gluon jets, is non-trivial as traces left by these particles in the detector are very similar.
 In the past, hand-crafted variables (such as a number of hadron tracks detected in the jet) describing the jets were used~\cite{ntrk_tag}.
@@ -41,7 +41,7 @@ In this thesis, we approach the problem using modern \dl techniques.
 \dl has exploded in the last decade.
 From the \nlp~\cite{bert} to image recognition~\cite{deit3}, \dl has been used to solve many problems.
 Most notably, the GPT \cite{gpt3,gpt4} models shook the whole world with their capabilities of text generation, as they can solve complex problems and even supersede humans. 
-Or the image-generating models such as Stable Diffusion \cite{stable_diff}, or Dall-E \cite{dalle} that can generate any image from text prompt, making graphics designers obsolete.
+Or the image-generating models such as Stable Diffusion \cite{stable_diff}, or Dall-E \cite{dalle} that can generate any image from text prompt. \green{[deleted:, making graphics designers obsolete.]}
 In this thesis, we utilize the \dl, used in these world-changing models, to solve the problem of quark/gluon tagging.
 An in-depth explanation of different \dl techniques and models is in \cref{ch:models}.
 
@@ -58,43 +58,5 @@ Or recently, it was explored by the \CMS~\cite{cms} Collaboration, where they we
 We improve on their work and apply it specifically to the problem of quark/gluon tagging.
 The models are trained, studied comprehensively, and their performance is compared with both \ml and \dl models in \cref{ch:training}.
 
-
-
-
-
-% \section{ChatGPT version}
-% Particle physics is a branch of physics that studies the fundamental constituents of matter and their interactions. 
-% The Standard Model of particle physics is the theoretical framework that describes the behavior of subatomic particles and their interactions. 
-% This model includes the theory of Quantum Chromodynamics (QCD), which describes the strong nuclear force that binds quarks and gluons to form protons, neutrons, and other hadrons. 
-% The properties of the quarks and gluons are not directly observable as they are always confined within hadrons.
-
-% In this bachelor thesis, we investigate the use of deep learning architectures for the identification of jets in the ATLAS detector at the Large Hadron Collider (LHC). 
-% The jets are collimated sprays of particles produced in high-energy collisions of protons. 
-% Jet tagging refers to the identification of jets produced by the hadronization of b-quarks, which is an essential process for many searches for new physics beyond the Standard Model.
-
-% The thesis is structured into five chapters. 
-% In chapter one, we provide an overview of the physics of quarks and gluons, the Standard Model, and the QCD. 
-% We also discuss the concept of infrared and collinear divergences and their impact on the description of hadronization and jet production. 
-% We further introduce the concept of jets and the importance of the infrared and collinear safety in their identification. 
-% Additionally, we describe the ATLAS detector, its subsystems, and the coordinate system used to identify and measure the particles produced in the collisions.
-
-% Chapter two is dedicated to the description of the ATLAS detector and its subsystems, including the inner detector, the calorimeters, the muon spectrometer, and the magnet systems. 
-% We discuss the main features of each subsystem and their role in the identification and measurement of particles produced in high-energy collisions.
-
-% Chapter three is dedicated to the description of the data used for training and testing the jet tagging algorithms. 
-% We discuss the Monte Carlo simulations used to generate the data, the event production process, and the constituent identification algorithms. 
-% We also introduce the concept of pileup, which refers to the additional collisions occurring in the same bunch crossing and its impact on the identification of jets.
-
-% In chapter four, we introduce the deep learning architectures used for jet tagging, including fully connected networks, highway networks, particle flow, and energy flow networks, and the transformer network. 
-% We discuss the architecture, the forward and backward passes, the training process, and the loss functions and optimizers used in each network. 
-% We also describe the activation functions, regularization techniques, and metrics used to evaluate the performance of the networks.
-
-% Finally, in chapter five, we present the results obtained from training and testing the deep learning architectures on the dataset described in chapter three. 
-% We discuss the input variables used for training the algorithms, the training configuration of each network, and the results obtained in terms of the transverse momentum, pseudo-rapidity, and pileup dependence of the jet tagging algorithms. 
-% We also discuss future work and the potential improvements that can be made to the deep learning architectures for jet tagging.
-
-% In conclusion, this thesis presents an investigation into the use of deep learning architectures for jet tagging in the ATLAS detector at the LHC. 
-% The thesis provides a detailed overview of the physics of quarks and gluons, the Standard Model, and the QCD, as well as the ATLAS detector and its subsystems. 
-% The thesis also describes the data used for training and testing the jet tagging algorithms and introduces the deep learning architectures used for this task. 
-% Finally, the thesis presents the results obtained from the training and testing of the algorithms and discusses the future work and potential improvements in this field.
-
+\green{Quark-gluon taggers are used in many applications, such as the search for new physics, and precise measurements of the Standard Model. 
+Moreover, the techniques developed in this thesis can be used in other tagging problems, such as the tagging of jets into different classes~\cite{part}.}

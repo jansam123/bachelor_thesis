@@ -17,7 +17,7 @@ Primarily, the \emph{jet tag cannot depend on the underlying event}.
 In other words, we must be able to predict the jet tag using only the jet information, i.e., \emph{jet variables}.
 We will not use any physical weights coming from the \MC simulation.
 
-Previous work primarily used only one variable to tag the jet \cite{ntrk_tag}.
+Previous \green{ATLAS} work primarily used only one variable to tag the jet \cite{ntrk_tag}.
 Some improvement has been made by utilizing more variables and training a \bdt \cite{bdt_tag}, basic \ml algorithm \cite{bdt}.
 No other models have been successfully deployed.
 We will train \emph{all models} introduced in \cref{ch:models} on the same dataset and compare the results.
@@ -82,7 +82,7 @@ Our preprocessing pipeline consists of the following steps:
 \end{enumerate}
 
 In step 2, we apply cut on the jet variables estimating the amount of pileup.
-We do not want to train on pileup jets, so we filter them out as much as possible using the abovementioned cuts.
+\green{ATLAS \MC samples do not come with truth information about pileup to reduce the amount of used disk space,} so we filter them out as much as possible using the abovementioned cuts.
 The PFO-based taggers need some minimum number of \PFOs to work correctly, so we filter out jets with less than 5 \PFOs.
 
 We apply a cut on the jet $\pT$ based on the JZ slice to make the spectrum for quarks and gluons more similar.
@@ -92,7 +92,7 @@ Resampling the quark and gluon datasets is done to make the dataset balanced.
 We can obtain the same result by reweighting each jet, but we have no prior knowledge of the weights.
 The method \texttt{tf.data. dataset.rejection\_resample}\footnote{\url{https://www.tensorflow.org/api_docs/python/tf/data/Dataset\#rejection\_resample}} allows resampling on the go by computing the ratio dynamically as the data is processed.
 
-Combining JZ slices with equal probability ensures the model works on the full spectrum of jets. 
+Combining JZ slices with equal probability ensures the model works on the full spectrum of jets \green{and \emph{does not use} $\pT$ to make the decision.}
 This is a non-trivial step, as in actual physical data, the jet $\pT$ spectrum is highly dominated by low $\pT$ jets, while the high $\pT$ jets are rare. 
 However, some applications are specifically interested in the high $\pT$ jets, so we want to ensure the model can also handle them.
 
@@ -156,7 +156,7 @@ The number of quarks and gluons is the same.
         \caption{JZ slice 5, 800 GeV cut}
         \label{fig:jz_separete_5}
     \end{subfigure}
-    \caption{Normalized $\pT$ distributions of jets after the JZ cuts are applied.}
+    \caption{Normalized $\pT$ distributions of jets \green{before} the JZ cuts are applied.}
     \label{fig:jz_separete}
 \end{figure}
 
@@ -199,7 +199,7 @@ We will construct four types of variables:
 \begin{itemize}
     \item \textbf{BDT variables} - variables that are calculated from \PFOs for a whole jet.
     \item \textbf{High-level jet variables} - variables that are calculated for the jet.
-    \item \textbf{\PFO variables} - variables that are variations of the 4-momenta of the \PFOs, they are calculated for \emph{each PFO} in a given jet.
+    \item \textbf{\PFO variables} - variables that are \green{construsted from} the 4-momenta of the \PFOs, they are calculated for \emph{each PFO} in a given jet.
     \item \textbf{\PFO interaction variables} - variables that are calculated from a pair of 4-momenta of \PFO, they are calculated \emph{for each pair of PFOs} in a given jet.
 \end{itemize}
 The distributions of these variables are shown in \cref{ch:app_input_variables}
@@ -209,14 +209,14 @@ The distributions of these variables are shown in \cref{ch:app_input_variables}
 \input{src/tables/PFO_variables.tex}
 The complete list of \PFO variables is shown in \cref{tab:pfo_variables} \cite{part}.
 They are calculated for each \PFO in a given jet.
-An input is then a vector of \PFO variables for each \PFO in a given jet, forming an input shape of $N \times 6$, where $N$ is the number of \PFOs in a jet.
+An input is then a vector of \PFO variables for each \PFO in a given jet, forming an input shape of $N \times 8$, where $N$ is the number of \PFOs in a jet.
 
 We want the tagger to be rotationally invariant, so we only use angles information wrt. the jet axis.
 These are the first three variables in \cref{tab:pfo_variables}.
 The dynamical variables include the $\pT$ and $E$ of the \PFO.
 Long-tailed distributions may cause problems for the neural network, so the logarithms of $\pT$ and $E$ are better suited. 
 To emphasize the importance of a given \PFO in a jet, the logarithm of the ratios of $\pT$ ($E$) of a \PFO to a jet $\pT^\mathrm{jet}$ ($E^\mathrm{jet}$) are used.
-Most of the \PFOs are assigned zero masses since they are reconstructed as photons.
+Most of the \PFOs \green{are neutral particles or cannot be associated with massive particles, so we assume they are relativistic and neglect their masses.}
 However, some leave tracks and are reconstructed as charged pions with non-zero masses.
 We utilize this information by adding the mass as a variable, which is not used in \cite{part}.
 
@@ -228,14 +228,14 @@ These variables are inputted to \trans, \ParT, and \depart.
 \input{src/tables/PFO_interaction_variables.tex}
 The complete list of \PFO interaction variables is shown in \cref{tab:pfo_interaction_variables} \cite{part}.
 They are calculated for each pair of \PFOs in a given jet.
-An input is a matrix of \PFO interaction variables for each pair of \PFOs in a given jet, forming an input shape of $N \times N \times 6$, where $N$ is the number of \PFOs in a jet.
+An input is a matrix of \PFO interaction variables for each pair of \PFOs in a given jet, forming an input shape of $N \times N \times 4$, where $N$ is the number of \PFOs in a jet.
 The matrix is symmetric, and the diagonal is filled with zeros.
 
 The kinematic variable is the angular distance $\Delta$.
-The invariant mass $m^2$ is calculated from the 3-momenta of the two \PFOs and their energies.
+The invariant mass $m^2$ is calculated from the 4-momenta of the two \PFOs.
 We utilize the same variable $k_\mathrm{T}$ as used in the jet reconstruction \cref{sec:jet_reco} (however, it is labeled differently, according to \cite{part}).
 The last variable, $z$, is also dynamic, the fraction of $\pT$ carried by less energetic \PFO.
-Again we take the \emph{logarithm of all these variables} to squish the distributions. 
+Again we take the \emph{logarithm of all these variables} \green{(except $z$ because it is bounded, see the distribution in \cref{sec:app_pfo_int_variables})} to squish the distributions. 
 
 These variables are a secondary input to \ParT and \depart.
 We will train these models both with and without interaction variables.
@@ -249,7 +249,7 @@ They are calculated for the whole jet from all \PFOs, forming a 5-dimensional ve
 
 $N_\mathrm{PFO}$ is the number of \PFOs in a jet, i.e. the \emph{multiplicity}.
 Before \bdt, taggers used this single variable to tag jets. 
-Variables $W_\mathrm{PFO}$ and $C_1^{\beta = 1}$ are carefully engineered to achieve the best performance.
+Variables $W_\mathrm{PFO}$ and $C_1^{\beta = 0.2}$ are carefully engineered to achieve the best performance.
 The $\pT^{\text{jet}}$ and $\eta^\mathrm{jet}$ were only added in the last version of the tagger \cite{bdt_tag}.
 
 Only \bdt uses these variables as input.

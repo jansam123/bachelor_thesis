@@ -1,0 +1,183 @@
+\chapwithtoc{Notes}
+
+\section{12.4.2023}
+
+\subsection{Introduction}
+\begin{itemize} 
+\item To detect -> To produce
+\item chapter chapter -> chapter
+\item chapter chapter -> chapter
+\item "making graphics designers obsolete" ...no, jestli to tam fakt chces 
+mit :D
+\item mozna do uvodu pridej jeste jeden odstavecek o tom, k cemu vsemu by se 
+dal q/g tagging pouzit \green{Nieco som pridal, ale asi by som potreboval pomoct, ze ktore konkretne analyzy to pouzivaju.}
+\end{itemize}
+
+\subsection{Chap 1}
+\begin{itemize} 
+\item "All quarks can interact weakly and electromagnetically via the Strong 
+Force" :)
+\item p.8 dole - pozor! Vektorove bosony, ktere uvadis, jsou zaroven 
+kalibracni bosony!!! Jestli chces i na tomto miste udelat deleni do 
+skupin, tak by asi bylo nejlepsi nazvat je gauge bosons a ta druha 
+skupina by nemela nazev a byl by v ni pouze higgs :) Ja osobne bych v 
+tomto miste deleni do skupin nedelal.
+\item p.9 "Gluons are also massless, making the Strong force also infinite." 
+tohle bych urcite odstranil. Sice pak vysvetlujes, ze naboj gluonu 
+situaci dramaticky meni, ale stejne by tahle veta podle me nemela 
+existovat. Naopak nekde zdurazni, ze silna interakce ma velice kratky dosah
+\item "chargers" -> "charges"
+\item p.13 nahore: "psi(x)"
+\item "In QED , we have the asymptotic freedom, which means the coupling 
+constant g goes to zero as the distance between the particles goes to 
+infinity." ...tohle je spatne! Pod pojmem "asymptotic freedom" se 
+rozumi, kdyz sila interakce jde k nule pro *velmi blizke* castice, coz 
+je to same jako *vysoce energeticke* srazky. QED *neni* asymptoticky 
+volna. Asymptoticky volna je QCD.
+\green{Ja som to vzdy chapal naopak, ze ked asymptoticky idu castic do nekonecna od seba tak su volne}
+\end{itemize}
+
+\subsection{Chap 2}
+\begin{itemize} 
+\item p.28 "which is the highest luminosity of any accelerator in the world" 
+...tohle neni pravda: SuperKEKB ma vyssi luminozitu: "On 15 June 2020, 
+the SuperKEKB reached an instantaneous luminosity of 2.22x1034 cm-2s-1 — 
+surpassing the LHC's record of 2.14x1034 cm-2s-1 set with proton-proton 
+collisions in 2018. A few days later, SuperKEKB pushed the luminosity 
+record to 2.4x1034 cm-2s-1.[18] In June 2022 the luminosity record was 
+nearly doubled to 4.7x1034 cm-2s-1.[19]"
+\green{To je pre mna novinka :)}
+\item p.30 "providing the most precise tracking system with a precision of 
+up to 25 µm" ...tady mi nejak nesedi to "the most precise". Jednak u 
+pixeloveho detektoru uvadis hodnotu 10 µm a za druhe je, myslim si, 
+lepsi posuzovat presnost ATLAS trackeru jako celku a nikoliv jeho 
+jednotlivych casti.
+\item p.34 "The high luminosity that LHC provides results in a collision 
+rate of 1.7 GHz" ...kde jsi vzal 1.7 GHz? Tim asi myslis pocet 
+jednotlivych srazek proton-proton... Nicmene to je asi zbytecne matouci 
+informace, protoze u LHC se standardne udava to cislo 40 MHz, coz je 
+frekvence srazek bunchu - frekvence eventu.
+\item odkud mas informace o trigger systemu? Ten trifazovy L1/L2/EF, to byl 
+trigger system v Runu 1. V Runu 2 uz mame jen dvoukrokovy - L1 a 
+High-level trigger (HLT).
+\green{Z roku 2008, povodny clanok. \url{https://cds.cern.ch/record/1129811?ln=en}, updatol som z \url{https://cds.cern.ch/record/2238679/files/ATL-DAQ-PROC-2016-039.pdf}}
+\end{itemize}
+
+\subsection{Chap 3}
+\begin{itemize} 
+\item \red{\texttt{PartonTruthLabelID} info}
+\item Tab. 3.1 prekontroloval jsem cross-section a filter eff. a tyto udaje 
+jsou v poradku. Ty pt ranges - odkud jsi je vzal? To jsem Ti posilal?
+\green{Nie, nasiel som to v nejakom clanku. Preto som to chcel aj prekontrolovat.} \url{https://www.google.com/url?sa=t&rct=j&q=&esrc=s&source=web&cd=&cad=rja&uact=8&ved=2ahUKEwiJ-KGwp6T-AhW7gf0HHd5uDrwQFnoECAsQAQ&url=https%3A%2F%2Fera.library.ualberta.ca%2Fitems%2F64bff467-2b91-423d-87fe-77f15eb77472%2Fdownload%2F2d1e1293-0138-4033-b17a-875cd7fbd4b9&usg=AOvVaw1EMrRbyIuRdYgGlXCzaDoc}
+\item p.36 "The seed of the cluster is a signal of strength at least 5sigma" 
+...urcite to je 5 sigma? V Runu 1 to byvalo 4 sigma.
+\green{Mas pravdu, v PFO clanku je 4.}
+\item p.38 "Note that tracks are assigned only to charged with" ...charged 
+particles, ne?
+\item p.38 "The primary vertex is assigned an event selected by the 
+trigger." ...tohle bych asi nezduraznoval, resp. vyhodil bych to. Ve 
+vetsine pripadu to asi bude platit, ale na otagovani vertexu jako 
+"primary" se pouziva jine pravidlo: ze ten vertex musi mit nejvyssi 
+soucet druhych mocnin pricnych hybnosti asociovanych tracku
+\item p.38 "The jet-vertex-fraction JVF is a fraction of the jet momentum" 
+...of the jet transverse momentum
+\item p.39 cuty na JVT a fJVT jsou oba (f)JVT > 0.5. Ale u fJVT je jeste cut 
+na Timing (<10ns). V pripade potreby muzes kouknout sem: 
+\url{https://twiki.cern.ch/twiki/bin/view/AtlasProtected/PileupJetRecommendations#Analysis_level_variable_calculat}
+U obojiho jsem pouzil Tight working point.
+\item p.39 "average number of interactions per bunch crossing denoted by µ." 
+...average expected number...
+\item p.40 "In case of cones overlapping, they are split if the overlapping 
+energy is more than a given threshold (usually 0.5 of total energy)." 
+...tady jsi asi chtel rict "they are merged", ne?
+\item p.40 Cam/Aachen -> Cambridge/Aachen
+\item p.41 pokud vim, tak zadny trimming jetu nepouzivame. Nakolik vim, tak 
+ten se dela u "large-R" jetu, ktere se rekonstruuji za ucelem 
+rekonstrukce hadronovych rozpadu W, Z a topu.
+\end{itemize}
+
+\subsection{Chap 4}
+\begin{itemize} 
+\item p.48 text o Adam algoritmu ...nemas v nem moc zmineno, co jsou ty 
+promenne s, r, m a lambda z tabulky. Priznavam, ze ja jsem ten Adam 
+algoritmus z tohoto popisu nepochopil. Pokud aspirujes na to, aby ctenar 
+jisty feeling ziskal, pak by to chtelo jit lehoulince vic do detailu, 
+obavam se.
+\green{Pokus cislo dva...Ak stale nieje jasne, tak napis prosim trosku konkretnejsie nech viem v com je problem. To lambda popisujem presnejsie v sekcii Regularization}
+\item Eq. 4.19 a 4.20 tam by asi melo byt $F_i$ a ve 4.21 by zase melo byt $T_i$ \green{To si praveze nemyslim, uz som to raz opravoval. Nadtymto som bol dlho zaseknuty ze ako je to definovane. Podla wiki tam ma byt opacna classa. tabulka vpravo \url{https://en.wikipedia.org/wiki/Sensitivity_and_specificity}}
+\item Eq. 4.22 opravdu se to zapisuje timto zpusobem? Nemelo by se do toho 
+zapisu zavest to, ze kazda slozka i $x^{l+1}_i$ se pocita pouze ze slozky 
+i vektoru $Wx+b$? \green{To je implicitne myslene ak pozijes ReLU alebo sigmoid, ale softmax je definovany pre cely vektor. Ako tieto zapisy su v DL velmi vágne, ci to aplikujes na vektor alebo po zlozkach... 
+Zvacsa si zavadzaju specialne symboly pre nasobenie $\odot$ ale ked mas funckiu tak je to zlozitejsie.}
+\end{itemize}
+
+\subsection{Chap 5}
+\begin{itemize} 
+\item "Previous work primarily used only one variable to tag the jet" -> 
+Previous ATLAS work...
+\item Fig. 5.1 v tom policku Cut Ti asi chybi -999
+\item p.71 ten cut JVT>0.8, to jsem Ti asi poradil ja, vid? Ja ho pouzivam v 
+tech fake tau studies, kde jsem si (driv) myslel, ze ma vyznam pozadovat 
+vysoke JVT. Nicmene pro Tvoji praci by asi bylo lepsi nechat JVT cut 
+takovy, jaky pouziva to Tight kriterium, tj. 0.5. No, ted uz to asi 
+menit nebudeme, nejspis by to stejne nezmenilo vubec nic, protoze jetu s 
+$JVT \in (0.5, 0.8)$ stejne moc neni.
+\green{Hej, ked sme sa snazili vylepsit low pt performance.}
+\item p.71 proc pozadujes pocet PFO vetsi nez 5? V textu to staci napsat 
+tak, jak jsi to popsal, ale az se uvidime, tak si rad poslechnu vic.
+\green{To som si vycucal z prstu :D , asi som sa chcel zbavit nejakych nizko energetickych jetov. Ale ked teraz nadtym premyslam je asi BS, lebo tie by sa skorej delili na viac partonov.}
+\item p.71 "We do not want to train on pileup jets" ...tady se slusi rict, 
+proc to nechceme. U pileup jetu se totiz v ATLAS MC neuklada truth 
+informace. To je kvuli vyznamnemu usetreni na velikosti dat.
+\item p.72 "Combining JZ slices with equal probability ensures the model 
+works on the full spectrum of jets" ...to je rozhodne pravda! Dalsi 
+motivaci pak je, aby se nas tagger nerozhodoval podle pt, jestli jet 
+otaguje, jako kvarkovy, nebo gluonovy. Samozrejme cross-talk pt a 
+ostatnich promennych je umoznen, ale je dulezite, aby se ten tagger 
+nerozhodoval prvoplanove typu: "Ha, ten jet ma nizke pt, a tak ho 
+otaguji jako gluonovy." Ted koukam, ze to tam na p.72 uplne dole mas, 
+ale stalo by asi za to rict tuto informaci hned na zacatku odstavce.
+\item Fig. 5.4 caption: toto jsou taky spektra *before* JZ cuts are applied, ne?
+\item p.74 "variables that are variations of the 4-momenta of the PFOs" 
+...tohle je podle me velmi nejasne az matouci. Co mas na mysli pod tim 
+pojmem "variations"? Ja bych se snazil tomuto vyrazu maximalne vyhnout - 
+v casticove fyzice se totiz delaji nejruznejsi "variations" ctyrhybnosti 
+kvuli odhadu systematickych chyb.
+\item p.75 "forming an input shape of N x 6," ...ale v tabulce 5.1 mas 
+vyjmenovanych 8 promennych, tak kam zmizely ty dve a ktere to jsou?
+\item p.75 "We want the tagger to be rotationally invariant, so we only use 
+angles information wrt. the jet axis" ...tohle je spravny krok! Pak tu 
+je ale problem, ze jsme nezajistili, aby eta-spektra q- a g-jetu byla 
+stejna. Tvuj tagger se tedy urcite rozhoduje na zaklade eta, jaky tag mu 
+da. Urcite bych to v bakalarce vubec nezminoval, ale pro tu ATLAS Public 
+Notu to bude dulezite. Dokonce bys asi mel popremyslet, jestli nelze ta 
+stejnost eta spekter q- a g-jetu nejak zajistit...
+\green{Tu bude problem s korelaciou medzi pt a eta}
+\item p.75 "assigned zero masses since they are reconstructed as photons" 
+...jako fotony? Co to vubec znamena "byt zrekonstruovany jako foton"? 
+Spis je to asi tak, ze kdyz nevime, jake castici ten PFO odpovida, tak 
+ucinime nejjednodussi predpoklad - ze to proste je hodne relativisticka 
+castice.
+\item p.75 dole "of N x N x 6" ...tady by asi melo byt 4, ne? Soude podle 
+tabulky 5.2...
+\item p.75/76 jaky smysl ma zavadet trojhybnost? Pouzivas ji jen v tab. 5.2 
+pro vypocet invariantni hmotnosti. Myslim si, ze by stacilo rict, ze m 
+je inv. hmotnost toho paru a spocita se jako $(p_a + p_b)^2$, kde $p_i$ jsou 
+ctyrhybnosti.
+\green{Konvencia z orig clanku.}
+\item p.76 v textu mas promennou $C_1^{\beta=1}$, ale v tab. 5.3 mas beta=0.2
+\end{itemize}
+
+\subsection{Conclusion}
+\begin{itemize} 
+\item p.91 urcite musis rict, ze jsi pouzival ATLAS simulace pro Run 2. 
+Predevsim slovo "ATLAS" musi v Conclusions byt! \green{Ani som si nevsimol ze som to tam zabudol :D}
+\item p.91 "which could be done relatively quickly by adding data 
+augmentation steps" ...urcite vynech "which could be done relatively 
+quickly"! Spis bych to nahradil necim jako "which might be achieved by 
+adding data augmentation steps".
+\item p.92 "we would test the performance on real data and calibrate the 
+real data" ...kalibruje se temer vzdy jen MC. V nasem pouziti znamena 
+pojem "kalibrace" prevazit MC tak, aby ucinnost selekce pomoci toho 
+taggeru byla v MC stejna, jako je v datech.
+\end{itemize}
