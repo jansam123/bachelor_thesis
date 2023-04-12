@@ -179,13 +179,13 @@ We introduce three common optimizers:
 
     \green{First, Adam uses the \emph{momentum} (remembering the size of the previous step) to accelerate the convergence.
     Intermediate variable $\pmb{s}$ is introduced as the sum of the previous $\pmb{s}$ and the current gradient $\pmb{g}$ in line 3 of \cref{alg:adam}.
-    The momentum is the $\pmb{s}$ from the previous step.
-    $\beta_1$ is the fraction of the previous momentum that is kept, usually set close to 1.}
+    The momentum is the previous step's $\pmb{s}$.
+    $\beta_1$ is the kept fraction of the last step, usually set close to 1.}
     
     \green{Second, Adam uses the \emph{adaptive learning rate} to avoid the problem of the learning rate being too low or too large.
     Intermediate variable $\pmb{r}$ is introduced as the sum of the previous $\pmb{r}$ and the square of the current gradient $\pmb{g}$ in line 4 of \cref{alg:adam}.
     The learning rate is scaled by the inverse of the square root of $\pmb{r}$, adapting the learning rate to the size of the gradient $\pmb{g}^2$ in line 7 of \cref{alg:adam} (the square of the gradient is used to assert positive values).
-    On top of that $\pmb{r}$ also has momentum as seen in line 4 of \cref{alg:adam}, where $\beta_2$ (usually set close to 1) is the fraction of the previous $\pmb{r}$ that is kept.}
+    On top of that, $\pmb{r}$ also has momentum as seen in line 4 of \cref{alg:adam}, where $\beta_2$ (usually set close to 1) is the fraction of the previous $\pmb{r}$ that is kept.}
 
     \green{The operations in lines 5 and 6 of \cref{alg:adam}, called \emph{bias correction}, are used to avoid the initial bias of $\pmb{s}$ and $\pmb{r}$.
     At the beginning of the training, the values of $\pmb{s}$ and $\pmb{r}$ are zero, so the first step would be close to zero since $1 - \beta_1$ and $1 - \beta_2$ are close to zero.
