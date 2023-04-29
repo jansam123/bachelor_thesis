@@ -25,7 +25,6 @@ thesis-run.xml
 thesis.run.xml
 *.toc
 *.vrb
-build
 .DS_Store
 .vscode
 *.drawio
