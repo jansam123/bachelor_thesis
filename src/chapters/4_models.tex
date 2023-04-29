@@ -12,15 +12,15 @@ The conceptual difference between \ml and \dl is:
 
 To emphasize the difference even more, consider \bdt (see for example \cite{bdt}), which is an old-fashioned \ml model, and \trans (see \cref{sec:transformer}), a modern \dl model. 
 In the context of particle physics, \bdt is trained to provide learned cuts on the input data to separate the signal from the background.
-On the other hand, \trans is learned to form an \emph{abstract representation} of the input data, from which one can extract information about the signal/background (this is even more apparent in \ParT and \depart, see \cref{sec:part,sec:depart}).
-They can learn the differences between signal and background and \emph{general physical concepts} \cite{qcd_as_nlp}. 
+On the other hand, \trans is learned to form an \emph{abstract representation} of the input data, from which one can extract information about the signal/background (this is even more apparent in the \ParT and the \depart, see \cref{sec:part,sec:depart}).
+It can learn not only the differences between signal and background but also \emph{general physical concepts} \cite{qcd_as_nlp}. 
 
 \dl builds from the \mlp \cite{mlp}, a multi-layered neural network able to learn a \emph{any} non-linear function from input data.
 In detail, we will discuss more enhanced \mlp in \cref{sec:fc}.
 
 The general idea of \dl is to have some model, which is a set of parameters and functions, taking a set of inputs and producing a set of outputs.
 The model is trained by adjusting the parameters to fit the desired outputs.
-In this context, we are interested in the \emph{supervised} learning \cite{deeplearningbook}, where the desired outputs are known (\MC simulations, for example).
+In this context, we are interested in the \emph{supervised} learning \cite{deeplearningbook}, where the desired outputs are known (from \MC simulations, for example).
 Some new use cases exist for \emph{self-supervised} learning \cite{masked_autoencoders}, where the desired outputs are unknown, but we will only briefly touch on them as a prospect.
 
 \subsection{Forward and Backward Passes}
@@ -50,7 +50,7 @@ Before discussing the individual models, we will briefly touch on the training p
 The dataset is split into a \emph{training set}, a \emph{validation set}, and in our case, also a \emph{test set}.
 The training set is used to train the model, the validation set is used to monitor the training process, and the test set is used to evaluate the model's performance.
 The training process is split into several \emph{epochs}, each consisting of several \emph{iterations}.
-An epoch is a complete pass through the training data, while an iteration is a single batch of data.
+An epoch is a complete pass through the training data, while an iteration through a single batch of data.
 The total number of \emph{steps} is the product of the number of epochs and iterations. 
 
 After each epoch, we evaluate the model on the training set and the validation set.
@@ -61,25 +61,25 @@ Validation is done to have a statistically independent measure of the model's pe
 \label{sec:output_layer}
 Based on the type of the target output, we can distinguish between \emph{regression} and \emph{classification} problems.
 
-\textbf{classification} is the task of predicting a discrete variable.
-The model's output is a vector of numbers $\pmb{v}$, where the length of the vector is the number of classes.
-It is a \emph{one-hot} encoded vector, meaning that the index of the non-zero element is the desired class.
+\textbf{Classification} is the task of predicting a discrete variable.
+The target variable is a vector of numbers $\pmb{t}$, where the length of the vector is the number of classes.
+It is a \emph{one-hot} encoded vector, meaning that all the inputs are zero except for the one corresponding to the correct class, which is one.
 To perform a classification task, we must convert the vector $\pmb{v}$ into a probability distribution over the classes.
 This is done by applying the \emph{softmax} function to the vector $\pmb{v}$, which is defined as
 \begin{equation}
-    \pmb{p} = \mathrm{softmax}(\pmb{v}) = \frac{\exp(\pmb{v})}{\sum_{i=1}^N \exp(v_i)},
+    \pmb{p} = \mathrm{softmax}(\pmb{v}) = \frac{\exp(\pmb{v})}{\sum_{i=1}^N \exp(v_i)} = \frac{\exp(\pmb{v})}{||\exp(\pmb{v})||},
 \end{equation}
 where $N$ is the number of classes.
 In a case of binary classification (only two classes), the vector is a single number $v$, and the softmax function reduces to a \emph{sigmoid} function
 \begin{equation}
     p = \sigma(v) = \frac{1}{1 + \exp(-v)}.
 \end{equation}
-Ideally, we would like the vector $\pmb{v}$ to have a single non-zero element corresponding to the correct class. 
-In the case of binary classification, we would like the number $v$ to be either zero or one.
+Ideally, we would like the vector $\pmb{p}$ to have a single non-zero element corresponding to the correct class. 
+In the case of binary classification, we would like the number $p$ to be either zero or one.
 
-\textbf{regression} is the task of predicting a continuous variable.
+\textbf{Regression} is the task of predicting a continuous variable.
 The model's output is a vector of numbers $\pmb{v}$, where the length of the vector is the number of variables to be predicted.
-There is no output layer function for regression.
+Usually there is no output layer function for regression.
 
 
 \subsection{Loss Functions}
@@ -93,7 +93,7 @@ In the old days of \ml, the most common loss function was the \MSE, defined as
 where $N$ is the number of variables to be predicted (number of classes, in case of classification task).
 
 In modern \dl frameworks, the \emph{cross-entropy} loss is the most common loss function, rooting from the \emph{information theory}.
-To briefly introduce cross-entropy loss, we will introduce some basic concepts from information theory \cite{shannon}.
+Before talking about the cross-entropy loss, we will introduce some basic concepts from information theory \cite{shannon}.
 We will denote the probability of a random variable $x \in X$ by $p(x)$, where $X$ is the set of all possible values of the random variable.
 \begin{description}
     \item [Self-information] of a random variable $x$ is defined as
@@ -131,14 +131,14 @@ This is an excellent place to discuss the similarities to physical entropy.
 In modern statistical physics, the definition of classical entropy roots exactly from Shannon \cite{shannon} as in the information theory.
 It is the \emph{measure of ignorance}, in the sense of missing information.
 In this context, we can say that the cross-entropy is the \emph{measure of ignorance} of the model.
-In quantum mechanics, entropy was developed by John von Neumann \cite{VonNeumann}, where the definition is slightly different, but it is the same regarding probability distributions.
+In quantum mechanics, entropy was developed by John von Neumann \cite{VonNeumann}, where the definition is slightly different, but it is the same regarding probability distributions (wave functions).
 The KL divergence is precisely the \emph{measure of the distinguishability of two quantum states}.
 
 
 \subsection{Optimizers}
 \label{sec:optimizers}
 \emph{Optimizers} are algorithms that adjust the model weights to minimize the loss function.
-The most common optimizers are based \emph{gradient descent} and its variants \cite{optimization}.
+The most common optimizers are based on the \emph{gradient descent} and its variants \cite{optimization}.
 All of them have a common hyperparameter, the \emph{learning rate} $\alpha$, which controls the size of the steps taken by the optimizer.
 We introduce three common optimizers: 
 \begin{description}
@@ -157,7 +157,7 @@ We introduce three common optimizers:
         \label{alg:sgd}
     \end{algorithm}
     \item[Adam] (\emph{Adaptive Moment Estimation}) \cite{adam} is a popular \dl algorithm used in almost every \dl framework.
-    As hyperparameters, apart from the learning rate $\alpha$, it has the decay rate of the first moment $\beta_1$, the decay rate of the second moment $\beta_2$, a small constant $\epsilon$ to avoid division by zero, and weight decay $\lambda$ (which we will explain in \cref{sec:regularization} \green{as a regularization technique that forces the weights to be smaller}).
+    As hyperparameters, apart from the learning rate $\alpha$, it has the decay rate of the first moment $\beta_1$, the decay rate of the second moment $\beta_2$, a small constant $\epsilon$ to avoid division by zero, and weight decay $\lambda$ (which we will explain in \cref{sec:regularization} as a regularization technique that forces the weights to be smaller).
     \begin{algorithm}
         \begin{algorithmic}[1]
         \Require model with weights $f(\bullet;\pmb{w})$, outputs of a model $f(\pmb{x}^{(i)};\pmb{w})$ in batches, target values $\pmb{y}^{(i)}$ in batches
@@ -177,21 +177,21 @@ We introduce three common optimizers:
     \end{algorithm}
     There are several notable differences between Adam and SGD.
 
-    \green{First, Adam uses the \emph{momentum} (remembering the size of the previous step) to accelerate the convergence.
+    First, Adam uses the \emph{momentum} (remembering the size of the previous step) to accelerate the convergence.
     Intermediate variable $\pmb{s}$ is introduced as the sum of the previous $\pmb{s}$ and the current gradient $\pmb{g}$ in line 3 of \cref{alg:adam}.
     The momentum is the previous step's $\pmb{s}$.
-    $\beta_1$ is the kept fraction of the last step, usually set close to 1.}
+    $\beta_1$ is the kept fraction of the last step, usually set close to 1.
     
-    \green{Second, Adam uses the \emph{adaptive learning rate} to avoid the problem of the learning rate being too low or too large.
+    Second, Adam uses the \emph{adaptive learning rate} to avoid the problem of the learning rate being too small or too large.
     Intermediate variable $\pmb{r}$ is introduced as the sum of the previous $\pmb{r}$ and the square of the current gradient $\pmb{g}$ in line 4 of \cref{alg:adam}.
-    The learning rate is scaled by the inverse of the square root of $\pmb{r}$, adapting the learning rate to the size of the gradient $\pmb{g}^2$ in line 7 of \cref{alg:adam} (the square of the gradient is used to assert positive values).
-    On top of that, $\pmb{r}$ also has momentum as seen in line 4 of \cref{alg:adam}, where $\beta_2$ (usually set close to 1) is the fraction of the previous $\pmb{r}$ that is kept.}
+    The learning rate is scaled by the inverse of the square root of $\pmb{r}$ (the operation of square root and inverse is done element-wise on the vector $\pmb{r}$), adapting the learning rate to the size of the gradient $\pmb{g}^2$ in line 7 of \cref{alg:adam} (the square of the gradient is used to assert positive values).
+    On top of that, $\pmb{r}$ also has momentum as seen in line 4 of \cref{alg:adam}, where $\beta_2$ (usually set close to 1) is the fraction of the previous $\pmb{r}$ that is kept.
 
-    \green{The operations in lines 5 and 6 of \cref{alg:adam}, called \emph{bias correction}, are used to avoid the initial bias of $\pmb{s}$ and $\pmb{r}$.
+    The operations in lines 5 and 6 of \cref{alg:adam}, called \emph{bias correction}, are used to avoid the initial bias of $\pmb{s}$ and $\pmb{r}$.
     At the beginning of the training, the values of $\pmb{s}$ and $\pmb{r}$ are zero, so the first step would be close to zero since $1 - \beta_1$ and $1 - \beta_2$ are close to zero.
-    To correct this, $\pmb{s}$ and $\pmb{r}$ are divided by $1 - \beta_i^n$ which makes the first steps larger.}
+    To correct this, $\pmb{s}$ and $\pmb{r}$ are divided by $1 - \beta_i^n$ which makes the first steps larger.
 
-    \item[LAMB] (\emph{Layer-wise Adaptive Moments optimizer for Batch training}) \cite{lamb} is a state-of-the-art \dl algorithm built upon Adam, which helps train large models.
+    \item[LAMB] (\emph{Layer-wise Adaptive Moments optimizer for Batch training}) \cite{lamb} is a state-of-the-art optimizer algorithm built upon Adam, which helps train large models.
     It has the same hyperparameters as Adam.
     \begin{algorithm}
         \begin{algorithmic}[1]
@@ -228,7 +228,7 @@ There are three common methods of learning rate decay:
     \item \textbf{Cosine} $\alpha_n = \alpha_0\cdot\frac12\left(1+\cos\left(\frac{\pi n}{N}\right)\right)$.
 \end{itemize}
 \subsubsection*{Exploding Gradient}
-Huge models tend to diverge, called \emph{exploding gradient}.
+Huge models tend to diverge as they have a lot of parameters adjusted at the same time, in a process called \emph{exploding gradient}.
 There are two common methods to prevent this \cite{deeplearningbook}:
 \begin{itemize}
     \item \textbf{Gradient Clipping} allows a maximum value $c$ of the norm of the gradient $\left\lVert \pmb{g} \right\rVert$, if it is larger than $c$, it is scaled down to $c \frac{\pmb{g}}{\left\lVert \pmb{g} \right\rVert}$.
@@ -258,15 +258,15 @@ In this section, we will briefly discuss the most common activation functions:
         \text{GELU}(x) = x\Phi(x) = x\frac{1}{2}\left(1 + \text{erf}\left(\frac{x}{\sqrt{2}}\right)\right),
     \end{equation}
     where $\Phi(x)$ is the cumulative distribution function of the standard normal distribution and $\text{erf}(x)$ is the error function,
-    \item \textbf{Swish or SiLU} (Sigmoid Linear Unit) \cite{swish} - smooth version of ReLU, 
+    \item \textbf{Swish or SiLU} (Sigmoid Linear Unit) \cite{swish} - another smooth version of ReLU, 
     \begin{equation}
         \text{Swish}(x) = x\sigma(x) = \frac{x}{1 + e^{-x}},
     \end{equation}
-    \item \textbf{sigmoid} - after the last layer to convert a number to the probability 
+    \item \textbf{Sigmoid} - used after the last layer to convert a number to the probability 
     \begin{equation}
         \sigma(x) = \frac{1}{1 + e^{-x}},
     \end{equation}
-    \item \textbf{Softmax} - after the last layer to convert a vector to a probability distribution 
+    \item \textbf{Softmax} - used after the last layer to convert a vector to a probability distribution 
     \begin{equation}
         \text{softmax}(\pmb{x}) = \frac{e^{\pmb{x}}}{\sum_{j=1}^n e^{x_j}}.
     \end{equation}
@@ -275,7 +275,7 @@ Sigmoid and Softmax were discussed in \cref{sec:output_layer}.
 Graph with the activation functions can be seen in \cref{fig:activations} (softmax is excluded since in one dimension it reduces to sigmoid),
 \begin{figure}[htb]
     \centering
-    \includegraphics[width=1\linewidth]{src/img/activation_functions_a.pdf}
+    \includegraphics[width=1\linewidth]{src/img/activation_functions_a.jpg}
     \caption{Activation functions}
     \label{fig:activations}
 \end{figure}
@@ -285,17 +285,16 @@ Graph with the activation functions can be seen in \cref{fig:activations} (softm
 \textbf{Overfitting} happens when the model memorizes the training data instead of learning the underlying pattern, which is why we need the validation dataset to estimate the \emph{generalization error}.
 \textbf{Underfitting} is the opposite when the model is not trained enough to capture the underlying pattern.
 These terms are generally used across all \ml algorithms. 
-Still, they are essential in \dl, where the number of parameters is much larger than the number of training examples (for example \cite{deit3,gpt3}).
 
-Remarkably, deep networks performance \emph{increases} with the number of parameters.
-There is a study \cite{double_descent} showing that if you pass the classical regime of 'Bias-Variance Tradeoff' (a more complex model with a lower bias but higher variance) with the number of parameters, the modern regime of 'Larger Model is Better' goes forever.
+Remarkably, deep networks performance \emph{increases} with the number of parameters without overfitting.
+There is a study \cite{double_descent} showing that if you pass the classical regime of 'Bias-Variance Tradeoff' (a more complex model has a lower bias but higher variance) with the number of parameters, the modern regime of 'Larger Model is Better' goes forever.
 This is another proof of the statements in \cref{sec:basic_concepts} saying that \dl models can learn abstract concepts. 
 
 However, to be able not to overfit the model, we need to use \textbf{regularization}. 
 Regularization is a technique that prevents the model from overfitting by obstructing or penalizing the learning process.
 We will list the most common regularization techniques:
 \begin{description}
-    \item[Weight decay] or \textbf{L2 regularization} is a penalty added to the loss function $l_2$-norm of the weights.
+    \item[Weight decay] or \textbf{L2 regularization} is a penalty added to the loss function that is a $l_2$-norm of the weights.
     \begin{equation}
         \label{eq:weight_decay}
         L \gets L + \lambda \left\lVert \pmb{w} \right\rVert^2,
@@ -307,9 +306,9 @@ We will list the most common regularization techniques:
     The probability of a weight being set to zero is the only hyperparameter.
     Dropout forces the network to learn different data representations and not rely on individual neurons.
     \item[Label smoothing] is a technique that replaces the one-hot encoded labels with a distribution of probabilities.
-    For example, if the target is $\pmb{y} = (0., 1., 0.)$ (second class), and we set the hyperparameter of label smoothing to 0.1, the new label is $\tilde{\pmb{y}} = (0.1, 0.8, 0.1)$.
+    For example, if the target is $\pmb{y} = (0, 1, 0)$ (second class), and we set the hyperparameter of label smoothing to 0.1, the new label is $\tilde{\pmb{y}} = (0.1, 0.8, 0.1)$.
     \item[Augmentation] is a technique that applies random transformations to the input data.
-    For example, if we have an image as an input, we can randomly rotate, crop, and change the brightness,
+    For example, if we have an image as an input, we can randomly rotate it, crop it, and change its brightness.
     \item[Ensambling] is a technique that combines multiple models into one by averaging their predictions.
 \end{description}
 
@@ -318,24 +317,24 @@ We will list the most common regularization techniques:
 \label{sec:metrics}
 A \emph{metric} measures how well the model performs. 
 It \emph{evaluates} the model.
-We will only discuss the metrics for binary classification since we will use that.
+We will only discuss the metrics for binary classification since we will use those.
 The output of a binary classification model is a single number between zero and one $o \in [0,1]$, where zero corresponds to the first class, and one corresponds to the second class.
-We make a \emph{threshold} $T \in (0,1)$, where we assign the output to the first class if $o < T$ and to the second class if $o \geq T$. 
+We make a \emph{threshold} $\tau \in (0,1)$, where we assign the output to the first class if $o < \tau$ and to the second class if $o \geq \tau$. 
 Usually, the threshold is set to 0.5, but it can be adjusted to optimize the desired output of the model.
 Going further, we will assume that the threshold is set to 0.5 unless stated otherwise.
 
-Let us denote the number of inputs that are correctly classified as the first class $T_0$, the number of events that are correctly classified as the second class $T_1$, the number of events that are incorrectly classified as the first class $F_0$, the number of events that are incorrectly classified as the second class $F_1$.
-Usually, these quantities are denoted as \emph{true positives} (TP), \emph{true negatives} (TN), \emph{false positives} (FP), and \emph{false negatives} (FN), respectively.
+Let us denote the number of inputs that are correctly classified as the first class $T_0$, the number of inputs that are correctly classified as the second class $T_1$, the number of inputs that are incorrectly classified as the first class $F_0$, the number of inputs that are incorrectly classified as the second class $F_1$.
+Usually, these quantities are denoted as  \emph{true negatives} (TN), \emph{true positives} (TP), \emph{false negatives} (FN), and \emph{false positives} (FP), respectively.
 However, they are confusing and refer to one class as positive and the other as negative, which is not the case in our binary classification, where both classes are equally important.
-We try to simplify the notation by using the terms \emph{true} $T$ and \emph{false} $F$ to denote the correct and incorrect classification, respectively, and the numbers $0$ and $1$ to indicate the output class.
-A diagram of these quantities is shown in \cref{fig:metrics}.
+We try to simplify the notation by using the notation \emph{true} $T$ and \emph{false} $F$ to denote the correct and incorrect classification, respectively, and the numbers $0$ and $1$ to indicate the output class.
+
 \begin{figure}[htb]
     \centering
     \includegraphics[width=1\linewidth]{src/img/metrics.jpg}
-    \caption{Visualization of the metrics. Red dots correspond to class 1, and blue dots to class 2. The model is represented by a green line that separates the two classes. Red highlighted dots were tagged by the model as class 1, and blue highlighted dots as class 2. In formulas at the bottom, the highlighted dots represent the number of total dots with attributes given by the color and highlight.}
+    \caption{Visualization of the metrics. Red dots correspond to class 0, and blue dots to class 1. The model is represented by a green line that separates the two classes. Red highlighted dots were tagged by the model as class 0, and blue highlighted dots as class 1. In formulas at the bottom, the highlighted dots represent the number of total dots with attributes given by the color and highlight.}
     \label{fig:metrics}
 \end{figure}
-
+A diagram of the following quantities is shown in \cref{fig:metrics}.
 We can now define the following metrics with a \emph{fixed threshold}:
 \begin{description}
     \item[Accuracy] is the fraction of correctly classified events
@@ -344,23 +343,23 @@ We can now define the following metrics with a \emph{fixed threshold}:
         \text{Accuracy} = \frac{T_0 + T_1}{T_0 + T_1 + F_0 + F_1}.
     \end{equation}
     Or generally a probability of correct classification.
-    \item[Efficiency] $\epsilon_i$ of class $i$ is the fraction of correctly identifying the class $i$ ($j$ is the other class)
+    \item[Efficiency] $\epsilon_i$ of class $i$ is the fraction of correctly identifying the class $i$ 
     \begin{equation}
         \label{eq:efficiency}
-        \epsilon_i = \frac{T_i}{T_i + F_j}.
+        \epsilon_i = \frac{T_i}{T_i + F_i}.
     \end{equation}
-    This metric has more terms if $i = 1$: \emph{true positive rate} (TPR) sensitivity, recall, hit rate, probability of detection...
-    \item[Rejection] $\epsilon^{-1}_i$ of class $i$ is the inverse of fraction of correctly identifying the class $i$ ($j$ is the other class)
+    This metric is referred to by various terms if $i = 1$: \emph{true positive rate} (TPR) sensitivity, recall, hit rate, probability of detection...
+    \item[Rejection] $\epsilon^{-1}_i$ of class $i$ is the inverse of the fraction of correctly identifying the class $i$ 
     \begin{equation}
         \label{eq:rejection}
-        \epsilon^{-1}_i = \frac{1}{\epsilon_i} = \frac{T_i + F_j}{T_i}.
+        \epsilon^{-1}_i = \frac{1}{\epsilon_i} = \frac{T_i + F_i}{T_i}.
     \end{equation}
-    \item[False Rate] $\varphi_i$ of class $i$ is the fraction of incorrectly identifying the class $i$ ($j$ is the other class)
+    \item[False Rate] $\varphi_i$ of class $i$ is the fraction of incorrectly identifying the class $i$ 
     \begin{equation}
         \label{eq:false_rate}
-        \varphi_i = \frac{F_i}{T_j + F_i}
+        \varphi_i = \frac{F_i}{T_i+ F_i}
     \end{equation}
-    This metric has more terms if $i = 1$: \emph{false positive rate} (FPR), fall-out, probability of false alarm...
+    This metric is referred to by various terms if $i = 1$: \emph{false positive rate} (FPR), fall-out, probability of false alarm...
     \item[Confusion Matrix] (CM) is a plot where on the x-axis are the predicted classes, and on the y-axis are the true classes. 
     The CM is a good way to visualize the performance of the model. 
     The diagonal represents the efficiencies of a given class and the off-diagonal represents the false rates of the given class.
@@ -369,7 +368,7 @@ We can now define the following metrics with a \emph{fixed threshold}:
 Following metrics are defined with a \emph{variable threshold}:
 \begin{description}
     \item [ROC] (Receiver Operating Characteristic) curve is the plot of the efficiency $\epsilon_1$ against the false rate $\varphi_1$ for different thresholds. 
-    It is good to note that there is no point in switching the classes since the ROC curve would reflect wrt—the diagonal. 
+    It is good to note that there is no point in evaluating it for the second class since the ROC curve would reflect wrt—the diagonal. 
     \item[AUC] is the Area Under the ROC Curve, a simple integration of the ROC curve.
     \item[Rejection at Efficiency] $\epsilon^{-1}_i @_x \epsilon_j$ is the rejection of the one class $i$ at a given efficiency $x$ of the second class $j$ with an adjusted threshold.
 \end{description}
@@ -384,11 +383,11 @@ Following metrics are defined with a \emph{variable threshold}:
     \label{fig:fc}
 \end{figure}
 
-\emph{Fully Connected Network} (FC) \cite{mlp} is the most straightforward neural network, where all the neurons in one layer are connected to all the neurons in the next layer and previous layers.
+\emph{Fully Connected Network} (FC) \cite{mlp} is the most straightforward neural network, where all the neurons in one layer are connected to all the neurons in the previous and next layers.
 It is the same as \mlp \cite{mlp}, but instead of $\tanh$ activation, we use newer activation functions described in section \ref{sec:activations}.
 
 The input is a vector $\pmb{x}^{(0)} \in \mathbb{R}^{n_0}$ (input layer) and the output is a vector $\pmb{o} \equiv \pmb{x}^{(L + 1)} \in \mathbb{R}^{n_{L+1}}$ (output layer), where $n_{L+1}$ is the number of classes.
-Between input and output layers there are $L$ hidden layers $\pmb{x}^{(l)} \in \mathbb{R}^{n_{l}}$, where $n_{l}$ is the number of neurons in the layer, i.e. \emph{layer size}.
+Between input and output layers there are $L$ hidden layers $\pmb{x}^{(l)} \in \mathbb{R}^{n_{l}}$, where $n_{l}$ is the number of neurons in the $l$-th layer, i.e. \emph{layer size}.
 The output of the $l$-th layer is calculated as
 \begin{equation}
     \label{eq:hidden}
@@ -397,6 +396,8 @@ The output of the $l$-th layer is calculated as
 where $f$ is the activation function, $\pmb{W}^{(l)} \in \mathbb{R}^{n_{l} \times n_{l-1}}$ is the weight matrix (trainable parameters), and $\pmb{b}^{(l)} \in \mathbb{R}^{n_{l}}$ is the bias vector (trainable parameters).
 On the last layer, the softmax or sigmoid activation function is used. 
 After each layer, we apply the dropout.
+The activation $f: \mathbb{R} \rightarrow \mathbb{R}$ is applied element-wise to the vector $\pmb{x}^{(l)}$ (the only exception is the softmax activation, which is applied on the whole vector to normalize it).
+Going further we always assume that the activation function is applied element-wise.
 A diagram of the \fc is shown in \cref{fig:fc}.
 \texttt{Linear} corresponds to the matrix multiplication and bias addition, and \texttt{Hidden} to the sequential application of the \texttt{Linear} layer \texttt{Activation} and \texttt{Dropout}.
 At the output, there is no dropout.
@@ -439,16 +440,16 @@ It is calculated from the input vector $\pmb{x}^{(l)}$ and another weight matrix
     \pmb{p}^{(l)} = \sigma(\pmb{W}^{(l)}_{\text{g}} \pmb{x}^{(l)} + \pmb{b}^{(l)}_{\text{g}}),
 \end{equation}
 where the probabilities are calculated for each element of the vector $\pmb{x}^{(l)}$ separately and are different for each layer.
-The output of the \highway layer is then calculated as
+The output of the \highway layer is then calculated as 
 \begin{equation}
-    \pmb{x}^{(l + 1)} = \pmb{p}^{(l)} \cdot f(\pmb{W}^{(l)} \pmb{x}^{(l)} + \pmb{b}^{(l)}) + (1 - \pmb{p}^{(l)}) \cdot \pmb{x}^{(l)} ,
+    \pmb{x}^{(l + 1)} = \pmb{p}^{(l)} \odot f(\pmb{W}^{(l)} \pmb{x}^{(l)} + \pmb{b}^{(l)}) + (1 - \pmb{p}^{(l)}) \odot \pmb{x}^{(l)} ,
 \end{equation}
-where $\cdot$ is the element-wise multiplication.
+where $\odot$ is the element-wise multiplication.
 If we put it all together, one layer of \highway can be written as
 \begin{equation}
-    \pmb{x}^{(l + 1)} = \sigma(\pmb{W}^{(l)}_{\text{g}} \pmb{x}^{(l)} + \pmb{b}^{(l)}_{\text{g}}) \cdot f(\pmb{W}^{(l)} \pmb{x}^{(l)} + \pmb{b}^{(l)}) + (1 - \sigma(\pmb{W}^{(l)}_{\text{g}} \pmb{x}^{(l)} + \pmb{b}^{(l)}_{\text{g}})) \cdot \pmb{x}^{(l)}.
+    \pmb{x}^{(l + 1)} = \sigma(\pmb{W}^{(l)}_{\text{g}} \pmb{x}^{(l)} + \pmb{b}^{(l)}_{\text{g}}) \odot f(\pmb{W}^{(l)} \pmb{x}^{(l)} + \pmb{b}^{(l)}) + (1 - \sigma(\pmb{W}^{(l)}_{\text{g}} \pmb{x}^{(l)} + \pmb{b}^{(l)}_{\text{g}})) \odot \pmb{x}^{(l)}.
 \end{equation}
-Everything else (output, dropout, activation function) is the same as in the \fc network.
+Everything else (output, dropout, activation function) is the same as in the \fc.
 The diagram of the \highway is shown in \cref{fig:highway}.
 
 \highway uses the same input as the \fc network, i.e. the \emph{high-level jet variables}.
@@ -467,9 +468,9 @@ The only advantage of the \highway network is that it is \textbf{more stable} wh
 \emph{Particle Flow Network} (PFN) and \emph{Energy Flow Network} (EFN) \cite{efn} are two networks that are designed to utilize the information about the \PFOs.
 They are developed specifically for \HEP, using the theory of \emph{Deep Sets} \cite{deep_set}.
 
-The general idea is in three steps:
+The general idea has three steps:
 \begin{enumerate}
-    \item \emph{Per \PFO Mapping}   
+    \item \emph{Per PFO Mapping}   
     \item \emph{Summing over \PFOs} 
     \item \emph{Constructing Observable}
 \end{enumerate}
@@ -479,7 +480,7 @@ In the case of \PFN, this can be expressed in the form
     \label{eq:pfn}
   \mathcal{O_{\text{PFN}}} = F\left(\sum_{i=1}^N \Phi(\pmb{z}_i, \pmb{\varphi}_i )\right), 
 \end{equation}  
-where the function $F$ constructs the \emph{observable} $\mathcal{O}$, $\Phi$ is the \emph{per \PFO mapping}, $\pmb{z}_i$ is a vector of \PFO energy properties ($\pT$ or $E$) and $\pmb{\varphi}_i$ is a vector of \PFO angular properties ($\eta$, $\theta$, $\phi$).
+where the function $F$ constructs the \emph{observable} $\mathcal{O}$, $\Phi$ is the \emph{per \PFO mapping}, $\pmb{z}_i$ is a vector of \PFO energy properties ($\pT$, $E$) and $\pmb{\varphi}_i$ is a vector of \PFO angular properties ($\eta$, $\phi$).
 
 \EFN is similar to \PFN but is specifically designed to be IRC safe (see \cref{def:IRC})
 \begin{equation}
@@ -490,18 +491,18 @@ The mapping $\Phi$ is the same as in \PFN, but the \PFO energy properties are \e
 The linearity in $\pmb{z}_i$ satisfies the IRC conditions.
 
 To construct the mapping $\Phi$ and the function $F$, the authors \cite{efn} use the \emph{Universal Approximation Theorem} \cite{universal_app_thm} discussed in \cref{sec:activations} to make the argument that \fc is sufficient to approximate any function.
-For the $F$ function, we use the architecture of the \fc network with \texttt{$F$\_layers} a number of \texttt{hidden} layers, but for the $\Phi$ function, we use the \pointCNN \cite{pointCNN}, which is a slight improvement over the \fc network still agreeing with the (\ref{eq:pfn}) or (\ref{eq:efn}).
+For the $F$ function, we use the architecture of the \fc network with \texttt{$F$\_layers} a number of hidden layers, but for the $\Phi$ function, we use the \pointCNN \cite{pointCNN}, which is a slight improvement over the \fc network still agreeing with (\ref{eq:pfn}) or (\ref{eq:efn}).
 The \pointCNN is followed by \emph{batch normalization} and activation to form a block that is repeated \texttt{$\Phi$\_layer} times.
 
 In the case of \EFN, the summation over the \PFOs is a matrix multiplication over the \PFO index. 
-The output is a matrix (because both $\pmb{z_i}$ and $\pmb{\varphi_i}$ are matrices) which is then flattened to a vector.\footnote{This is done using the \texttt{tf.einsum} function, hence the name in \cref{fig:pfn_efn}, followed by a \texttt{tf.reshape}.}
+The output is a matrix (because both $\pmb{z}_i$ and $\pmb{\varphi}_i$ are matrices) which is then flattened to a vector.\footnote{This is done using the \texttt{tf.einsum} function, hence the name in \cref{fig:pfn_efn}, followed by a \texttt{tf.reshape}.}
 This is not the case in the original paper, but this modification's performance is much better, still satisfying the IRC conditions and the form of (\ref{eq:efn}).
 The accompanying diagram of both \PFN and \EFN is shown in \cref{fig:pfn_efn}.
 
 
 The main advantage of \PFN and \EFN is that they are designed to use the information about the \PFOs, which is not the case for the \fc or \highway.
 On top of that, \EFN is IRC-safe, which is crucial in the case of \HEP.
-In the case of model performance, this advantage can be seen when comparing the performance of data from different physics simulation frameworks \cite{top_tag}.
+Another advantage of \IRC safe models is the stability of performance between data from different physics simulation frameworks \cite{top_tag}.
 However, the biggest downside of \PFN and \EFN is that they \textbf{do not allow} the \textbf{PFOs to communicate} and share information.
 
 \section{Transformer}
@@ -522,7 +523,7 @@ However, the biggest downside of \PFN and \EFN is that they \textbf{do not allow
 \end{figure}
 
 \emph{Transformer} \cite{att_is_all} is a network designed to learn from set data with fixed \emph{embedding} dimension.
-It is based on the \emph{Attention} mechanism, which is a core component of \trans network, allowing the elements of the set to \textbf{communicate} with each other.
+It is based on the \emph{Attention} mechanism, which is a core component of \trans network, allowing the input elements to \textbf{communicate} with each other.
 The overall structure of the original \trans consists of \emph{Encoder} and \emph{Decoder} blocks, but in our use case, we only use the Encoder part, which is shown in \cref{fig:trans}.
 The Encoder part is supposed to form a \emph{representation} of the input data based on the task.
 On the other hand, the Decoder part reconstructs some output data from the internal representation of the Encoder part.
@@ -543,13 +544,13 @@ Despite its complexity, the \trans provides an immense advantage over the \PFN a
 The input of the \emph{Multihead Self-Attention} layer is a set of $N$ vectors with dimension \texttt{embed\_dim}, denoted as $C$, with overall batched shape $B \times N \times C$, where $B$ is the batch size.
 Every input vector creates 3 'signs':
 \begin{enumerate}
-    \item \textbf{Queries} $Q$ representing questions of a given vector asking each other vector in the set (for example: 'What is the highest $\pT$? in the set')
+    \item \textbf{Queries} $Q$ representing questions of vectors asking other vectors in the set (for example: 'What is the highest $\pT$? in the set')
     \item \textbf{Keys} $K$ representing if the given vector has the answer to the questions of other vectors (for example: 'I have the highest $\pT$.')
     \item \textbf{Values} $V$ representing the answer to the questions of other vectors (for example: 'My $\pT$ is 100 GeV.')
 \end{enumerate}
 These three components are constructed from the input data. 
-In the case of general Attention for $Q$, $K$, and $V$ can be the input data Attention (some other input asks the question, some additional input has the keys, and some other the values).
-Self-Attention is a particular case of Attention where $Q$, $K$, and $V$ are created from the same input, i.e., the input data is asking itself the questions, and the input data is the answer to the questions.
+In the case of general Attention for $Q$, $K$, and $V$ can be different (some other input asks the question, some additional input has the keys, and some other the values).
+Self-Attention is a particular case of Attention where $Q$, $K$, and $V$ are created from the same input, i.e., the input data is asking itself the questions.
 Going further in this section, we will only focus on \SA.
 
 The \MHSA layer is shown in \cref{fig:trans_layers} (a) for visual aid. 
@@ -574,7 +575,7 @@ At the end, a linear projection across the embedding dimension $C$ is done, to a
 \subsection{Feedforward Network}
 \label{sec:ffn}
 The \emph{Feed Forward Network} (FFN) is a simple network with two \texttt{Linear} layers with \texttt{Activation} between them.
-Its primary purpose is to allow the individual vectors to learn from the data obtained from other vectors in the \MHSA layer. 
+Its primary purpose is to allow the individual vectors to learn from the data obtained in the \MHSA layer. 
 The size of the first layer is \texttt{embed\_dim} $\cdot$ \texttt{expansion}, where \texttt{expansion} is a hyperparameter.
 The second layer is the \texttt{embed\_dim} size to retain the original dimension of the input data.
 The dropout is applied to the output of the second layer.
@@ -647,7 +648,7 @@ where $U$ is embedded interaction variables.
 The \pointCNN embedding of interaction variables is done into $H$ (number of heads) dimensions, resulting in a matrix of shape $B \times N \times N \times H$ providing each head with its own interaction variables matrix $U$ of shape $B \times N \times N$.
 
 The only difference between \SA Blocks in \trans and \ParT is the addition of two \LN, right after the \MHSA and right before the second \texttt{Linear} layer of the \FFN.
-However, \ParT utilizes the \CA layer (\cref{sec:CA}) for feature extraction, which is shown in \cref{fig:part} and more detailed in \cref{fig:part_CA}.
+However, \ParT utilizes the \CA layers (\cref{sec:CA}) for feature extraction, which is shown in \cref{fig:part} and more detailed in \cref{fig:part_CA}.
 It introduces the Class Token later in the architecture, allowing the \MHSA to focus purely on the input data.
 The output class is calculated from the Class Token as in \trans.
 
@@ -660,7 +661,7 @@ On top of that, the \CA blocks allow a more complex representation of \PFOs and 
 \label{sec:CA}
 \emph{Class Attention Block} (CA Block) is a \MHA layer with the \emph{Class Token as the query}.
 The input of the \CA Block is a set of vectors of shape $B \times N \times C$ and the Class Token of shape $B \times C$. 
-The Class Token is concatenated to this set of vectors, resulting in a tensor of shape $B \times (N+1) \times C$, and used as a query for the \MHA, as seen in \cref{fig:part_CA}.
+The Class Token is concatenated to this set of vectors, resulting in a tensor of shape $B \times (N+1) \times C$, additionally it is used as a query for the \MHA, as seen in \cref{fig:part_CA}.
 This allows the model to focus on the class information. 
 The Class Token asks for it and stores it.
 
@@ -710,7 +711,7 @@ The deeper the layer, the bigger the probability of dropping it, linearly depend
 $p_L$ is the probability of dropping the last layer, $L$ is the total number of layers, and $l$ is the current layer number.
 The first layer is indexed as $l=0$.
 
-Each Talking Self-Attention Block is the Stochastic Depth applied twice, after the \MHSA and the \FFN.
+In each Talking Self-Attention Block is the Stochastic Depth applied twice, after the \MHSA and after the \FFN.
 
 \subsection{Layer Scale}
 \label{sec:layer_scale}

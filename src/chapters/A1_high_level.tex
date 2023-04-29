@@ -2,7 +2,7 @@
 \label{ch:app_high_level_variables}
 In this section, we provide a full list of high-level jet variables commonly used in ATLAS analyses. 
 They come precomputed by \texttt{Athena} and come in the jet container. 
-The list includes the name of the variable in the root file, its description, and the symbol if used.
+The list includes the name of the variable in the \texttt{ROOT} file, its description, and the symbol if used.
 \begin{description}
     \item[\texttt{ActiveArea4vec\_(m,pt,eta,phi)}]  -  4-momentum of the energy carried by pileup in the cross section of a jet
     \item[\texttt{FracSamplingMax}]  -  a fraction of energy deposited in the calorimeter cell with the highest energy deposition
@@ -15,14 +15,15 @@ The list includes the name of the variable in the root file, its description, an
     \item[\texttt{JvtRpt}]  ($R_{\pT}$) - a fraction of the jet momentum from primary vertex (see \cref{sec:pileup})
     \item[\texttt{passJVT}]  (passJVT) -  passed jet-vertex-tagger (see \cref{sec:pileup})
     \item[\texttt{JVFCorr}]  (corrJVT) -  corrected jet-vertex-fraction (see \cref{sec:pileup}) 
-    \item[\texttt{averageInteractionsPerCrossing[0]}]  ($\mu$) -  average pileup (see \cref{sec:pileup})
+    \item[\texttt{averageInteractionsPerCrossing}]  ($\mu$) -  average pileup (see \cref{sec:pileup})
     \item[\texttt{Timing}]  -  time of jet detection wrt. time of collision
     \item[\texttt{EMFrac}]  ( $f_{\text{EM}}$) -  a fraction of energy of a jet deposited in EM calorimeter 
     \item[\texttt{Width}]  ($W$) -  $\pT$ weighted average distance of constituents from the jet axis (see \cref{tab:bdt_variables})
     \item[\texttt{chf}]  ($f_{\text{ch}}$) -  charged fraction of a jet ($\pT$ sum of track divided by $\pT^{\text{jet}}$)
-    \item[\texttt{(m,pt,eta,phi)}]  (($m^{\text{jet}},\pT^{\text{jet}}, \eta^{\text{jet}}, \phi^{\text{jet}}$)) -  4-momentum of calibrated jet
+    \item[\texttt{(m,pt,eta,phi)}]  ($m^{\text{jet}},\pT^{\text{jet}}, \eta^{\text{jet}}, \phi^{\text{jet}}$) -  4-momentum of calibrated jet
     \item[\texttt{PFO\_n}]  ($N_{\text{PFO}}$) -  number of PFOs
-    \item[\texttt{ChargedPFOWidthPt1000[0]}] ($W_{\mathrm{chPFO}}^{\mathrm{p_{\mathrm{T}} > 1 \mathrm{GeV}}}$)  - width of jet computed from charged PFOs with $\pT > 1$ GeV from primary vertex
+    \item[\texttt{ChargedPFOWidthPt1000[0]}] ($W_{\mathrm{chPFO}}^{\mathrm{p_{\mathrm{T}} > 1 \mathrm{GeV}}}$) - width of jet computed \\
+    from charged PFOs with $\pT > 1$ GeV from primary vertex
     \item[\texttt{TrackWidthPt1000[0]}] ($W_{\mathrm{chtrk}}^{\mathrm{p_{\mathrm{T}} > 1 \mathrm{GeV}}}$)  -  width of jet computed from tracks with $\pT > 1$ GeV from primary vertex
     \item[\texttt{NumChargedPFOPt1000[0]}] ($N_{\mathrm{chPFO}}^{\mathrm{p_{\mathrm{T}} > 1 \mathrm{GeV}}}$)  -  number of charged PFOs with $\pT > 1$ GeV from primary vertex
     \item[\texttt{NumChargedPFOPt500[0]}] ($N_{\mathrm{ch PFO}}^{\mathrm{p_{\mathrm{T}} > 0.5 \mathrm{GeV}}}$) -  number of charged PFOs with $\pT > 0.5$ GeV from primary vertex

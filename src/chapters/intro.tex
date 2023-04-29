@@ -2,61 +2,67 @@
 \chapwithtoc{Introduction}
 
 Particle physics is a branch of physics that studies the fundamental constituents of matter and their interactions.
-For physicists to understand the fundamental processes that govern physical reality, we must identify all the participants in experiments that probe them. 
+To understand the fundamental processes that govern physical reality, we must identify all the participants in experiments that probe them. 
+
 \emph{In this thesis, we focus on tagging jets initiated by quarks or gluons.}
 To do the identification, theory, experimental devices, and measured data must be understood in the context of particle identification.
 
-Two fundamental particles that we are interested in are \emph{quarks} and \emph{gluons}~\cite{quarks}, together called \emph{partons}.
+Two fundamental particles that we are mainly interested in are \emph{quarks} and \emph{gluons}~\cite{quarks}, together called \emph{partons}.
 The physical theory that describes them is \QCD, which is inherently extremely complicated, far more than the theory of \emph{Electromagnetism}.
 The less energetic partons are, the stronger the interactions between them are. 
-This creates a problem in describing them as they tend to radiate and split into more partons, which makes it hard to trace them back to their origin.
-They create a spray of particles called \emph{jets}.
+This creates a problem in their description as they tend to radiate and split into more partons, which makes it hard to trace them back to their origin.
+The developed spray of particles is called \emph{jets}.
 We discuss the physics of partons in more detail in \cref{ch:physics}.
 
-\green{To produce} these jets (and many others), the \CERN~\cite{cern} built the \LHC~\cite{LHC}, which is the biggest particle accelerator in the world.
+To produce these jets (and many other particles), the \CERN~\cite{cern} built the \LHC~\cite{LHC}, which is the biggest particle accelerator in the world.
 On the \LHC is the \emph{ATLAS}~\cite{ATLAS} detector, a giant experiment testing our knowledge of elementary interactions. 
-The \LHC accelerates two proton beams in different directions, so they can collide in the ATLAS detector and create a variety of particles.
-The ATLAS detector, a massive machine with many subsystems, then detects these particles.
-The two main components crucial to our study are the \emph{tracker} and the \emph{calorimeters}.
+The \LHC accelerates two proton beams in different directions, so they can collide at the interaction points and create a variety of particles.
+The ATLAS detector, located at one of these interaction points, then detects these particles.
+The two main components of ATLAS crucial to our study are the \emph{tracker} and the \emph{calorimeters}.
 They provide enough data to reconstruct the jets and their constituents.
 A more detailed description of the ATLAS detector is in \cref{ch:atlas}.
 
-The definition of a jet is very complicated, not trivial.
-It depends on many aspects of the detector, collisions, algorithm used, and background, secondary collisions called pileup.
-Our study uses the anti-$k_t$ algorithm~\cite{antikt} that clusters constituents into jets.
-Constituents are energy deposits in the calorimeters or tracks in the tracker if they are charged.
-The algorithm that clusters energy deposits into constituents we use is the \PFa algorithm~\cite{PFO}.
-It provides the essential data for the jet tagging algorithms and training input of our taggers.
-The data we will utilize for the training and testing our tagger is the \MC simulations.
-They include the physical simulation of the collision and the detector response.
-In \cref{ch:data}, we provide more details about the data we use.
+The definition of a jet is very complicated.
+It depends on many aspects: the detector, collisions, jet algorithm, background events, secondary collisions (pileup), and many more.
+Our study uses the anti-$k_t$ algorithm~\cite{antikt} that clusters several constituents into a jet.
+The constituent is an energy deposit in the calorimeter or, if it is charged, a track in the tracker.
+The algorithm that clusters energy deposits and tracks into constituents we use is the \PFa~\cite{PFO}.
+It provides essential input to the jet algorithms and our taggers.
+
+However, to train the neural network we also need the truth information, which cannot be measured but is rather simulated with the \MC simulations.
+The \MC includes both the physical simulation of the collision and the detector response.
+In \cref{ch:data}, we provide more detail.
+
+Quark-gluon taggers could be used in a variety of applications, such as the search for new physics and precise measurements of the Standard Model. 
+To give a concrete example, the detector responses to quarks and gluons differ, so a quark/gluon tagger could be used to do separate calibrations for the two.
+In \emph{Vector Boson Fusion} or \emph{Vector Boson Scattering} analyses a well-performing quark tagger would allow for a better event selection.
+The SUSY gluino multijet search \cite{susy} could benefit from a quark-gluon tagger.
+Moreover, the techniques developed in this thesis can be used in other tagging problems, such as the tagging of jets into different classes~\cite{part}.
 
 Our goal, telling apart quark/gluon jets, is non-trivial as traces left by these particles in the detector are very similar.
 In the past, hand-crafted variables (such as a number of hadron tracks detected in the jet) describing the jets were used~\cite{ntrk_tag}.
-Nowadays, modern \ml techniques are used to utilize more variables.
-The most adopted and successful is \bdt algorithm~\cite{bdt}, which is still being developed~\cite{bdt_tag}.
+Nowadays, modern \ml techniques allow the utilization of more variables.
+The most adopted and successful is the \bdt algorithm~\cite{bdt}, which is still being developed~\cite{bdt_tag}.
 It uses multiple \emph{high-level jet variables} (variables that describe the jet as a whole) as input.
 
 In this thesis, we approach the problem using modern \dl techniques.
 \dl has exploded in the last decade.
 From the \nlp~\cite{bert} to image recognition~\cite{deit3}, \dl has been used to solve many problems.
-Most notably, the GPT \cite{gpt3,gpt4} models shook the whole world with their capabilities of text generation, as they can solve complex problems and even supersede humans. 
-Or the image-generating models such as Stable Diffusion \cite{stable_diff}, or Dall-E \cite{dalle} that can generate any image from text prompt. \green{[deleted:, making graphics designers obsolete.]}
-In this thesis, we utilize the \dl, used in these world-changing models, to solve the problem of quark/gluon tagging.
+Most notably, the GPT models \cite{gpt3,gpt4} shook the whole world with their capabilities of text generation, as they can solve complex problems and even supersede humans in exams. 
+Or the image-generating models such as Stable Diffusion \cite{stable_diff}, or Dall-E \cite{dalle} that can generate any image from a text prompt.
+We utilize the \dl, used in these world-changing models, to solve the problem of quark/gluon tagging.
 An in-depth explanation of different \dl techniques and models is in \cref{ch:models}.
 
 Different architectures are explored.
-Firstly the \highway architecture~\cite{highway} is developed, which uses high-level jet variables, but considerably more than \bdt. 
+Firstly the \fc and \highway architectures~\cite{highway,mlp} are developed, which use high-level jet variables, but considerably more than \bdt. 
 Afterward, we turn to a more granular jet description, using \emph{jet constituents}. 
 The \EFN and \PFN \cite{efn} are simple architectures that use the jet constituents as an input developed by the \HEP community.
 
-'Attention is all you need'~\cite{att_is_all} introduces a highly successful and influential architecture, called \trans, used in all kinds of applications, most notably \nlp~\cite{bert,gpt3,gpt4,deit3,cait}.
+'Attention is all you need'~\cite{att_is_all} paper introduces a highly successful and influential architecture, called \trans, used in all kinds of applications, most notably \nlp~\cite{bert,gpt3,gpt4,deit3,cait}.
 It can learn long-range dependencies and generalize its knowledge to new tasks.
 In \HEP community, its use is just starting.
-For example, in \cite{qcd_as_nlp}, it is used to teach the model jet structure as a \nlp task.  
+For example, in \cite{qcd_as_nlp}, it is used to teach the model a jet structure as a \nlp task.  
 Or recently, it was explored by the \CMS~\cite{cms} Collaboration, where they were tagging jets into various classes~\cite{part}.
 We improve on their work and apply it specifically to the problem of quark/gluon tagging.
-The models are trained, studied comprehensively, and their performance is compared with both \ml and \dl models in \cref{ch:training}.
+The models are trained, studied comprehensively, and their performance is compared in \cref{ch:training}.
 
-\green{Quark-gluon taggers are used in many applications, such as the search for new physics and precise measurements of the Standard Model. 
-Moreover, the techniques developed in this thesis can be used in other tagging problems, such as the tagging of jets into different classes~\cite{part}.}

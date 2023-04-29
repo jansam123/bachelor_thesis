@@ -10,15 +10,15 @@
 \end{figure}
 
 \LHC is a circular accelerator with a circumference of around 27.6km located on the Swiss-French border near Geneva, at CERN \cite{cern}.
-It accelerates particles, mainly protons, occasionally ions (dominantly lead), to almost the speed of light, reaching a center-of-mass energy of $\sqrt{s} = 14$ TeV.
-On the accelerating ring are four beam colliding points, where the particles collide and are detected by the ATLAS, \CMS, ALICE, and LHCb detectors.
+It accelerates particles, mainly protons and occasionally heavy ions (dominantly lead), to almost the speed of light, reaching a center-of-mass energy $\sqrt{s} = 14$ TeV.
+On the accelerating ring are four \emph{interaction points}, where the particles collide and are detected by the ATLAS, \CMS, ALICE, and LHCb detectors.
 ATLAS and \CMS are multi-purpose detectors, while ALICE is designed to study heavy-ion collisions, and LHCb is designed to study the physics of b-quarks.
 
 
 The ATLAS detector \cite{ATLAS} is a general-purpose particle detector located in a cavern 100m underground.
 The detector is a multi-layered cylindrical structure with a diameter of 46m and a height of 25m.
-The main detecting components are the \emph{silicon pixel and strip trackers}, the \emph{electromagnetic \LAr calorimeter}, the \emph{hadronic calorimeter}, and the \emph{muon spectrometer}.
-In \cref{fig:atlas}, we show a schematic of the ATLAS detector, in \cref{fig:tracker,fig:calorimeter,fig:muon,fig:magnet} the individual components, and in \cref{fig:det_inter} the cross section of the detector and its interactions with the particles in individual components.
+The main detecting components are the \emph{silicon pixel} and \emph{strip trackers}, the \emph{electromagnetic calorimeter}, the \emph{hadronic calorimeter}, and the \emph{muon spectrometer}.
+In \cref{fig:atlas}, we show a schematic of the ATLAS detector, in \cref{fig:det_inter} the cross section of the detector and its interactions with the particles in individual components, and \cref{fig:tracker,fig:calorimeter,fig:muon,fig:magnet} the individual components of the detector.
 
 \begin{figure}[htb]
     \centering
@@ -34,13 +34,20 @@ Before doing so, we will introduce the ATLAS coordinate system and space-orienti
 The ATLAS coordinate system is defined as follows:
 \begin{enumerate}
     \item The \emph{origin of the coordinate} system is the nominal interaction point.
-    \item The \emph{$z$ axis} is along the beam direction.
     \item the \emph{$x$-$y$ plane} is perpendicular to the beam direction.
     \item The positive \emph{$x$ axis} is pointing towards the centre of \LHC.
     \item The positive \emph{$y$ axis} is pointing upwards.
+    \item The \emph{$z$ axis} is along the beam direction, such that it forms a right-handed coordinate system with the $x$ and $y$ axes.
     \item The \emph{azimuthal angle $\phi$} is measured around the $z$ axis, being zero on the positive $x$ axis.
-    \item The \emph{polar angle $\theta$} is measured from the $z$ axis, where is zero.
+    \item The \emph{polar angle $\theta$} is measured from the $z$ axis, where it is zero.
 \end{enumerate}
+\begin{figure}[htb]
+    \centering
+    \includegraphics[width=0.7\linewidth]{src/img/ATLAS_coords.jpeg}
+    \caption{The ATLAS coordinate system.}
+    \label{fig:atlas_coord}
+\end{figure}
+
 We also define the \textbf{pseudorapidity} $\eta$ as 
 \begin{equation}
     \label{eq:pseudorapidity}
@@ -55,20 +62,14 @@ For massive objects, we also define the \textbf{rapidity} as
 where $E$ is the energy and $p_z$ is the momentum along the $z$ axis of the particle.
 The forward region is defined as $|\eta| > 2.5$, and the central region as $|\eta| < 2.5$.
 
-Simple sketches of the ATLAS coordinate system are shown in \cref{fig:atlas_coord}.
-\begin{figure}[htb]
-    \centering
-    \includegraphics[width=0.7\linewidth]{src/img/ATLAS_coords.jpeg}
-    \caption{The ATLAS coordinate system.}
-    \label{fig:atlas_coord}
-\end{figure}
+Simple sketch of the ATLAS coordinate system is shown in \cref{fig:atlas_coord}.
 
 
 \section{Large Hadron Collider}
 \label{sec:lhc}
-\LHC is the biggest particle accelerator in the world, operated by CERN, the European Organization for Nuclear Research.
-It is built underground, up to 175m below the surface. \footnote{Due to the high prices of land in Geneva.}
-To keep the particles in a circular motion, it uses superconducting NbTi magnets, reaching up to 8.33 T, submerged in a liquid He of temperature 1.9 K.
+\LHC is the biggest particle accelerator in the world, operated by CERN.
+It is built underground, up to 175m below the surface \footnote{Due to the high prices of land in Geneva.}.
+To keep the particles in a circular motion, it uses \emph{superconducting NbTi magnets}, reaching up to 8.33 T, submerged in a liquid Helium of temperature 1.9 K.
 Particles are pre-accelerated in a sequence of linear and circular accelerators.
 The system of all accelerators is shown in the \cref{fig:lhc}.
 \begin{figure}[htb]
@@ -98,7 +99,7 @@ If we assume the Gaussian distribution of the beams in the transverse plane, the
 where $\sigma_x$ and $\sigma_y$ are the standard deviations of the Gaussian distribution.
 \LHC has a luminosity of $L = 10^{34}$ cm$^{-2}$s$^{-1}$ translating to billion collisions per second.
 
-Another related variable is the \emph{integrated luminosity} $ \mathcal{L}$, expressing the amount the data collected in a given time period $T$
+Another related variable is the \emph{integrated luminosity} $ \mathcal{L}$, expressing the amount of data collected in a given time period $T$
 \begin{equation}
     \mathcal{L} = \int_{T} L dt,
 \end{equation}
@@ -127,7 +128,7 @@ Even more, the inner detector is much denser and has a higher granularity in the
 \subsection{Pixel Detector}
 The pixel detector, the first detection point, has the highest resolution and must withstand the highest radiation dose.
 It consists of four layers of silicon pixels of size 50 x (250-400) $\mu$m$^2$.
-With an accuracy of about 10 $\mu$m, it can locate a charged particle's origin and momentum.
+With an accuracy of about 10 $\mu$m, it can locate a charged particle's origin and measures its momentum.
 
 The primary physical detection process is ionization.
 As charged particles pass through the semiconducting silicon, they create electron-hole pairs, which are collected by the readout electronics.
@@ -135,22 +136,22 @@ As charged particles pass through the semiconducting silicon, they create electr
 \subsection{Semiconductor Tracker}
 \SCT is similar to the pixel detector but with a different type of position measuring.
 Instead of pixels, it uses  \emph{strips} to determine the particle's position.
-It covers way more volume than the pixel detector, \green{delete:[providing the most precise tracking system]} with a precision of up to 25 $\mu$m.
+It covers way more volume than the pixel detector, with a precision of up to 25 $\mu$m.
 Determination of coordinates is done by precise alignment of the strips.
 
-The physical process behind detection is the same as in the pixel detector.
+The physical process behind the detection is the same as in the pixel detector.
 
 \subsection{Transition Radiation Tracker}
 \TRT is the last part of the inner detector, being the least precise.
 Instead of silicon, it uses a gas mixture of Xe, CO$_2$, and O$_2$ to provide the ionizable material.
-The gas is put into \emph{straws} with a diameter of 4 mm and a length of up to 144 cm.
+The gas is put into \emph{straws} with a diameter of 4~mm and a length of up to 144 cm.
 Along the straw, in the middle, is a gold-plated tungsten wire acting as an anode, while the cathode is the tube wall.
 
 When a charged particle passes through the gas, it produces ion pairs.
 The anode is at ground potential attracting negative ions, while the cathode wall is at -1530V attracting positive ions.
 The straws are interleaved with polypropylene fibers or foils to provide a material with different index of refraction.
 Relativistic particles, with speeds above the speed of light in polypropylene (mainly electrons), generate transition radiation when moving from and into the polypropylene. 
-Additional information about the particle is inferred from transition radiation, which is used to reconstruct the track and identify the particle. 
+Additional information about the particle is inferred from this transition radiation, which is used to reconstruct the track and identify the particle. 
 
 
 
@@ -170,11 +171,11 @@ They are built up by alternating absorbing layers and energy-measuring layers.
 
 In \cref{fig:det_inter}, we can see two types of calorimeters:
 \begin{itemize}
-    \item \textbf{Electromagnetic calorimeter} designed to stop electrons, positrons, and photons.
-    \item \textbf{Hadronic calorimeter} designed to stop hadron, i.e., composites of quarks and gluons.
+    \item \textbf{Electromagnetic calorimeter} is designed to stop electrons, positrons, and photons.
+    \item \textbf{Hadronic calorimeter} is designed to stop hadrons, i.e., composites of quarks and gluons.
 \end{itemize}
 
-The hadronic calorimeter is the most important for our study because it provides data for jet reconstruction.
+The hadronic calorimeter is the most important for our study because it provides data for the jet reconstruction.
 
 
 \subsection{Electromagnetic Calorimeter}
@@ -188,8 +189,8 @@ The hadronic calorimeter uses mainly \TCal, an envelope of the electromagnetic c
 The \LAr part is similar to the electromagnetic calorimeter described above, but instead of lead, it uses copper and tungsten as an absorber.
 
 The \TCal uses steel as an absorber and scintillating tiles as a detector.
-As particles pass through the plastic scintillators, they excite the atoms inside, which emit light as they return to their ground state.
-This visible light is then collected by fibers and converted with photomultiplier tubes into an electrical signal.
+As particles pass through the plastic scintillators, they excite the molecules inside, which emit light as they return to their ground state.
+This visible light is then collected by optical fibers and converted into an electrical signal with photomultiplier tubes.
 The intensity of the light is proportional to the energy deposited in the scintillator.
 
 
@@ -223,7 +224,7 @@ The tracker provides one measurement point, while the spectrometer offers the ot
 
 In the whole ATLAS detector, there are two main systems of magnets, toroidal (blue field lines in \cref{fig:magnet}) and solenoidal (green field lines in \cref{fig:magnet}).
 All magnets are superconducting, operated at -268$^\circ$C, to reach necessary field strengths.
-The main purpose of magnets is to bend the trajectories of charged particles to measure their momentum $p$ according to \footnote{We assume that the magnetic field is constant and the particle's mass is zero.}
+The main purpose of magnets is to bend the trajectories of charged particles to measure their transverse momentum $\pT$ according to \footnote{We assume that the magnetic field is constant and the particle's mass is zero.}
 \begin{equation}
     \label{eq:magnet_momentum}
     \pT [\text{GeV}] = 0.3 \cdot q \cdot B [\text{T}] \cdot R [\text{m}],
@@ -241,20 +242,19 @@ One such example is low energetic pions, particularly important in our study bec
 
 The toroidal magnets are composed of two parts: barrel and endcap.
 The barrel magnets consist of eight 25.3m long, rectangular-shaped coils, the biggest toroidal magnets in the world.
-They are supported by the endcap magnets, which cover particles going in the forward direction, as in \cref{fig:magnet}.
+They are supported by the endcap magnets, which cover particles going in the forward direction, as seen in \cref{fig:magnet}.
 Together they provide a field of approximately 0.5-1T for bending the trajectories of muons, measured by the muon spectrometer. 
 
 
 \section{Trigger}
 \label{sec:trigger}
-The high luminosity that \LHC provides results in an interaction rate of \green{40 MHz}, equivalent to 60 TB/s of data throughput \cite{trig}.
+The high luminosity that \LHC provides results in an interaction rate of 40 MHz, equivalent to 60 TB/s of data throughput \cite{trig}.
 This is a massive amount of data, impossible to store and process.
 Most of the data contains no interesting physics, so it is filtered by the \emph{trigger system}.
 
-\green{The trigger system consists of two levels, \emph{L1} and \HLT \cite{trig}.
+The trigger system consists of two levels, \emph{L1} and \HLT \cite{trig}.
 L1 uses data from calorimeters and muon spectrometers defining a \RoI, where it decides whether to keep the event or not, reducing the interaction rate to 100 kHz.  
-Fast custom electronic hardware with a latency of 2.5$\mu$s is used.}
+Fast custom electronic hardware with a latency of 2.5$\mu$s is used.
 
-\green{The \HLT trigger uses the \RoI defined by L1 but with more precise data from the detector in that region.
-Using a CPU farm of 40k CPU cores, \HLT reduces the rate to 6.9 kHz, with a decision time of 300$\mu$s.}
+The \HLT trigger uses a CPU farm of 40k CPU cores to reduce the event rate to 1 kHz.
 After it, the data is prepared for long-time storage and analysis.

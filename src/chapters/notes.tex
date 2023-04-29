@@ -65,7 +65,7 @@ High-level trigger (HLT).
 
 \subsection{Chap 3}
 \begin{itemize} 
-\item \red{\texttt{PartonTruthLabelID} info}
+\item \texttt{PartonTruthLabelID} info
 \item Tab. 3.1 prekontroloval jsem cross-section a filter eff. a tyto udaje 
 jsou v poradku. Ty pt ranges - odkud jsi je vzal? To jsem Ti posilal?
 \green{Nie, nasiel som to v nejakom clanku. Preto som to chcel aj prekontrolovat.} \url{https://www.google.com/url?sa=t&rct=j&q=&esrc=s&source=web&cd=&cad=rja&uact=8&ved=2ahUKEwiJ-KGwp6T-AhW7gf0HHd5uDrwQFnoECAsQAQ&url=https%3A%2F%2Fera.library.ualberta.ca%2Fitems%2F64bff467-2b91-423d-87fe-77f15eb77472%2Fdownload%2F2d1e1293-0138-4033-b17a-875cd7fbd4b9&usg=AOvVaw1EMrRbyIuRdYgGlXCzaDoc}
@@ -109,6 +109,7 @@ obavam se.
 zapisu zavest to, ze kazda slozka i $x^{l+1}_i$ se pocita pouze ze slozky 
 i vektoru $Wx+b$? \green{To je implicitne myslene ak pozijes ReLU alebo sigmoid, ale softmax je definovany pre cely vektor. Ako tieto zapisy su v DL velmi vágne, ci to aplikujes na vektor alebo po zlozkach... 
 Zvacsa si zavadzaju specialne symboly pre nasobenie $\odot$ ale ked mas funckiu tak je to zlozitejsie.}
+Explicitne napisat, ze je to po zlozkach
 \end{itemize}
 
 \subsection{Chap 5}
@@ -180,4 +181,24 @@ adding data augmentation steps".
 real data" ...kalibruje se temer vzdy jen MC. V nasem pouziti znamena 
 pojem "kalibrace" prevazit MC tak, aby ucinnost selekce pomoci toho 
 taggeru byla v MC stejna, jako je v datech.
+\end{itemize}
+
+
+
+
+
+\section{17.4.2023}
+
+
+\subsection{Chap 1}
+\begin{itemize}
+    \item "Higgs boson is a scalar boson, giving invariant mass to other particles." ...vynech "invariant". Pod tim pojmem "mass" se v tomto kontextu v nasi hantyrce vzdy rozumi prave jedna vec. Jeste bys to mohl rozsirit a rict, ze Higgs boson je pozorovatelny artefakt Higgsova mechanismu (pricemz Higgsuv mechanismus je ten zpusob, jak do SM zavest hmoty castic)
+    \item "In QED, the coupling constant g goes to zero as the
+    distance between the particles goes to infinity." ...tohle teda taky nevim, jestli je pravda! Spis ne!! Jisty si jsem jen jednim: cim jsou od sebe nabite castice dal, tim je elmag. sila mezi nimi mensi. To je ale dane tou vzdalenosti a ne nutne tim, ze by jeste navic klesala i vazbova konstanta. Ne, pockej, ta vazbova konstanta asi trochu klesa, ale urcite nejde do nuly. Kazdopadne: rozlisuj peclive mezi poklesem/rustem vazbove konstanty a poklesem/rustem sily, kterou na sebe castice pusobi
+\end{itemize}
+
+\subsection{Chap 2}
+\begin{itemize}
+    \item "ATLAS MC samples do not come with truth information about pileup to reduce
+    the amount of used disk space," ...about pileup jets
 \end{itemize}

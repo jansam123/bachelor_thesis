@@ -22,7 +22,7 @@ Leptons are further divided into two groups:
         \item \emph{muon}, a heavier cousin of electron naturally produced in the atmosphere,
         \item \emph{tau lepton}, the heaviest lepton.
     \end{itemize}
-    These three leptons can interact via the \emph{Electromagnetic Force} (they have a charge), mediated by \emph{photons}, or via the \emph{Weak force}, mediated by \emph{W and Z boson}. 
+    These three leptons can interact via the \emph{Electromagnetic force} (they have a charge), mediated by \emph{photons}, or via the \emph{Weak force}, mediated by \emph{W and Z boson}. 
     \item \emph{Neutrinos}, each belonging to either electron, muon, or tau lepton.  
     Neutrinos can interact only weakly by exchanging W and Z bosons.
 \end{enumerate}
@@ -45,7 +45,7 @@ Quarks are also divided into two groups:
     \end{itemize}
 \end{enumerate}
 \end{multicols}
-All quarks can interact \green{not only} weakly and electromagnetically \green{, but also} via the \emph{Strong Force}, mediated by \emph{gluons}.
+All quarks can interact not only weakly and electromagnetically, but also via the \emph{Strong force}, mediated by \emph{gluons}.
 In nature, practically only the u-quark and d-quark occur. 
 Concretely, they are the building blocks of protons and neutrons.
 
@@ -58,35 +58,31 @@ Due to a measured process \cite{sadbury} called neutrino oscillations \cite{pdg}
 Since the first discovery, estimates on the upper bound of their masses were made \cite{pdg}.
 
 The bosonic particles are a photon, gluon, W, and Z boson, and \emph{Higgs boson}. 
-\green{[Deleted classification]}
-% They can be split up into two groups:
-% \begin{enumerate}
-%     \item \emph{Vector Bosons}: photon, gluon, W and Z boson,
-%     \item \green{\emph{Scalar Bosons}}: Higgs boson.
-% \end{enumerate}
 Vector bosons ('vector' comes from their mathematical description) are force carriers:
 \begin{itemize}
-    \item \emph{Electromagnetic Force} - photon,
-    \item \emph{Strong Force} - gluon,
-    \item \emph{Weak Force} - Z and W boson.
+    \item \emph{Electromagnetic force} - photon,
+    \item \emph{Strong force} - gluon,
+    \item \emph{Weak force} - Z and W boson.
 \end{itemize}
-\green{Higgs boson is a scalar boson, giving invariant mass to other particles.} 
+Higgs boson is a scalar boson, giving mass to other particles.
+It is an artifact of the Higgs mechanism that introduces masses to particles while preserving the \emph{local gauge invariance}.
 The properties of the corresponding force-carrying boson give the nature of each force.
 The corresponding charge of interacting particles gives the interaction strength of each force.
 
-Particles that have electric charges can exchange photons and interact electromagnetically.
+Particles that have electric charge can exchange photons and interact electromagnetically.
 The infinite range of the Electromagnetic force is due to the massless photons.
-They also have no charge, which makes them unable to scatter on other photons.~\footnote{This has some caveats at higher energies. Classically it is forbidden due to the linearity of Maxwell's equations, but at higher orders of perturbation QFT, photons can scatter on another photon. However, the probability of such an event is very low.}
+On top of that, the photon has no charge, which makes them unable to scatter on other photons.~\footnote{This has some caveats at higher energies. Classically it is forbidden due to the linearity of Maxwell's equations, but at higher orders of perturbation QFT, photons \emph{can} scatter on another photon. However, the probability of such an event is very low.}
 
 % Gluons are also massless, making the Strong force also infinite.
-Quarks are the only fermion carriers of the strong charge (also called \emph{color charge}). 
-Since gluons have two strong charges, they can interact with other gluons and exchange color charges when interacting with quarks or gluons.
-This differs from Electromagnetic Interaction, where particles' charge does not change. 
-Even though the Strong interaction is theoretically infinite, we do not see free gluons or quarks due to a process called \emph{hadronization} (detailed description in \cref{sec:hadronization}).
-They only occur in a bound state in nature, effectively making the color charge invisible at a larger scale (it becomes visible at~the~scale~of approximately 1 fm)
+Quarks are the only fermion carriers of the \emph{strong charge} (also called \emph{color charge}). 
+In contrast to electromagnetism, gluons have \emph{two strong charges}.
+They can interact with other gluons and exchange color charges when interacting with quarks or gluons.
+This differs from Electromagnetic interaction, where particles' charge does not change. 
+Even though the Strong interaction is theoretically infinite, we do not see free gluons or quarks due to a process called \emph{hadronization} (see \cref{sec:hadronization}).
+They only occur in a bound state in nature, effectively making the color charge invisible at a larger scale (it becomes visible at~the~scale~of approximately 1 fm).
 
 All fermions can interact weakly, but since W and Z bosons have mass (which is significant compared to fermions), the range of interaction is short.
-Weak processes occur, for example, in $\beta$-decay.
+Weak processes occur, for example, in the $\beta$-decay.
 
 Last but not least is the Higgs boson, a scalar boson.
 The strength of the interaction with the Higgs boson (more precisely: with the scalar field, Higgs field) is given by the mass of the interacting particle.
@@ -97,48 +93,49 @@ Gluons and photons are the only particles from \SM non-interacting with the Higg
 
 \section{Quantum Field Theory}
 \label{sec:qft}
-\QFT is a fundamental framework in modern theoretical physics that describes the behavior of particles and fields at the quantum level.
-Paul Dirac did the first development by studying the electromagnetic interaction of particles and photons by \cite{dirac}.
+\QFT is a fundamental framework in modern theoretical physics that describes the behavior of particles as fields at the quantum level.
+Paul Dirac did the first development by studying the electromagnetic interaction of particles and photons \cite{dirac}.
 Massive progress in \QED did Richard Feynman \cite{feynman}, who also introduced the \emph{Feynman diagrams}, a graphical representation of interactions.
 We will discuss Feynman diagrams in more detail in \cref{sec:feyman}.
 
 The starting point of QFT is that particles are not fundamental objects but excitations of underlying quantum fields that permeate all of space and time. 
-This field must satisfy the equations of motion of the corresponding field theory derived from the Lagrangian density of the theory.
+This field must satisfy the equations of motion of the corresponding field theory derived from the \emph{Lagrangian}.
 
 \subsection{Free Particles}
 \label{sec:free_particles}
-The Lagrangian of non-interacting \spinhalf particle, also called the \emph{Dirac Lagrangian}, is given by
+The Lagrangian of non-interacting \spinhalf particle (fermion) of mass $m$, also called the \emph{Dirac Lagrangian}, is given by
 \begin{equation}
     \label{eq:dirac_lag}
     \mathcal{L}_{\text{Dirac}} = \bar{\psi}(i\slashed{\partial} - m) \psi,
 \end{equation}
-where we abbreviate $\gamma^\mu \partial_\mu \equiv \slashed{\partial}$, $\gamma^\mu$ are the Dirac matrices, and $\partial_\mu$ is the covariant derivative.
-$\psi(x)$ is a bispinor fermionic field of a spin $\frac{1}{2}$ particle. 
-It has four components, which can be split into two spinors, each corresponding to a different chirality
+where we abbreviate $\gamma^\mu \partial_\mu \equiv \slashed{\partial}$; $\gamma^\mu$ are the Dirac matrices, and $\partial_\mu$ is the covariant derivative.
+$\psi(x)$ is a bispinor fermionic field of a \spinhalf particle. 
+It has four components, which can be split into two spinors, each corresponding to a different \emph{chirality}
 \begin{equation}
     \psi(x) = \left( \begin{array}{c} \psi_L(x) \\ \psi_R(x) \end{array} \right).
 \end{equation}
-Going further we will always abbreviate $\gamma^\mu V_\mu \equiv \slashed{V}$, where $V$ is a 1-form or a vector with lowered indices $V_\mu = \eta_{\mu \nu} V^\nu$ with the Minkowski metric $\eta_{\mu \nu} = \text{diag}(1,-1,-1,-1)$. 
+Going further we will always abbreviate $\gamma^\mu V_\mu \equiv \slashed{V}$, where $V_\mu$ is a 1-form, or a vector with lowered indices $V_\mu = \eta_{\mu \nu} V^\nu$ with the Minkowski metric $\eta_{\mu \nu} = \text{diag}(1,-1,-1,-1)$. 
 We also automatically sum over repeated indices, utilizing the Einstein summation convention.
-The Dirac equation is an equation of motion derived from the Lagrangian \cref{eq:dirac_lag}:
+
+\emph{The Dirac equation} is an equation of motion derived from the Lagrangian \cref{eq:dirac_lag}:
 \begin{equation}
     \label{eq:dirac}
     \left( i \gamma^\mu \partial_\mu - m \right) \psi(x) = 0.
 \end{equation}
 It can be solved analytically.
-
 The solutions to this equation describe how fermion particles propagate in space and time without interaction. 
 
 Conversely, bosons are spin-1 particles, described by the vector field $A_\mu(x)$.
-The Lagrangian of a non-interacting spin-1 particle is given by a \emph{Proca Lagrangian}
+The Lagrangian of a non-interacting spin-1 particle of mass $m$ is given by a \emph{Proca Lagrangian}
 \begin{equation}
     \label{eq:proca_lag}
     \mathcal{L}_{\text{Proca}} = - \frac{1}{4} F_{\mu\nu} F^{\mu\nu} + \frac{1}{2} m^2 A_\mu A^\mu,
 \end{equation}
-where $F_{\mu\nu} = \partial_\mu A_\nu - \partial_\nu A_\mu$ is the field strength tensor.
-Note that this Lagrangian describes massive bosons. 
+where $F_{\mu\nu} = \partial_\mu A_\nu - \partial_\nu A_\mu$ is the \emph{field strength tensor}.
+Note that this Lagrangian also describes massive bosons. 
 In the case of massless bosons, the second term is omitted.
-The equation of motion for the vector field, the Klein-Gordon equation, follows from the Lagrangian \cref{eq:proca_lag}
+
+The equation of motion for the vector field, the \emph{Klein-Gordon equation}, follows from the Lagrangian \cref{eq:proca_lag}
 \begin{equation}
     \label{eq:klein_gordon}
     \left( \Box + m^2 \right) A_\mu(x) = 0.
@@ -150,43 +147,45 @@ In the case of massless bosons, the equation reduces to
     \Box A_\mu(x) = 0,
 \end{equation}
 which is a simple wave equation.
-We can rewrite it using the field strength tensor as
+We can rewrite it using the field strength tensor as \footnote{We have utilized the Lorentz gauge $\partial_\mu A_\mu(x) = 0$.}
 \begin{equation}
     \Box A_\mu(x) = \partial_\nu \partial^\nu A_\mu(x) = \partial_\nu \partial_\nu A_\mu(x) - \partial_\nu \partial_\mu A_\mu(x) =  \partial_\nu F_{\nu\mu}(x) =  0,
 \end{equation}
-which are Maxwell's equations, meaning that massless non-interacting bosons propagate the same way as electromagnetic waves.
-We have utilized the Lorentz gauge $\partial_\mu A_\mu(x) = 0$.
+which are the \emph{Maxwell's equations}. 
+This means that massless non-interacting bosons propagate the same way as electromagnetic waves.
+
 
 
 \subsection{Interacting Particles}
 \label{sec:interacting_particles}
 We introduce the interaction between fields by invoking the \emph{local gauge invariance} of the Lagrangian. 
-
 Each type of interaction (strong, electromagnetic, weak) corresponds to a different $SU(N)$ \emph{Lie group} \cite{fecko}.
-Elements of $SU(N)$ are special unitary $N$x$N$ matrices \footnote{Matrix U is special if det$U=1$ and unitary if $UU^{\dagger} = 1$}. 
-When operating on $N$-dimensional space of fields, they are represented as unitary operators in the form 
+
+Elements of $SU(N)$ are special unitary $N$x$N$ matrices \footnote{Matrix U is special if det$U=1$ and unitary if $UU^{\dagger}= U^{\dagger}U = 1$}. 
+When operating on $N$-dimensional space of fields, their \emph{representations} are unitary operators in the form 
 \begin{equation}
     \label{eq:lie_element}
     U = \eu^{i g \sum_{a} \alpha^a T^a},
 \end{equation}
-where $T^a$ are generators of the group, and $\alpha^a$ and $g$  are the parameters of the transformation.
-For example, in the case of a rotating spinor in classical quantum mechanics, the group is the rotation group SU(2), and the generators are the Pauli matrices $T^a \equiv \frac12 \hat{\sigma}_a$ ($a = x,y,z$).
+where $T^a$ are \emph{generators} of the group, and $\alpha^a$ and $g$  are the parameters of the transformation.
+For example, in the case of a rotating spinor in classical quantum mechanics, the group is the rotation group $SU(2)$, and the generators are the Pauli matrices $T^a \equiv \frac12 \hat{\sigma}_a$ ($a = x,y,z$).
 $g$ would be the angle of rotation, and $\alpha^a \equiv \vec{n}$ is the axis of rotation.
 More generally, $T^a$ can be represented as $N$x$N$ matrices, where $N$ is the field space dimension.
 Going further, we will suppress writing the summation over $a$ (or any other index) explicitly unless it is necessary for clarity.
+
 The generators satisfy the commutation relations
 \begin{equation}
     \label{eq:commutation}
     [T^a, T^b] = i f^{abc} T^c,
 \end{equation}
-where $f^{abc}$ are the structure constants of the Lie group.
+where $f^{abc}$ are the \emph{structure constants} of the Lie group.
 
-A Lagrangian describes an interacting physical system if it is invariant under the local gauge transformation
+We can now connect the Lie group with physics; a Lagrangian describes an interacting physical system if it is invariant under the local gauge transformation
 \begin{equation}
     \label{eq:}
-    \psi_j(x)' = U_{ij}(x)\psi(x)_j = \eu^{i g \alpha^a(x) T^a_{ij}} \psi(x)_j,
+    \psi_j'(x) = U_{ij}(x)\psi(x)_j = \eu^{i g \alpha^a(x) T^a_{ij}} \psi(x)_j,
 \end{equation}
-of the spinor quantum fields $\psi(x)_i$, and under the infinitesimal transformation of the vector fields $A^a_\mu(x)$
+of the spinor quantum fields $\psi_i(x)$, and under the infinitesimal transformation of the vector fields $A^a_\mu(x)$
 \begin{equation}
     \label{eq:gauge_inv_bosons}
     A^a_\mu(x)' \rightarrow A^a_\mu(x) + \frac{1}{g} \partial_\mu \alpha^a(x) - f^{abc} \alpha^b(x) A^c_\mu(x) + \mathcal{O}((f^{abc})^2),
@@ -198,9 +197,9 @@ $g$ is the coupling constant of the interaction, and $\alpha^a(x)$ are the param
 For example, the electromagnetic interaction corresponds to the $U(1)$ group (Lie group isomorphic to complex numbers), which means that the Lagrangian must be invariant under the transformations
 \begin{equation}
     \label{eq:gauge_inv_QED}
-    \psi(x) = \eu^{-i e \alpha(x)}\psi(x) \quad, \quad A_\mu(x) = A_\mu(x) + \frac{1}{e} \partial_\mu \alpha(x).
+    \psi'(x) = \eu^{-i e \alpha(x)}\psi(x) \quad, \quad A_\mu'(x) = A_\mu(x) + \frac{1}{e} \partial_\mu \alpha(x).
 \end{equation}
-where the a generator of the $U(1)$ group is just a constant $T^a = 1$, so the structure constants are zero $f^{abc} = 0$.
+where the a generator of the $U(1)$ group is just a constant $T^a = 1$, and the structure constants are zero $f^{abc} = 0$.
 
 In the general case of the non-Abelian $SU(N)$ group having $N$ different fermions with the free Lagrangian
 \begin{equation}
@@ -218,10 +217,10 @@ where the field strength tensor is modified, as a result of the non-commutativit
     G^a_{\mu\nu} = F^a_{\mu\nu} + g f^{abc} A^b_\mu A^c_\nu = \partial_\mu A^a_\nu - \partial_\nu A^a_\mu + g f^{abc} A^b_\mu A^c_\nu,
 \end{equation}
 such that it preserves the local gauge invariance.
-This additional term significantly impacts the system's dynamics because the last term corresponds to boson-boson interaction.
+This additional term significantly impacts the system's dynamics because the last term of \ref{eq:field_strength} corresponds to boson-boson interaction.
 We shall see in \cref{sec:QCD} the consequences of this interaction.
 
-To go back to the example of the $U(1)$, the corresponding Lagrangian has the form \footnote{$G^a_{\mu\nu} \equiv F^a_{\mu\nu}$, because $f^{abc} = 0$}
+If we go back to the example of $U(1)$, the corresponding Lagrangian has the form \footnote{$G^a_{\mu\nu} \equiv F^a_{\mu\nu}$, because $f^{abc} = 0$}
 \begin{equation}
     \label{eq:qed_lag}
     \mathcal{L} = - \frac{1}{4}  F_{\mu\nu} F_{\mu\nu} + \bar{\psi}(i\slashed{\partial} - m) \psi - e \bar{\psi} \gamma^\mu \partial_\mu \psi A_\mu.
@@ -230,9 +229,9 @@ The equations of motion of the Lagrangian (\ref{eq:qed_lag}) ultimately determin
 
 \subsection{Cross Section}
 \label{sec:cross_section}
-In particle physics, we are not interested in calculating the actual state $\psi(x)$ as a solution to the equations of motion of the Lagrangian (\ref{eq:qed_lag}), but rather in the probability of two particles interacting. 
+In particle physics, we are not interested in calculating the actual state $\psi(x)$ as a solution to the equations of motion of the Lagrangian (\ref{eq:qed_lag}), but rather in the probability of particles interacting. 
 The physical quantity describing this probability is the cross section $\sigma$.
-With the probabilistic nature of quantum mechanics, we need to define this quantity based on more interactions.
+With the probabilistic nature of quantum mechanics, we need to define this quantity based on multiple interactions.
 Suppose we have a flux of incoming particles scattered off target particles. 
 Then the probability that a given particle will scatter off of a target particle is given as 
 \begin{equation}
@@ -252,20 +251,20 @@ Or, if we want the cross section in terms of the momentum of the scattered parti
     d\sigma = \frac{\text{number of scattered particles with outgoing momentum } dp}{\text{incoming flux of particles}}.
 \end{equation}
 
-Quantum mechanically, we expect the cross section to be given by the probability of the system being in a final state $|f\rangle$ given that it was in the initial state $|i\rangle$.
+Quantum mechanically, we expect the cross section to be given by the probability of the system being in a final state $|f\rangle$ given that it evolved from the initial state $|i\rangle$.
 We can express this as 
 \begin{equation}
     \label{eq:cross_sec_qm}
     \sigma \sim |\langle f | \eu^{-i \hat{H} (t_{out} - t_{in})} | i \rangle |^2,
 \end{equation}
-where $\hat{H}$ is the Hamiltonian of the system, and $t_{in}$ and $t_{out}$ are the initial and final times of the system.
+where $\hat{H}$ is the Hamiltonian of the system, and $t_{in}$ and $t_{out}$ are the initial and final times of the process.
 
 To be more precise, for two interacting particles with energies $E_{1,{\text{in}}}$, $E_{2,{\text{in}}}$ and velocities $\vec{v}_{1,{\text{in}}}$, $\vec{v}_{2,{\text{in}}}$, and $N$ particles in the final state with energies $E_{j,{\text{out}}}$ ($j=1,2,..., N$), we can write \cite{schartz}
 \begin{equation}
     \label{eq:cross_sec_qft}
     d \sigma = \frac{|\mathcal{M}|^2}{4 E_{1,{\text{in}}} E_{2,{\text{in}}} |\vec{v}_{1,{\text{in}}} - \vec{v}_{2,{\text{in}}}|} (2\pi)^4 \delta^4(p^\mu_{\text{in}} - p^\mu_{\text{out}}) \prod_{j=1}^N \frac{d^3 p_j}{(2\pi)^3 2E_{j, {\text{out}}}}, 
 \end{equation}
-where $p^\mu_{\text{in}}$ is the 4-momentum of the incoming particles and $p^\mu_{\text{out}}$ is the 4-momentum of the outgoing particles, the $\delta^4(p^\mu_{\text{in}} - p^\mu_{\text{out}})$ function is the 4-dimensional Dirac delta function enforcing 4-momentum conservation, and the $|\mathcal{M}|^2$ is the matrix element of the \emph{scattering amplitude} $\mathcal{M}$.
+where $p^\mu_{\text{in}}$ is the total 4-momentum of the incoming particles and $p^\mu_{\text{out}}$ is the total 4-momentum of the outgoing particles, the $\delta^4(p^\mu_{\text{in}} - p^\mu_{\text{out}})$ function is the 4-dimensional Dirac delta function enforcing 4-momentum conservation, and the $|\mathcal{M}|^2$ is the squared matrix element of the \emph{scattering amplitude} $\mathcal{M}$.
 The matrix element $\langle f |\mathcal{M} | i \rangle$ (where $|\mathcal{M}|^2 \equiv |\langle f |\mathcal{M} | i \rangle |^2$) is given by (assuming $ | f \rangle \neq | i \rangle$)
 \begin{equation}
     \label{eq:M_matrix}
@@ -277,22 +276,22 @@ We can calculate the $S$-matrix utilizing the Dyson series expansion \cite{schar
     \label{eq:s_dyson}
     \langle f | S | i \rangle =\left\langle f \left|\sum_{n=0}^{\infty} \frac{(-i)^n}{n !} \int d x_1^4 \cdots \int d x_n^4 T\left[\mathcal{H}\left(t_1\right) \cdots \mathcal{H}\left(t_n\right)\right]\right| i \right\rangle,
 \end{equation}
-where $T\left[\mathcal{H}\left(t_1\right) \cdots \mathcal{H}\left(t_n\right)\right]$ is the time-ordered product of the Hamiltonian of the system, and $\mathcal{H}$ is the Hamiltonian density of the system.
+where $T\left[\mathcal{H}\left(t_1\right) \cdots \mathcal{H}\left(t_n\right)\right]$ is the time-ordered product of the Hamiltonian $\mathcal{H}$ of the system at times $t_1, t_2, ..., t_n$.
 Equation (\ref{eq:cross_sec_qm}) is a particular case of equation (\ref{eq:s_dyson}) where the Hamiltonian is time-independent.
 
 
 \subsection{Feynman Diagrams}
 \label{sec:feyman}
-Calculating the expansion (\ref{eq:s_dyson}) is practically impossible analytically, so Feynman developed a graphical method to calculate individual terms.
+Calculating the expansion (\ref{eq:s_dyson}) is practically impossible analytically, so R. Feynman developed a graphical method to calculate individual terms \cite{feynman}.
 The diagrams consist of the following:
 \begin{itemize}
     \item \textbf{External lines} represent the incoming and outgoing particles, which are \emph{real} particles,
     \item \textbf{Internal lines} represent the intermediate particles, which are \emph{virtual} particles,
     \item \textbf{Vertices} are the points of interaction.    
 \end{itemize}
-Virtual particles are not real particles but mathematical construct that allows us to visualize the scattering process.
+Virtual particles are not real particles but a mathematical construct that allows us to visualize the scattering process.
 Each part contributes a multiplicative factor to the amplitude $-i\mathcal{M}$.
-The \emph{order of the diagram} is the number of interaction vertices and the order of the term in the Dyson series expansion.
+The \emph{order of the diagram}, the order of the corresponding term in the Dyson series expansion \ref{eq:s_dyson}, is given by the number of interaction vertices.
 
 \begin{figure}[htb]
 \begin{tikzpicture}
@@ -320,14 +319,14 @@ The time flows from left to right, so we have an incoming electron and muon.
 They exchange a virtual photon, momentum, and scatter.
 The incoming particles, with momenta $p_1$, $p_2$, contribute factors $u(p_1)$, $u(p_2)$, which are solutions to the free Dirac equation (\ref{eq:dirac}) in momentum space. 
 The outgoing particles, with momenta $p_3$, $p_4$, contribute factors $\bar{u}(p_3)$, $\bar{u}(p_4)$, which are complex conjugates of the free Dirac equation solutions.
-The vertex is where interaction happens, and corresponding term $ie\gamma^\mu$ is given by the interaction Lagrangian $\mathcal{L}_{\text{int}} = - e \bar{\psi} \gamma^\mu \partial_\mu \psi A_\mu$.
+The vertex is where the interaction happens, and the corresponding term $ie\gamma^\mu$ is given by the interaction Lagrangian $\mathcal{L}_{\text{int}} = - e \bar{\psi} \gamma^\mu \partial_\mu \psi A_\mu$.
 Virtual photon, with momentum $p_{\gamma}$, is an internal line, its contribution is $\frac{-i\eta_{\mu \nu}}{p_{\gamma}^2}$.
 We can now write the amplitude as 
 \begin{equation}
     \label{eq:e_mu_amp}
     -i\mathcal{M} = \bar{u}(p_3) (ie\gamma^\mu) u(p_1) \frac{-i\eta_{\mu \nu}}{p_{\gamma}^2} \bar{u}(p_4) (ie\gamma^\nu) u(p_2)
 \end{equation}
-Utilizing the conservation of momentum, we can write $p_{\gamma} = p_1 - p_3$, we can write
+Utilizing the conservation of momentum, we can write $p_{\gamma} = p_1 - p_3$ and rewrite
 \begin{equation}
     \label{eq:e_mu_amp_2}
     \mathcal{M} = -e^2 \bar{u}(p_3) \gamma^\mu u(p_1) \frac{1}{(p_1 - p_3)^2} \bar{u}(p_4) \gamma_\mu u(p_2).
@@ -392,13 +391,14 @@ Integrating over the solid angle, we get the total cross section
         \caption{}
         \label{fig:e_mu_higher_b}
     \end{subfigure}
-    \caption{Fourth order Feynman diagram for electron-muon scattering.}
+    \caption{Fourth order Feynman diagrams for electron-muon scattering.}
     \label{fig:e_mu_higher}
 \end{figure}
 
 
 This calculation was an example of the lowest-order Feynman diagram.
-In general, many more diagrams contribute to the amplitude, \cref{fig:electron_muon} is a fourth-order diagram.
+In general, many more diagrams contribute to the amplitude, for example in \cref{fig:electron_muon} is a fourth-order diagram.
+All of these contributions are added together to get the full amplitude $\mathcal{M}$.
 
 The \emph{Feynman rules} for the general \QED Feynman diagram can be found in \cite{intro_to_part}.
 Other interactions have slightly different Feynman rules, but the general idea is the same.
@@ -407,7 +407,7 @@ Other interactions have slightly different Feynman rules, but the general idea i
 \section{Quantum Chromodynamics}
 \label{sec:QCD}
 So far, we have introduced \QED interactions as examples. 
-In this section, we will introduce \QCD, the theory of strong interactions.
+In this section, we will introduce \QCD, the theory of Strong interactions.
 The underlying Lie group of \QCD is  $SU(3)$.
 We can derive the following from the general theory introduced in \cref{sec:interacting_particles}. 
 $N=3$, which means the underlying field space is three-dimensional.
@@ -425,7 +425,7 @@ The full Lagrangian of \QCD is \cite{qcd} (we also suppress the summation over q
 \end{split}
 \end{align}
 where we have expanded $G^a_{\mu\nu}$ as in (\ref{eq:field_strength}). 
-We can now see that the two last terms correspond to three and four-gluon coupling.
+We can now see that the two last terms correspond to three and four-gluon coupling, as they contain the product of three or four, vector fields $A$, respectively.
 
 
 \subsection{Feynamn Diagrams of QCD}
@@ -435,7 +435,7 @@ However, we will introduce some of the essential Feynman diagrams here.
 \subsubsection*{Quark-quark scattering}
 Lowest order diagrams for quark-quark scattering are shown in \cref{fig:qq}.
 Quarks have the same type of 'fermionic' line as leptons discussed in \cref{sec:qft}.
-Gluons are represented with 'curly' lines to distinguish the strong interaction from the electromagnetic.
+Gluons are represented with 'curly' lines to distinguish the Strong interaction from the Electromagnetic.
 The possibility of the initial quarks having different color charges adds magnitude to the overall amplitude because we need to sum over all possibilities. 
 To illustrate this, we take a look at a fraction of cross section of $e^+ e^- \rightarrow$ hadrons and $e^+ e^- \rightarrow \mu^+ \mu^-$
 \begin{equation}
@@ -669,35 +669,35 @@ The scattering amplitude is given by \cite{qcd}
     \mathcal{M}_{q \bar{q} g}^\mu=\bar{u}\left(p_1\right)\left(-i g T^a \slashed{\epsilon} \right) \frac{i\left(\slashed{p_1} +\slashed{k}\right)}{\left(p_1+k\right)^2}\left(-i e \gamma^\mu\right) v\left(p_2\right) ,
 \end{equation}
 where $p_1$, $p_2$ are the momenta of the quarks $q_1$, $q_2$, $k$ is the momentum of the gluon, and $\epsilon$ is the solution of a free gluon.
-
-
+The gluon vertex contributes the factor $-igT^a\slashed{\epsilon}$, corresponding to the term $g \bar{\psi}_i \slashed{A}^a T^a_{ij} \psi_j$ in the Lagrangian.
+The construction of $\mathcal{M}$ is similar to \QED.
 
 \section{Infrared and Collinear Divergences}
 \label{sec:IR_div}
 The perturbation expansion (\ref{eq:s_dyson}) is done in the constant of interaction $g$. 
 However, the assumption of $g$ being a constant is not valid.
 It changes with the energy of the particles, hence the distance between them. 
-In \QED,\green{[delete: we have the \emph{asymptotic freedom}, which means ]}the coupling constant $g$ goes to zero as the distance between the particles goes to infinity.
-The coupling constant grows when we force particles to be closer to each other by smashing them together with high enough energy.
-In \QCD, the coupling constant grows with the distance between the quarks.
-The difference arises because, in \QCD, there are three quark color fields, whereas, in \QED, there is only one.
+In \QED, the coupling grows when we force particles to be closer to each other by smashing
+them together with high enough energy.
+In \QCD, the coupling goes to zero at very high energies and it grows with the distance between the quarks.
+The difference arises because, \QED is Abelian (the generators commute), while \QCD is non-Abelian.
 The structure given by the Lie group $SU(3)$ dramatically changes the behavior of the coupling constant.
-Another way to formulate this is that the probability of a quark emitting a gluon as it losses energy goes to infinity.
+Another way to formulate this is that the probability of a quark emitting a gluon, as it losses energy, goes to infinity.
 
-We can see this directly from the scattering amplitude (\ref{eq:IR_sing}), wherein the dominator we have
+We can see this directly from the scattering amplitude (\ref{eq:g_emission}), wherein the dominator we have
 \begin{equation}
     \label{eq:IR_sing}
     (p_1+k)^2 = 2E\omega(1- \cos{\theta}),
 \end{equation}
-where we consider $p_1 = (E,0,0,E)$, a hard quark (energetic quark, whose mass can be neglected), and $k = \omega (1, 0, \sin{\theta}, \cos{\theta})$, $\theta$ being the angle between the quark and the gluon.
+where we consider $p_1 = (E,0,0,E)$, a \emph{hard quark} (energetic quark, whose mass can be neglected), and $k = \omega (1, 0, \sin{\theta}, \cos{\theta})$, $\theta$ being the angle between the quark and the gluon.
 If this term goes to zero, the scattering amplitude goes to infinity.
 There are two ways this can happen: 
 \begin{itemize}
     \item \textbf{Infrared singularity}: gluon becomes low-energetic $\omega \rightarrow 0$
     \item \textbf{Collinear singularity}: gluon is emitted in the direction of the quark $\theta \rightarrow 0$
 \end{itemize}
-These infinities are \textbf{not physical}, but a consequence of not considering all the possible interactions.
-The KLN theorem \cite{IR_sing_K,IR_sing_LN} states: \emph{When all the possible interactions are considered, the scattering amplitude is finite}, i.e., is \textbf{infrared (IR) and collinear safe}. 
+These infinities are \textbf{not physical}, but a consequence of not considering all the possible Feynman diagrams.
+The KLN theorem \cite{IR_sing_K,IR_sing_LN} states: \emph{When all the possible interactions are considered, the scattering amplitude is finite}, i.e., is \textbf{infrared and collinear (IRC) safe}. 
 
 The exact process happens for gluons. 
 They can emit another gluon, and the scattering amplitude goes to infinity.
@@ -743,16 +743,16 @@ Both approaches are illustrated in \cref{fig:hadronization}.
 \footnotetext{\url{https://arxiv.org/abs/1011.5131}}
 
 
-The scattering of partons bound in a hadron cannot be described as hard interaction like it was for an electron bound in an atom.
+The scattering of partons bound in a hadron cannot be described as hard interaction as it can be for an electron bound in an atom.
 As we described earlier the parton has a much higher probability to emit gluons at low energies.
 In a hadron, they create the so-called \emph{sea of partons} on top of the three or two valence quarks.
-This parton mess is described by the \emph{parton distribution function} (PDF) \cite{pdf_feynman} $f_i(x)$, which is a probability distribution of the parton $i$ carrying momentum fraction $x$ of the hadron.
-An example is shown in \cref{fig:pdf}, where the PDF $f(x, Q^2)$ of proton is also a function of the squared energy scale $Q^2$.
-We can see that the dominant partons contributing to the proton are u-quarks and d-quarks, the valence quarks, but the contribution from other partons is not negligible. 
+This parton mess is described by the \emph{parton distribution function} (PDF) $f_i(x)$ \cite{pdf_feynman}, which is a probability distribution of the parton $i$ carrying momentum fraction $x$ of the hadron.
+An example is shown in \cref{fig:pdf}, where the PDF $f(x, Q^2)$ for proton constituents is also a function of the squared energy scale $Q^2$.
+We can see that the dominant partons contributing to the proton momentum are u-quarks and d-quarks, the valence quarks, but the contribution from other partons is not negligible. 
 \begin{figure}[htb]
     \centering
     \includegraphics[width=0.7\linewidth]{src/img/pdf.png}
-    \caption[Example of the parton distribution function of a proton. The PDF $f(x, Q^2)$ is a function of the momentum fraction $x$ and the squared energy scale $Q^2$. Different colors represent a different parton type. On the $y$-axis is the PDF $f(x,Q^2)$ multiplied by the fraction $x$.]{Example of the parton distribution function of a proton. The PDF $f(x, Q^2)$ is a function of the momentum fraction $x$ and the squared energy scale $Q^2$. Different colors represent a different parton type. On the $y$-axis is the PDF $f(x,Q^2)$ multiplied by the fraction $x$. \footnotemark}
+    \caption[Example of the parton distribution functions for a proton. The PDF $f(x, Q^2)$ is a function of the momentum fraction $x$ and the squared energy scale $Q^2$. Different colors represent a different parton type. On the $y$-axis is the PDF $f(x,Q^2)$ multiplied by the fraction $x$.]{Example of the parton distribution function of a proton. The PDF $f(x, Q^2)$ is a function of the momentum fraction $x$ and the squared energy scale $Q^2$. Different colors represent a different parton type. On the $y$-axis is the PDF $f(x,Q^2)$ multiplied by the fraction $x$. \footnotemark}
     \label{fig:pdf}
 \end{figure}
 \footnotetext{\url{https://arxiv.org/pdf/0901.0002.pdf}}
@@ -760,7 +760,7 @@ We can see that the dominant partons contributing to the proton are u-quarks and
 \section{Jets}
 \label{sec:jet}
 As seen in \cref{sec:IR_div}, partons emit soft and collinear gluons.
-The initial momentum of the parton is split into more partons, creating a shower of partons called \emph{jet}.
+The initial momentum of the primary parton is split into more partons, creating a shower called \emph{jet}.
 The main processes in proton-proton collisions that produce a jet are shown in \cref{fig:qq,fig:qg,fig:gg}.
 
 Experimentally it is not straightforward to define a jet from the measured decays.
@@ -768,12 +768,12 @@ For example, a quark initially radiates one collinear gluon, having approximatel
 How do you decide whether the gluon is part of the initial jet or creates a new one?
 Or, if two jets exchange a soft gluon that emits another one, how do you decide where the new gluon belongs?
 This is important because if the jets are not defined correctly, the infinities in the scattering amplitude will not be canceled out, as is stated in the KLN theorem \cite{IR_sing_K,IR_sing_LN}.
-This makes analyzing the data very difficult. 
+This makes comparing the data with theory very difficult. 
 
 There are complex algorithms that use unique physical variables to enable the reconstruction of the jets \cite{antikt}.
 In the first approximation, we can say that the jet is a \emph{cone}, where the apex corresponds to the initial parton and all other partons created are inside the cone. 
 We will discuss this in more detail in \cref{sec:jet_reco}.
-The illustration of a jet is shown in \cref{fig:jet}.
+The illustration of a jet definition is shown in \cref{fig:jet}.
 \begin{figure}[htb]
     \centering
     \includegraphics[width=1.\linewidth]{src/img/jet_reco.jpeg}
@@ -783,12 +783,12 @@ The illustration of a jet is shown in \cref{fig:jet}.
 
 Another aspect of jets is the definition of their energy.
 The most common approach to defining the jet 4-momentum is by summing the 4-momenta of all the partons inside the jet \cite{antikt}.
-The problem is that it introduces a mass to the jet, but the initial parton is massless.
+The problem is that it introduces a mass to the jet, but the initial parton migth be massless.
 
 
 \subsection{Infrared and Collinear Safety}
 \label{sec:IR_coll_safe}
-One way of making sure that the jet algorithm is reflecting the physics of partons is to make sure that the jet algorithm is \emph{infrared and collinear safe}:
+One way of making sure that the jet algorithm is reflecting the physics of partons is to make sure that it is \emph{infrared and collinear safe}:
 \begin{itemize}
     \item \textbf{Collinear safety} means that if the initial parton (or any other in the shower) radiates a \emph{collinear} gluon, it is always part of the same jet.
     \item \textbf{Infrared safety} means that the jet is unchanged if the initial parton (or any other in the shower) radiates a \emph{soft} gluon.
@@ -809,7 +809,7 @@ We can now define \IRC observable $\mathcal{O}$ as:
     \end{itemize}
 \end{defn}
 
-In \cref{fig:collinear_safety}, we can see that the jet algorithm initially finds two jets, but when one jet radiates a soft gluon, they are put together or when a jet radiates a collinear gluon, the jet is split.
+In \cref{fig:collinear_safety}, we can see that an IRC unsafe jet algorithm initially finds two jets, but when one jet radiates a soft gluon, they are put together or when a jet radiates a collinear gluon, the jet is split.
 
 \begin{figure}[htb]
     \centering

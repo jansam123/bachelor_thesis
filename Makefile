@@ -11,9 +11,10 @@ thesis:
 
 abstract:
 	$(LATEXMK) $(ABSTRACT)-cz
-	-mv $(ABSTRACT)-cz.pdf build/$(ABSTRACT)-cz-$(shell date +%Y-%m-%d).pdf
+	-mv $(ABSTRACT)-cz.pdf $(ABSTRACT)-sk.pdf
+	-cp $(ABSTRACT)-sk.pdf build/$(ABSTRACT)-sk.pdf
 	$(LATEXMK) $(ABSTRACT)-en
-	-mv $(ABSTRACT)-en.pdf build/$(ABSTRACT)-en-$(shell date +%Y-%m-%d).pdf
+	-cp $(ABSTRACT)-en.pdf build/$(ABSTRACT)-en.pdf
 clean:
 	$(LATEXMK) -C
 	#rm **/*.aux

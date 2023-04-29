@@ -3,13 +3,13 @@
 
 We have successfully developed a modern Transformer-like model that uses jet constituents to determine the original parton initiating the jet.
 To achieve this, we have reviewed the crucial physical aspects of \QCD describing the behavior of partons and jets and the detector response to jets.
-The training data was a Monte Carlo simulation passed through the detector simulation with the object reconstruction the same as in the real data, \green{provided by the ATLAS Run 2 simulations}.
+The training data was a Monte Carlo simulation passed through the detector simulation with the object reconstruction the same as in the real data, provided by the ATLAS Run 2 simulations.
 
 We reviewed modern architectures and techniques of Deep Learning and applied them to the problem of jet tagging.
 We touched on multiple problems that may arise in particle physics applications of Deep Learning, such as the truthfulness of labels, reconstruction of data, and the underlying physics.
 
 Different models using various levels of jet information were trained and compared.
-Our proposed \depart model outperformed all of them, including the previously used quark/gluon tagger and the state-of-the-art \ParT tagger.
+Our proposed \depart model outperformed all of them, including the previously used quark/gluon tagger and the state-of-the-art jet tagger \ParT.
 We have demonstrated the Transformer architecture's advantage in extracting information from the jet constituents.
 They provide a more complete and flexible description of the jet than the previous models.
 On top of that, the \trans architectures have far more immense potential, where it could be used to tag individual flavors of quarks separately on top of the quark/gluon tagging. 
@@ -18,11 +18,11 @@ The only downside of the model is a large number of parameters, which makes it c
 The proposed model showed only little angular and pileup dependence on the performance, which is a desirable property for a jet tagger. 
 There is room for improvement of the model in the energy dependence, which is a more challenging problem since the physics changes drastically.
 
-\section{Future work}
-A possible improvement is to make the model Infrared and Collinear Safe, \green{which might be achieved by adding data augmentation steps}.
+\section*{Future work}
+A possible improvement is to make the model Infrared and Collinear Safe, which might be achieved by adding data augmentation steps.
 This would make the model more robust to the effects of the jet reconstruction and allow for a more physical description.
 
 The dependence of the model on the simulation framework should be investigated to make the model applicable. 
-If the model performs similarly on different simulators (without being explicitly trained on them), we could be confident that the model learned the problem's physics and not the simulation's specifics. 
+If the model performs similarly on different simulators (without being explicitly trained on them), we could be confident that the model learned physics and not the simulation's specifics. 
 From this point, we would test the performance on real data and calibrate \MC.
 Finally, the \depart could be used in real data analysis.

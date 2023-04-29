@@ -2,14 +2,14 @@
 \label{ch:training}
 \section{Main Goal}
 \label{sec:training_and_evaluation}
-In our study, we learn a model to predict the probability of a jet being a quark or a gluon.
+In our study, we teach a model to predict the probability of a jet being a quark or a gluon.
 In other words, we want to \emph{tag} the jet with a label saying whether it came from a quark or a gluon.
 The dataset containing the jet information and the targets is the \MC simulations described in \cref{sec:event_production}.
 The target is a variable constructed from \texttt{jets\_PartonTruthLabelID}, which can have nine values: u-quark (1), d-quark (2), s-quark (3), c-quark (4), b-quark (5), t-quark (6), gluon (21), pileup (-1) or unknown (-999).
 The numbers in brackets are the \PID of the parton \cite{pdg}.
 
 Quarks (\PID = 1, 2, 3, 4, 5, 6) are put into a single class corresponding to the number 1, while gluons (\PID = 21) are put into a single class corresponding to the number 0.
-We may refer to these targets as \emph{Truth Labels}.
+We refer to these targets as \emph{Truth Labels}.
 Jets with \texttt{jets\_PartonTruthLabelID} equal to -1 or -999 are omitted from the dataset.
 
 Before we can train a model, we need to make some assumptions about the data.
@@ -17,24 +17,24 @@ Primarily, the \emph{jet tag cannot depend on the underlying event}.
 In other words, we must be able to predict the jet tag using only the jet information, i.e., \emph{jet variables}.
 We will not use any physical weights coming from the \MC simulation.
 
-Previous \green{ATLAS} work primarily used only one variable to tag the jet \cite{ntrk_tag}.
+Previous ATLAS work primarily used only one variable to tag the jet \cite{ntrk_tag}.
 Some improvement has been made by utilizing more variables and training a \bdt \cite{bdt_tag}, basic \ml algorithm \cite{bdt}.
 No other models have been successfully deployed.
 We will train \emph{all models} introduced in \cref{ch:models} on the same dataset and compare the results.
 Our baseline model is the \bdt, which we will retrain with the same dataset as the other models and the same hyperparameters as in \cite{bdt_tag}.
-One variable tagger is not included in the comparison, as they are inferior to the \bdt \cite{bdt_tag}.
+One variable tagger is not included in the comparison, as it is inferior to the \bdt \cite{bdt_tag}.
 
 \section{Dataset}
 \label{sec:dataset}
 
 The dataset is constructed from the \MC simulations described in \cref{sec:event_production}.
 We use the \texttt{Pythia} dijet \MC simulation with anti-$k_t$ jet clustering with $R = 0.4$ (see \cref{sec:jet_reco}). 
-The event reconstruction is done with \texttt{Athena release 21} \footnote{https://atlassoftwaredocs.web.cern.ch/athena/athena-releases/}.
+The event reconstruction is done with \texttt{Athena release 21}\footnote{\url{https://atlassoftwaredocs.web.cern.ch/athena/athena-releases/}}.
 
 The preprocessing of the data is done in two stages: offline (\cref{sec:preparation_process}) and online (\cref{sec:online_preprocess}).
 The offline preprocessing is done once, while the online preprocessing is done during training.
 
-\subsection{Offline Preprocess}
+\subsection{Offline Preprocessing}
 \begin{figure}[!ht]
     \centering
     \includegraphics[width=1.\textwidth]{src/diagrams/data_prep_off.png}
@@ -43,19 +43,17 @@ The offline preprocessing is done once, while the online preprocessing is done d
 \end{figure}
 \label{sec:preparation_process}
 The data comes in the form of a \texttt{ROOT} \cite{root} file with a \texttt{TTree} containing the variables of interest.
-We use the \texttt{uproot} \cite{uproot} package to convert each file to \texttt{Tensorflow} \cite{tf} native object \texttt{tf.data.Dataset}\footnotemark, which afterwords save with the \texttt{tf.data.experimental.save} function.
-\footnotetext{\url{https://www.tensorflow.org/api_docs/python/tf/data/Dataset}}
+We use the \texttt{uproot} \cite{uproot} package to convert each file to \texttt{Tensorflow} \cite{tf} native object \texttt{tf.data.Dataset}\footnotemark, which is afterward saved to a file\footnotetext{\url{https://www.tensorflow.org/api_docs/python/tf/data/Dataset}}.
 We utilize the proprietary format of \texttt{Tensorflow} datasets to reduce the time needed to load the data.
 The \texttt{ROOT} format is not optimized for fast sequential access. 
 
 After the first conversion, the data is preprocessed again.
 In this second stage, we remove pileup and unknown jets (those with \PID $= -1,\ -999$), filter events without any jet, and \emph{flatten events} into individual jets.
 The \texttt{tf.data.Dataset} is then efficiently saved to shards of equal size, enabling parallel loading of the data.
-
 The whole process is illustrated in \cref{fig:data_prep_off}.
 
 
-\subsection{Online Preprocess}
+\subsection{Online Preprocessing}
 \label{sec:online_preprocess}
 \begin{figure}[!ht]
     \centering
@@ -63,7 +61,7 @@ The whole process is illustrated in \cref{fig:data_prep_off}.
     \caption{The online preprocessing of the data.}
     \label{fig:data_prep_on}
 \end{figure}
-The online preprocessing utilizing the \texttt{tf.data.Dataset} API, allowing pipeline construction of the dataset, which is done with the training process. 
+The online preprocessing utilizing the \texttt{tf.data.Dataset} API allows a pipeline construction of the dataset.
 Our preprocessing pipeline consists of the following steps:
 \begin{enumerate}
     \item Load each JZ slice separately.
@@ -75,29 +73,28 @@ Our preprocessing pipeline consists of the following steps:
         \item \texttt{jets\_PFO\_n} $> 5$,
         \item \texttt{jets\_pt} $>$ \textit{(based on JZ slice, see \cref{sec:jet_pt_cuts})},
     \end{itemize}
-    \item For each JZ slice, resample the quark and gluon datasets, each with probability 0.5,  
+    \item For each JZ slice, resample the quark and gluon datasets, each with equal probability 0.5,  
     \item Combine JZ slices, each with the same probability (0.2 for each JZ slice when JZ slices 1-5 are used),
     \item Construct desired input variables,
     \item Normalize the input variables,
 \end{enumerate}
 
 In step 2, we apply cut on the jet variables estimating the amount of pileup.
-\green{ATLAS \MC samples do not come with truth information about pileup to reduce the amount of used disk space,} so we filter them out as much as possible using the abovementioned cuts.
-The PFO-based taggers need some minimum number of \PFOs to work correctly, so we filter out jets with less than 5 \PFOs.
+ATLAS \MC samples do not come with truth information about pileup jets to reduce the amount of used disk space, so we filter them out as much as possible using the abovementioned cuts.
 
 We apply a cut on the jet $\pT$ based on the JZ slice to make the spectrum for quarks and gluons more similar.
 This is extensively discussed in \cref{sec:jet_pt_cuts}.
 
 Resampling the quark and gluon datasets is done to make the dataset balanced.
 We can obtain the same result by reweighting each jet, but we have no prior knowledge of the weights.
-The method \texttt{tf.data. dataset.rejection\_resample}\footnote{\url{https://www.tensorflow.org/api_docs/python/tf/data/Dataset\#rejection\_resample}} allows resampling on the go by computing the ratio dynamically as the data is processed.
+The method \texttt{tf.data.dataset.rejection\_resample}\footnote{\url{https://www.tensorflow.org/api_docs/python/tf/data/Dataset\#rejection\_resample}} allows resampling on the go by computing the ratio dynamically as the data is processed.
 
-Combining JZ slices with equal probability ensures the model works on the full spectrum of jets \green{and \emph{does not use} $\pT$ to make the decision.}
+Combining JZ slices with equal probability ensures the model works on the full spectrum of jets and \emph{does not use} $\pT$ to make the decision.
 This is a non-trivial step, as in actual physical data, the jet $\pT$ spectrum is highly dominated by low $\pT$ jets, while the high $\pT$ jets are rare. 
 However, some applications are specifically interested in the high $\pT$ jets, so we want to ensure the model can also handle them.
 
 The construction of variables and their normalization is explained \cref{sec:input_variables}.
-The whole process is illustrated in \cref{fig:data_prep_on}.
+The whole offline preprocessing is illustrated in \cref{fig:data_prep_on}.
 
 
 \subsection{JZ Cuts}
@@ -117,7 +114,7 @@ The whole process is illustrated in \cref{fig:data_prep_on}.
         \caption{colored by their JZ slice}
         \label{fig:jz_all_jz}
     \end{subfigure}
-    \caption{Normalized $\pT$ distributions of jets \emph{before} the JZ \emph{cuts} are applied.}
+    \caption{Normalized $\pT$ distributions of jets before the JZ cuts are applied.}
     \label{fig:jz_all}
 \end{figure}
 As stated in \cref{sec:event_production}, data is split into JZ slices, each having a different $\pT$ distribution.
@@ -156,12 +153,12 @@ The number of quarks and gluons is the same.
         \caption{JZ slice 5, 800 GeV cut}
         \label{fig:jz_separete_5}
     \end{subfigure}
-    \caption{Normalized $\pT$ distributions of jets \green{before} the JZ cuts are applied.}
+    \caption{Normalized $\pT$ distributions of jets before the JZ cuts are applied.}
     \label{fig:jz_separete}
 \end{figure}
 
 From \cref{fig:jz_all_label}, we can see that the $\pT$ distribution of the jets is different for each Truth Label.
-Gluons dominate the low $\pT$ region \footnote{This might not be obvious, but pay attention to the log scale of the y-axis.}, while quarks dominate the high $\pT$ region.
+Gluons dominate the low $\pT$ region\footnote{This might not be obvious, but pay attention to the log scale of the y-axis.}, while quarks dominate the high $\pT$ region.
 All JZ slices contribute to these low $\pT$ regions, mainly with soft gluon jets.
 This can be seen from \cref{fig:jz_separete}, where all JZ slices are shown separately.
 \begin{figure}[htb]
@@ -181,13 +178,13 @@ This can be seen from \cref{fig:jz_separete}, where all JZ slices are shown sepa
     \caption{Normalized $\pT$ distributions of jets after the JZ cuts are applied. Lime lines correspond to the $\pT$ cuts.}
     \label{fig:jz_all_cut}
 \end{figure}
-We do not want the tagger to use the variable $\pT^{\text{jet}}$ to distinguish between quarks and gluons and avoid jets created from soft gluons.
+We do not want the tagger to use the variable $\pT^{\mathrm{jet}}$ to distinguish between quarks and gluons and avoid jets created from soft gluons.
 We separately apply a cut on the jet $\pT$ for each JZ slice.
 These cuts are visualized in \cref{fig:jz_separete} with their respective values.
 Every jet with lower $\pT$ than the cut is removed from the dataset.
 
 The $\pT$ distributions of the jets after the cuts are applied are shown in \cref{fig:jz_all_cut}.
-Contributions from individual JZ slices are also visible in \cref{fig:jz_all_cut_label}, forming a 'cone-line' distribution shape.
+Contributions from individual JZ slices are also visible in \cref{fig:jz_all_cut_label}, forming a 'comb-like' distribution shape.
 The respective cuts are shown with lime lines to make it easier to see the cuts.
 The soft gluons are suppressed, and the $\pT$ distribution of the jets is more similar for each Truth Label. 
 
@@ -197,12 +194,12 @@ The soft gluons are suppressed, and the $\pT$ distribution of the jets is more s
 \label{sec:input_variables}
 We will construct four types of variables:
 \begin{itemize}
+    \item \textbf{\PFO variables} - variables that are construsted from the 4-momenta of the \PFOs, they are calculated for \emph{each PFO} in a given jet.
+    \item \textbf{\PFO interaction variables} - variables that are calculated from a pair of 4-momenta of two \PFOs, they are calculated \emph{for each pair of PFOs} in a given jet.
     \item \textbf{BDT variables} - variables that are calculated from \PFOs for a whole jet.
-    \item \textbf{High-level jet variables} - variables that are calculated for the jet.
-    \item \textbf{\PFO variables} - variables that are \green{construsted from} the 4-momenta of the \PFOs, they are calculated for \emph{each PFO} in a given jet.
-    \item \textbf{\PFO interaction variables} - variables that are calculated from a pair of 4-momenta of \PFO, they are calculated \emph{for each pair of PFOs} in a given jet.
+    \item \textbf{High-level jet variables} - variables that are pre-calculated for the jet in the \texttt{Athena} framework.
 \end{itemize}
-The distributions of these variables are shown in \cref{ch:app_input_variables}
+The distributions of these variables are shown in \cref{ch:app_input_variables}.
 
 \subsection{PFO Variables}
 \label{sec:pfo_variables}
@@ -216,7 +213,7 @@ These are the first three variables in \cref{tab:pfo_variables}.
 The dynamical variables include the $\pT$ and $E$ of the \PFO.
 Long-tailed distributions may cause problems for the neural network, so the logarithms of $\pT$ and $E$ are better suited. 
 To emphasize the importance of a given \PFO in a jet, the logarithm of the ratios of $\pT$ ($E$) of a \PFO to a jet $\pT^\mathrm{jet}$ ($E^\mathrm{jet}$) are used.
-Most of the \PFOs \green{are neutral particles or cannot be associated with massive particles, so we assume they are relativistic and neglect their masses.}
+Most of the \PFOs are neutral particles or cannot be associated with massive particles, so we assume they are relativistic and neglect their masses.
 However, some leave tracks and are reconstructed as charged pions with non-zero masses.
 We utilize this information by adding the mass as a variable, which is not used in \cite{part}.
 
@@ -228,23 +225,23 @@ These variables are inputted to \trans, \ParT, and \depart.
 \input{src/tables/PFO_interaction_variables.tex}
 The complete list of \PFO interaction variables is shown in \cref{tab:pfo_interaction_variables} \cite{part}.
 They are calculated for each pair of \PFOs in a given jet.
-An input is a matrix of \PFO interaction variables for each pair of \PFOs in a given jet, forming an input shape of $N \times N \times 4$, where $N$ is the number of \PFOs in a jet.
-The matrix is symmetric, and the diagonal is filled with zeros.
+An input is a matrix of \PFO interaction variables for each pair of \PFOs in a given jet, forming a shape of $N \times N \times 4$, where $N$ is the number of \PFOs in a jet.
+The matrix is symmetric, and the diagonal is manually filled with zeros.
 
 The kinematic variable is the angular distance $\Delta$.
 The invariant mass $m^2$ is calculated from the 4-momenta of the two \PFOs.
 We utilize the same variable $k_\mathrm{T}$ as used in the jet reconstruction \cref{sec:jet_reco} (however, it is labeled differently, according to \cite{part}).
 The last variable, $z$, is also dynamic, the fraction of $\pT$ carried by less energetic \PFO.
-Again we take the \emph{logarithm of all these variables} \green{(except $z$ because it is bounded, see the distribution in \cref{sec:app_pfo_int_variables})} to squish the distributions. 
+Again we take the \emph{logarithm of all these variables} (except $z$ because it is bounded, see the distribution in \cref{sec:app_pfo_int_variables}) to squish the distributions. 
 
 These variables are a secondary input to \ParT and \depart.
 We will train these models both with and without interaction variables.
-Those trained with interaction variables are denoted as \emph{Interacting ParT} and \emph{Interacting DeParT}, respectively.
+Those trained with interaction variables are denoted as \emph{Interacting ParT} and \emph{Interacting DeParT}.
 
 \subsection{BDT Variables}
 \label{sec:bdt_variables}
 \input{src/tables/BDT_variables.tex}
-The complete list of BDT variables is shown in \cref{tab:bdt_variables} \cite{bdt_tag} \footnote{In the original paper \cite{bdt_tag}, they do not use \PFOs, but only track (trk) information.}.
+The complete list of BDT variables is shown in \cref{tab:bdt_variables} \cite{bdt_tag}\footnote{In the original paper \cite{bdt_tag}, they do not use \PFOs, but only track (trk) information.}.
 They are calculated for the whole jet from all \PFOs, forming a 5-dimensional vector as an input.
 
 $N_\mathrm{PFO}$ is the number of \PFOs in a jet, i.e. the \emph{multiplicity}.
@@ -258,7 +255,7 @@ Only \bdt uses these variables as input.
 \label{sec:high_level_variables}
 \input{src/tables/high_level_variables.tex}
 The complete list of high-level jet variables is shown in \cref{tab:high_level_variables}, and their definitions and commonly used symbols are given in \cref{ch:app_high_level_variables}.
-These variables are precomputed by the \texttt{Athena} \footnote{https://atlassoftwaredocs.web.cern.ch/athena/athena-releases/} framework and are available for each jet.
+These variables are precomputed by the \texttt{Athena}\footnote{\url{https://atlassoftwaredocs.web.cern.ch/athena/athena-releases/}} framework and are available for each jet.
 Together they form a 30-dimensional vector as an input.
 
 \fc and \highway use these variables as input.
@@ -304,7 +301,7 @@ There were trained on two \texttt{NVIDIA TESLA V100} GPUs with 16GB or 32GB of m
 \subsection{BDT Configuration}
 \label{sec:bdt_config}
 \input{src/tables/bdt_config.tex}
-The training is performed with the \texttt{TensorFlow Decision Forests 0.2.7} \footnote{\url{https://www.tensorflow.org/decision_forests}} library using the \texttt{tfdf.keras.GradientBoostedTreesModel} model.
+The training is performed with the \texttt{TensorFlow Decision Forests 0.2.7}\footnote{\url{https://www.tensorflow.org/decision_forests}} library using the \texttt{tfdf.keras.GradientBoostedTreesModel} model.
 We train 600 trees with a maximum depth of 5.
 The minimum number of samples in a leaf is 5000.
 The shrinkage factor is 0.5, and L2 regularization is applied with a weight of 0.1.
@@ -323,7 +320,7 @@ In the case of the \trans, no dropout is applied, \ParT uses dropout with a rate
 \depart also uses the Layer Scale with an initial value of $10^{-5}$.
 
 \ParT and \depart are trained with and without the interaction variables.
-If they are, the interaction variables are embedded with 3 layers, each of size 64, while the last one is the same as the number of heads, 8.
+The interaction variables are embedded with 3 layers, each of size 64, while the last one is the same as the number of heads, 8.
 All hyperparameters are summarized in \cref{tab:trans_config}.
 
 \subsection{Fully Connected and Highway Network Configuration}
@@ -355,7 +352,7 @@ This is due to the physical limit of the tagging task at low $\pT$.
 We will discuss this in more detail in \cref{sec:pt_dependance}.
 
 The technical information about the models is summarized in \cref{tab:tech}.
-The disk space of all models is roughly the same, around 35 MB, except for \bdt, which is 1.4 MB.
+The disk space of saved models is roughly the same for all of them, around 35 MB, except for \bdt, which is 1.4 MB.
 It is given by the number of total parameters, which is roughly the same for all models.
 The tiny differences did not affect the performance.
 
@@ -418,9 +415,9 @@ The tiny differences did not affect the performance.
     \label{fig:score}
 \end{figure}
 
-Even though the interaction variables are computed from the \PFO variables, i.e., the model can learn how to calculate them without being explicitly told, and they still improve the performance.
+Even though the interaction variables are computed from the \PFO variables, i.e., the model can learn how to calculate them without being explicitly told, they still improve the performance.
 Because every head is given different input, it helps them focus on various aspects of the jet, and when combined, they can learn more complex patterns.
-Even more, allowing the heads to talk to each other (something that \ParT has not, but \depart does) improves the performance.
+Even more, allowing the heads to talk to each other (something that \ParT does not, but \depart does) improves the performance.
 On the other hand, interaction variables make the computation more expensive because they are used as a second input, the memory usage is much higher, and the inference time is longer, as seen in \cref{tab:tech}.
 
 
@@ -472,7 +469,7 @@ Also, at higher $\pT$, above 200 GeV, the performance is more or less stable wit
 The model's ordering is more visible if we zoom in on the high $\pT$ range, as seen in \cref{fig:pt_dep_acc_zoom}.
 The \EFN is the worst-performing model, which indicates that some kind of mapping of energy variables (like $\pT$ or $E$) is necessary for the model to perform well and instead tackle the IRC safety differently.
 The \highway is almost identical to the \fc, which is unsurprising, as they are very similar models.
-The main advantage is that the \highway diverges less than the \fc, but using the LAMB optimizer makes the \fc converge to the same result. \footnote{When we trained them with Adam optimizer, the \highway performed better.}
+The main advantage is that the \highway diverges less than the \fc, but using the LAMB optimizer makes the \fc converge to the same result\footnote{When we trained them with Adam optimizer, the \fc performed worse.}.
 
 The averaged difference from \trans is displayed in \cref{fig:pt_dep_diff} to emphasize the relative model performances. 
 
